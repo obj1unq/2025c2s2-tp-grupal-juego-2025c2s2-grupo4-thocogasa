@@ -1,0 +1,28 @@
+import wollok.game.*
+import piezas.*
+
+program PepitaGame {
+	game.title("miniChess")
+	game.height(8)
+	game.width(5)
+
+	// add assets in asset folder, for example, for the background
+  // game.boardGround("fondo2.jpg")
+	game.boardGround("tableroB.jpg")
+	game.addVisual(negro1)
+	game.addVisual(negro2)	
+	game.addVisual(negro3)
+	game.addVisual(negro4)
+	game.addVisual(negro5)
+	game.addVisual(blanco1)
+	game.addVisual(blanco2)
+	game.addVisual(blanco3)
+	game.addVisual(blanco4)
+	game.addVisual(blanco5)
+	game.addVisual(reyNegro)
+	game.addVisualCharacter(reyBlanco)
+
+	game.showAttributes(reyBlanco) //Debug
+
+	game.start()
+}
