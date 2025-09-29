@@ -6,8 +6,8 @@
 * Condori, Ivana
 * Correa, Thomas
 * Kakazu, Gabriel
-* Santiago
-
+* Fisela, Santiago
+Santiago
 ---
 
 Este juego es una variante de ajedrez en tiempo real 

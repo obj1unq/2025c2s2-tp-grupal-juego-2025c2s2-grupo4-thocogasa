@@ -1849,3 +1849,5 @@
 {"level":"info","message":"⌛ Validating ajedrez.wpgm","timeElapsed":107,"timestamp":"2025-09-29T13:24:52.788Z"}
 {"exitCode":"SIGINT","level":"info","message":"👾 Game executed ajedrez.PepitaGame on /home/santiago/Documents/GitHub/miniChess","timeElapsed":617674,"timestamp":"2025-09-29T13:24:55.771Z"}
 {"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34majedrez.PepitaGame\u001b[39m\u001b[23m on \u001b[3m\u001b[34m/home/santiago/Documents/GitHub/miniChess\u001b[39m\u001b[23m","ok":true,"timeElapsed":292,"timestamp":"2025-09-29T13:25:09.119Z"}
+{"exitCode":"SIGINT","level":"info","message":"👾 Game executed ajedrez.PepitaGame on /home/santiago/Documents/GitHub/miniChess","timeElapsed":167340,"timestamp":"2025-09-29T13:27:56.168Z"}
+{"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34majedrez.PepitaGame\u001b[39m\u001b[23m on \u001b[3m\u001b[34m/home/santiago/Documents/GitHub/miniChess\u001b[39m\u001b[23m","ok":true,"timeElapsed":377,"timestamp":"2025-09-29T13:28:21.231Z"}
