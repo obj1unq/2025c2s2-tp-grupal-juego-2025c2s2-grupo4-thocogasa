@@ -1775,3 +1775,77 @@
 {"level":"info","message":"⌛ Validating ajedrez.wpgm","timeElapsed":235,"timestamp":"2025-09-28T18:17:51.375Z"}
 {"level":"info","message":"⌛ Validating ajedrez.wpgm","timeElapsed":270,"timestamp":"2025-09-28T18:17:51.645Z"}
 {"exitCode":"SIGHUP","level":"info","message":"👾 Game executed ajedrez.PepitaGame on c:\\Users\\GabrielNicolasKakazu\\Wollok\\miniChess","timeElapsed":143312,"timestamp":"2025-09-28T18:17:58.414Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":199,"timestamp":"2025-09-29T12:28:36.925Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":102,"timestamp":"2025-09-29T12:28:37.029Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":106,"timestamp":"2025-09-29T12:28:37.335Z"}
+{"level":"info","message":"⌛ Validating ajedrez.wpgm","timeElapsed":136,"timestamp":"2025-09-29T12:28:37.486Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":215,"timestamp":"2025-09-29T12:28:37.797Z"}
+{"level":"info","message":"⌛ Validating ajedrez.wpgm","timeElapsed":128,"timestamp":"2025-09-29T12:28:37.926Z"}
+{"level":"info","message":"⌛ Validating ajedrez.wpgm","timeElapsed":104,"timestamp":"2025-09-29T12:30:07.640Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":133,"timestamp":"2025-09-29T12:30:10.592Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":136,"timestamp":"2025-09-29T12:30:10.730Z"}
+{"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34majedrez.PepitaGame\u001b[39m\u001b[23m on \u001b[3m\u001b[34m/home/santiago/Documents/GitHub/miniChess\u001b[39m\u001b[23m","ok":true,"timeElapsed":312,"timestamp":"2025-09-29T12:30:11.832Z"}
+{"exitCode":"SIGINT","level":"info","message":"👾 Game executed ajedrez.PepitaGame on /home/santiago/Documents/GitHub/miniChess","timeElapsed":29060,"timestamp":"2025-09-29T12:30:40.580Z"}
+{"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34majedrez.PepitaGame\u001b[39m\u001b[23m on \u001b[3m\u001b[34m/home/santiago/Documents/GitHub/miniChess\u001b[39m\u001b[23m","ok":true,"timeElapsed":334,"timestamp":"2025-09-29T12:30:43.905Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":111,"timestamp":"2025-09-29T13:11:13.708Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":186,"timestamp":"2025-09-29T13:11:13.921Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":146,"timestamp":"2025-09-29T13:11:18.537Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":138,"timestamp":"2025-09-29T13:11:18.857Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":121,"timestamp":"2025-09-29T13:11:19.506Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":106,"timestamp":"2025-09-29T13:11:21.125Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":118,"timestamp":"2025-09-29T13:11:23.656Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":116,"timestamp":"2025-09-29T13:11:23.795Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":104,"timestamp":"2025-09-29T13:11:24.022Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":124,"timestamp":"2025-09-29T13:11:24.753Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":101,"timestamp":"2025-09-29T13:11:25.601Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":106,"timestamp":"2025-09-29T13:11:25.777Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":107,"timestamp":"2025-09-29T13:11:33.809Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":104,"timestamp":"2025-09-29T13:11:34.806Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":123,"timestamp":"2025-09-29T13:11:34.930Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":111,"timestamp":"2025-09-29T13:11:35.120Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":105,"timestamp":"2025-09-29T13:11:35.382Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":148,"timestamp":"2025-09-29T13:11:35.915Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":102,"timestamp":"2025-09-29T13:11:37.161Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":115,"timestamp":"2025-09-29T13:11:39.842Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":105,"timestamp":"2025-09-29T13:11:40.874Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":102,"timestamp":"2025-09-29T13:11:40.977Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":110,"timestamp":"2025-09-29T13:11:41.090Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":143,"timestamp":"2025-09-29T13:11:41.395Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":108,"timestamp":"2025-09-29T13:11:48.035Z"}
+{"exitCode":"SIGINT","level":"info","message":"👾 Game executed ajedrez.PepitaGame on /home/santiago/Documents/GitHub/miniChess","timeElapsed":2479437,"timestamp":"2025-09-29T13:12:03.010Z"}
+{"level":"info","message":"⌛ Validating ajedrez.wpgm","timeElapsed":151,"timestamp":"2025-09-29T13:12:07.747Z"}
+{"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34majedrez.PepitaGame\u001b[39m\u001b[23m on \u001b[3m\u001b[34m/home/santiago/Documents/GitHub/miniChess\u001b[39m\u001b[23m","ok":true,"timeElapsed":335,"timestamp":"2025-09-29T13:12:10.450Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":107,"timestamp":"2025-09-29T13:14:17.323Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":154,"timestamp":"2025-09-29T13:14:17.479Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":105,"timestamp":"2025-09-29T13:14:17.750Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":116,"timestamp":"2025-09-29T13:14:18.037Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":108,"timestamp":"2025-09-29T13:14:21.084Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":132,"timestamp":"2025-09-29T13:14:21.222Z"}
+{"exitCode":"SIGINT","level":"info","message":"👾 Game executed ajedrez.PepitaGame on /home/santiago/Documents/GitHub/miniChess","timeElapsed":137601,"timestamp":"2025-09-29T13:14:27.719Z"}
+{"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34majedrez.PepitaGame\u001b[39m\u001b[23m on \u001b[3m\u001b[34m/home/santiago/Documents/GitHub/miniChess\u001b[39m\u001b[23m","ok":true,"timeElapsed":323,"timestamp":"2025-09-29T13:14:38.419Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":105,"timestamp":"2025-09-29T13:24:25.881Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":188,"timestamp":"2025-09-29T13:24:26.071Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":115,"timestamp":"2025-09-29T13:24:26.188Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":158,"timestamp":"2025-09-29T13:24:26.347Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":106,"timestamp":"2025-09-29T13:24:26.555Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":132,"timestamp":"2025-09-29T13:24:26.960Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":116,"timestamp":"2025-09-29T13:24:29.621Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":107,"timestamp":"2025-09-29T13:24:29.730Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":126,"timestamp":"2025-09-29T13:24:29.866Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":147,"timestamp":"2025-09-29T13:24:30.089Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":119,"timestamp":"2025-09-29T13:24:30.421Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":105,"timestamp":"2025-09-29T13:24:30.664Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":121,"timestamp":"2025-09-29T13:24:30.864Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":102,"timestamp":"2025-09-29T13:24:35.168Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":139,"timestamp":"2025-09-29T13:24:35.308Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":126,"timestamp":"2025-09-29T13:24:35.524Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":106,"timestamp":"2025-09-29T13:24:36.038Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":104,"timestamp":"2025-09-29T13:24:36.387Z"}
+{"level":"info","message":"⌛ Validating ajedrez.wpgm","timeElapsed":103,"timestamp":"2025-09-29T13:24:48.053Z"}
+{"level":"info","message":"⌛ Validating ajedrez.wpgm","timeElapsed":105,"timestamp":"2025-09-29T13:24:51.273Z"}
+{"level":"info","message":"⌛ Validating ajedrez.wpgm","timeElapsed":128,"timestamp":"2025-09-29T13:24:51.507Z"}
+{"level":"info","message":"⌛ Validating ajedrez.wpgm","timeElapsed":109,"timestamp":"2025-09-29T13:24:51.903Z"}
+{"level":"info","message":"⌛ Validating ajedrez.wpgm","timeElapsed":133,"timestamp":"2025-09-29T13:24:52.611Z"}
+{"level":"info","message":"⌛ Validating ajedrez.wpgm","timeElapsed":107,"timestamp":"2025-09-29T13:24:52.788Z"}
+{"exitCode":"SIGINT","level":"info","message":"👾 Game executed ajedrez.PepitaGame on /home/santiago/Documents/GitHub/miniChess","timeElapsed":617674,"timestamp":"2025-09-29T13:24:55.771Z"}
+{"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34majedrez.PepitaGame\u001b[39m\u001b[23m on \u001b[3m\u001b[34m/home/santiago/Documents/GitHub/miniChess\u001b[39m\u001b[23m","ok":true,"timeElapsed":292,"timestamp":"2025-09-29T13:25:09.119Z"}

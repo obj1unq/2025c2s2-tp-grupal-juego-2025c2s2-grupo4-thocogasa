@@ -8,7 +8,7 @@ program PepitaGame {
 
 	// add assets in asset folder, for example, for the background
   // game.boardGround("fondo2.jpg")
-	game.boardGround("tableroB.jpg")
+	game.boardGround("Tablero.png")
 	game.addVisual(negro1)
 	game.addVisual(negro2)	
 	game.addVisual(negro3)
