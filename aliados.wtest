@@ -1,0 +1,23 @@
+import piezas.*
+import aliados.*
+import enemigos.*
+import wollok.game.*
+
+describe "tests de aliados" {
+
+
+    test "reconocimiento enemigos" {
+        game.addVisual(negro1)
+        assert.that(blanco1.hayPiezaEnemigaEnRango(negro1.position()))
+    }
+
+    test "capturar enemigos"{
+        game.addVisual(negro1)
+        game.addVisual(negro2)
+        blanco1.capturar(negro1)
+        assert.equals(game.at(1,2), blanco1.position())
+
+        blanco1.capturar(negro2)
+        assert.equals(game.at(2,3), blanco1.position())
+    }
+}
