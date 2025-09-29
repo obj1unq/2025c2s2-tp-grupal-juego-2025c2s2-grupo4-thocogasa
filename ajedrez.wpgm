@@ -3,6 +3,7 @@ import piezas.*
 
 program PepitaGame {
 	game.title("miniChess")
+	game.cellSize(64)
 	game.height(8)
 	game.width(5)
 
