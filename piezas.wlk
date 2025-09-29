@@ -29,8 +29,8 @@ object reyNegro {
   const negro4 = new Peon(image="PNegroSilla.png", position=game.at(3,6) )
   const negro5 = new Peon(image="PNegroSilla.png", position=game.at(4,6) )
 
-  const blanco1 = new Peon(image="PBlancoSilla.png", position= game.at(0,1))
-  const blanco2 = new Peon(image="PBlancoSilla.png", position= game.at(1,1))
-  const blanco3 = new Peon(image="PBlancoSilla.png", position= game.at(2,1))
-  const blanco4 = new Peon(image="PBlancoSilla.png", position= game.at(3,1))
-  const blanco5 = new Peon(image="PBlancoSilla.png", position= game.at(4,1))
+  const blanco1 = new Peon(image="PBlanco.png", position= game.at(0,1))
+  const blanco2 = new Peon(image="PBlanco.png", position= game.at(1,1))
+  const blanco3 = new Peon(image="PBlanco.png", position= game.at(2,1))
+  const blanco4 = new Peon(image="PBlanco.png", position= game.at(3,1))
+  const blanco5 = new Peon(image="PBlanco.png", position= game.at(4,1))

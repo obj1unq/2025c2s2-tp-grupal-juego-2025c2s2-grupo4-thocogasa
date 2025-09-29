@@ -1873,3 +1873,5 @@
 {"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34majedrez.PepitaGame\u001b[39m\u001b[23m on \u001b[3m\u001b[34m/home/santiago/Documents/GitHub/miniChess\u001b[39m\u001b[23m","ok":true,"timeElapsed":231,"timestamp":"2025-09-29T14:35:27.264Z"}
 {"exitCode":"SIGHUP","level":"info","message":"👾 Game executed ajedrez.PepitaGame on /home/santiago/Documents/GitHub/miniChess","timeElapsed":103021,"timestamp":"2025-09-29T14:37:10.056Z"}
 {"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34majedrez.PepitaGame\u001b[39m\u001b[23m on \u001b[3m\u001b[34m/home/santiago/Documents/GitHub/miniChess\u001b[39m\u001b[23m","ok":true,"timeElapsed":241,"timestamp":"2025-09-29T14:37:40.442Z"}
+{"exitCode":"SIGINT","level":"info","message":"👾 Game executed ajedrez.PepitaGame on /home/santiago/Documents/GitHub/miniChess","timeElapsed":436111,"timestamp":"2025-09-29T14:44:56.313Z"}
+{"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34majedrez.PepitaGame\u001b[39m\u001b[23m on \u001b[3m\u001b[34m/home/santiago/Documents/GitHub/miniChess\u001b[39m\u001b[23m","ok":true,"timeElapsed":226,"timestamp":"2025-09-29T15:04:12.220Z"}
