@@ -1,7 +1,8 @@
 import wollok.game.*
 import piezas.*
+import enemigos.*
 
-program PepitaGame {
+program Ajedrez {
 	game.title("miniChess")
 	game.cellSize(64)
 	game.height(8)
@@ -10,21 +11,11 @@ program PepitaGame {
 	// add assets in asset folder, for example, for the background
   // game.boardGround("fondo2.jpg")
 	game.boardGround("Tablero.png")
-	game.addVisual(negro1)
-	game.addVisual(negro2)	
-	game.addVisual(negro3)
-	game.addVisual(negro4)
-	game.addVisual(negro5)
-	game.addVisual(blanco1)
-	game.addVisual(blanco2)
-	game.addVisual(blanco3)
-	game.addVisual(blanco4)
-	game.addVisual(blanco5)
-	game.addVisual(reyNegro)
-	game.addVisualCharacter(reyBlanco)
+	game.addVisual(reyBlanco)
 
 	game.showAttributes(reyBlanco) //Debug
-
+	 //quiero verlo
+	game.addVisual(enemigo)
 	game.start()
 
 
