@@ -10,5 +10,7 @@ var property position = game.at(self.positionX(),7)
 
 //altura = 7 y ancho = 4
 
+  method esNegro() {return true} //AGREGUÉ ESTE MÉTODO PARA DETERMINAR SI UNA PIEZA ES RIVAL. GABRIEL
+  method desaparece() {game.removeVisual(self)}
   
 }

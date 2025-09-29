@@ -10,14 +10,17 @@ object reyBlanco {
   }
 }
 
+
+/*
 object reyNegro {
   method image() {
     return "RNegro.png"
   }
 
   var property position = game.at(2,7)
-  }
+  }*/
 
+/*
   class Peon {
   var property image
   var property position
@@ -34,3 +37,4 @@ object reyNegro {
   const blanco3 = new Peon(image="PBlanco.png", position= game.at(2,1))
   const blanco4 = new Peon(image="PBlanco.png", position= game.at(3,1))
   const blanco5 = new Peon(image="PBlanco.png", position= game.at(4,1))
+*/

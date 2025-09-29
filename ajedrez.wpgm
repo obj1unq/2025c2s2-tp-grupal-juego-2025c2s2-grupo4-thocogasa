@@ -1,6 +1,7 @@
 import wollok.game.*
 import piezas.*
 import enemigos.*
+import aliados.*
 
 program Ajedrez {
 	game.title("miniChess")
@@ -14,11 +15,10 @@ program Ajedrez {
 	game.addVisual(reyBlanco)
 
 	game.showAttributes(reyBlanco) //Debug
-	 //quiero verlo
-	game.addVisual(enemigo)
+
 	game.start()
 
 
-	keyboard.left().onPressDo(reyBlanco.position().left(1))
-	keyboard.right().onPressDo(reyBlanco.position().right(1))
+	keyboard.left().onPressDo{reyBlanco.mover(reyBlanco.position().left(1))}
+	keyboard.right().onPressDo{reyBlanco.mover(reyBlanco.position().right(1))}
 }
