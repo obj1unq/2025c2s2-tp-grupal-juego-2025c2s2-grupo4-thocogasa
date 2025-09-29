@@ -8,17 +8,17 @@ program Ajedrez {
 	game.height(8)
 	game.width(7)
 
-	// add assets in asset folder, for example, for the background
-  // game.boardGround("fondo2.jpg")
 	game.boardGround("Tablero.png")
 	game.addVisual(reyBlanco)
 
-	game.showAttributes(reyBlanco) //Debug
-	 //quiero verlo
+	game.showAttributes(reyBlanco)
 	game.addVisual(enemigo)
+
+
+	keyboard.left().onPressDo({reyBlanco.moverIzquierda()})
+	keyboard.right().onPressDo({reyBlanco.moverDerecha()})
+
+
+
 	game.start()
-
-
-	keyboard.left().onPressDo(reyBlanco.position().left(1))
-	keyboard.right().onPressDo(reyBlanco.position().right(1))
 }

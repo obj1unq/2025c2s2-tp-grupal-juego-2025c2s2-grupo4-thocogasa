@@ -1,12 +1,16 @@
 object reyBlanco {
+  var property position = game.at(2,0)
+  
   method image() {
     return "RBlanco.png"
   }
 
-  var property position = game.at(2,0)
+  method moverDerecha() {
+    position = self.position().right(1)
+  }
 
-  method mover(direccion){
-    position = direccion
+  method moverIzquierda() {
+    position = self.position().left(1)
   }
 }
 

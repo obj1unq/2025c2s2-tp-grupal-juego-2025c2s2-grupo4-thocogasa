@@ -6,9 +6,9 @@ const property positionX = 0.randomUpTo(game.width() - 2)//
 var property position = game.at(self.positionX(),7)
   method image() {
     return "PNegroSilla.png"
-  }//aca se crea aleatorio
+  }
 
-//altura = 7 y ancho = 4
-
+  // TODO: Los peones enemigos tienen que bajar cada x cantidad de ticks
+  // TODO: Hacer un método "Oleada" que cree una lista de enemigos, y un spawner que se encarge de ir vaciando la lista y apareciéndolos.
   
 }
