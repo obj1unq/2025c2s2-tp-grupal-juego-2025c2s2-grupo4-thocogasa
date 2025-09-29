@@ -7,7 +7,6 @@
 * Correa, Thomas
 * Kakazu, Gabriel
 * Fisela, Santiago
-Santiago
 ---
 
 Este juego es una variante de ajedrez en tiempo real 
