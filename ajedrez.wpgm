@@ -5,7 +5,7 @@ program PepitaGame {
 	game.title("miniChess")
 	game.cellSize(64)
 	game.height(8)
-	game.width(5)
+	game.width(7)
 
 	// add assets in asset folder, for example, for the background
   // game.boardGround("fondo2.jpg")
@@ -26,4 +26,8 @@ program PepitaGame {
 	game.showAttributes(reyBlanco) //Debug
 
 	game.start()
+
+
+	keyboard.left().onPressDo(reyBlanco.position().left(1))
+	keyboard.right().onPressDo(reyBlanco.position().right(1))
 }
