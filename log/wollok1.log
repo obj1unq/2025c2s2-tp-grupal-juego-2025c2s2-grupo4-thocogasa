@@ -2692,3 +2692,12 @@
 {"level":"info","message":"⌛ Validating aliados.wtest","timeElapsed":341,"timestamp":"2025-09-29T22:04:09.332Z"}
 {"level":"info","message":"⌛ Validating aliados.wtest","timeElapsed":331,"timestamp":"2025-09-29T22:04:09.692Z"}
 {"level":"info","message":"🧪 Test runner executed on c:\\Users\\Gabriel\\Desktop\\ProyectosWollok\\GIT\\miniChess","result":{"errored":0,"failed":0,"ok":1},"testsFailed":[],"timeElapsed":1074,"timestamp":"2025-09-29T22:04:17.703Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":400,"timestamp":"2025-09-29T22:04:28.875Z"}
+{"level":"info","message":"⌛ Validating enemigos.wlk","timeElapsed":286,"timestamp":"2025-09-29T22:04:29.177Z"}
+{"level":"info","message":"⌛ Validating aliados.wlk","timeElapsed":303,"timestamp":"2025-09-29T22:04:29.482Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":291,"timestamp":"2025-09-29T22:04:29.774Z"}
+{"level":"info","message":"⌛ Validating aliados.wtest","timeElapsed":244,"timestamp":"2025-09-29T22:04:30.019Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":274,"timestamp":"2025-09-29T22:05:09.348Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":276,"timestamp":"2025-09-29T22:05:09.629Z"}
+{"level":"info","message":"⌛ Validating aliados.wtest","timeElapsed":315,"timestamp":"2025-09-29T22:05:09.955Z"}
+{"level":"info","message":"⌛ Validating aliados.wtest","timeElapsed":312,"timestamp":"2025-09-29T22:05:10.280Z"}
