@@ -1,3 +1,4 @@
+import aliados.*
 object reyBlanco {
   var property position = game.at(2,0)
   
@@ -6,12 +7,27 @@ object reyBlanco {
   }
 
   method moverDerecha() {
-    position = self.position().right(1)
+    if(self.puedeMover(self.position().right(1))){
+      position = self.position().right(1)
+    }
   }
 
   method moverIzquierda() {
-    position = self.position().left(1)
+    if(self.puedeMover(self.position().left(1))){
+      position = self.position().left(1)
+    }
   }
+
+  method puedeMover(unaPosicion) = unaPosicion.x() >= 0 && unaPosicion.x() <= 4 
+
+/*
+  method colocarPeon(){
+    var nuevoPeon = new PeonBlanco(position = game.at(self.position().x(), 2))
+  }
+
+  method sePuedeColocar() =  (self.position().x(), 2) 
+
+  */
 }
 
 
