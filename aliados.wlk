@@ -1,6 +1,8 @@
 import piezas.*
 import enemigos.*
 import wollok.game.*
+import UI.*
+
 
   class PeonBlanco {
     var property image ="PBlanco.png"
@@ -16,12 +18,12 @@ import wollok.game.*
       const posicionAtaque = pieza.position() 
       
       // Comprobar si hay una pieza enemiga en esa posición Y si la posición está en el rango de captura.
-      if (self.hayPiezaEnemigaEnRango(posicionAtaque)){
-          // Si cumple las condiciones, el peón se mueve a esa posición y captura.
-          self.mover(posicionAtaque)
-          pieza.desaparece()
-      //    interfaz.score += pieza.valor   // ESTO DEPENDE DE LA IMPLEMENTACION DE SANTIAGO
-      }
+        if (self.hayPiezaEnemigaEnRango(posicionAtaque)){
+            // Si cumple las condiciones, el peón se mueve a esa posición y captura.
+            self.mover(posicionAtaque)
+            pieza.desaparece()
+            score.addScore(pieza.valor())
+        }
   }
 
   method hayPiezaEnemigaEnRango(posicion) {
@@ -40,7 +42,7 @@ import wollok.game.*
         if (self.hayPiezaEnemigaEnRango(pieza.position())){
             self.mover(pieza.position())
             pieza.desaparece()
-        //    interfaz.score += pieza.valor   // ESTO DEPENDE DE LA IMPLEMENTACION DE SANTIAGO
+            score.addScore(pieza.valor())
         }
     }
 
