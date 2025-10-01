@@ -25,5 +25,6 @@ program Ajedrez {
 
 	keyboard.right().onPressDo({reyBlanco.moverDerecha()})
 	keyboard.left().onPressDo({reyBlanco.moverIzquierda()})
+	keyboard.p().onPressDo({PeonBlanco.colocarEn(reyBlanco.position().up(1))})
 	game.start()
 }
