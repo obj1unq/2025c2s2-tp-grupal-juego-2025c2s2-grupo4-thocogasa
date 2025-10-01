@@ -21,10 +21,11 @@ program Ajedrez {
 	game.addVisual(score)
 	game.addVisual(recursos)
 	game.addVisual(vidas)
+	game.addVisual(piezasRestantes)
 
 
 	keyboard.right().onPressDo({reyBlanco.moverDerecha()})
 	keyboard.left().onPressDo({reyBlanco.moverIzquierda()})
-	keyboard.p().onPressDo({PeonBlanco.colocarEn(reyBlanco.position().up(1))})
+	keyboard.p().onPressDo({reyBlanco.colocarPeon()})
 	game.start()
 }

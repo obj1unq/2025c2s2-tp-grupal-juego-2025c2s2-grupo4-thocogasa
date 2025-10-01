@@ -9,7 +9,15 @@ object reyBlanco {
   var property position = game.at(2,0)
   
   method image() {
-    return "RBlanco.png"
+    if (vidas == 2) {
+      return "RBlanco1Hit.png"
+    } else if (vidas == 1) {
+      return "RBlanco2Hit"
+    } else if (vidas <= 0) {
+      return "RBlanco3Hit.png"
+    } else {
+      return "RBlanco.png"
+    }
   }
 
   method moverDerecha() {
@@ -34,6 +42,17 @@ object reyBlanco {
 
   method puedeMover(unaPosicion) = unaPosicion.x() >= 0 && unaPosicion.x() <= 4 
 
+  method colocarPeon() {    
+    if (self.puedeColocarPeon(PeonBlanco.valor(), self.position().up(1))) {
+      const nuevoPeon = new PeonBlanco(position = self.position().up(1))
+      game.addVisual(nuevoPeon)
+      recursos.restarRecursos(PeonBlanco.valor())
+    }
+  }
+
+  method puedeColocarPeon(valor, ubicacion) {
+    return (recursos >= valor) and game.getObjectsIn(ubicacion).isEmpty()
+  }
 
   method colocar(pieza){
     pieza.adquirir()
@@ -44,13 +63,10 @@ object reyBlanco {
 
   method puedeColocar(pieza, ubicacion) {
     const posicion = game.at(self.position().x(), 1)
-    if ((recursos.recursos()< pieza.valor()) or !game.getObjectsIn(ubicacion).isEmpty()) { 
+    if ((recursos < pieza.valor()) or !game.getObjectsIn(ubicacion).isEmpty()) { 
       self.error("no se puede colocar pieza")} 
     
   }
-
-
-
 }
 
 
@@ -65,8 +81,8 @@ object reyNegro {
 
 /*
   class Peon {
-  var property image
-  var property position
+    var property image
+    var property position
   }
 
   const negro1 = new Peon(image="PNegroSilla.png", position=game.at(0,6) )

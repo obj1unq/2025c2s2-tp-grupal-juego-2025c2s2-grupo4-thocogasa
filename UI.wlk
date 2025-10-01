@@ -30,6 +30,26 @@ object recursos {
     method textColor() {
         return "#FFFFFF"
     }
+    
+    method restarRecursos(valor) {
+        reyBlanco.recursos(reyBlanco.recursos() - valor)
+    }
+    
+    method añadirRecursos(valor) {
+        reyBlanco.añadirRecursos(valor)
+    }
+}
+
+object piezasRestantes {
+    var property position = game.at(5, 5)
+
+    method text() {
+        return "Enem. Rest.: " //+ enemigos.piezasRestantes()
+    }
+
+    method textColor() {
+        return "#FFFFFF"
+    }
 }
 
 object vidas {

@@ -18,7 +18,10 @@ import UI.*
         game.addVisual(nuevoPeon)
         recursos.restarRecursos(valor)
     }
-
+    
+    method valor() {
+        return valor
+    }
 
   method capturar(pieza) {
       // Obtener la posición de la pieza a capturar.
