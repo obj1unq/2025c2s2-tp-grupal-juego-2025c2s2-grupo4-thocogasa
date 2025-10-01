@@ -1,0 +1,11 @@
+import piezas.*
+
+describe "reyBLanco" {
+  test "movimientoRey" {
+    assert.equals(2, reyBlanco.position().x())
+    assert.equals(0, reyBlanco.position().y())
+    reyBlanco.moverIzquierda()
+    assert.that(reyBlanco.position() == game.at(1, 0))
+
+  }
+}
