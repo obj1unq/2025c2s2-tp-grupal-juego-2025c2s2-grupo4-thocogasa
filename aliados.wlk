@@ -16,38 +16,110 @@ import UI.*
     method colocarEn(_posicion) {
         const nuevoPeon = new PeonBlanco(position = _posicion)
         game.addVisual(nuevoPeon)
-        recursos.restarRecursos(valor)
+        reyBlanco.restarRecursos(valor)
     }
 
-  method capturar(pieza) {
-      // Obtener la posición de la pieza a capturar.
-      const posicionAtaque = pieza.position() 
-      
-      // Comprobar si hay una pieza enemiga en esa posición Y si la posición está en el rango de captura.
+    method verificarCaptura() {
+        const posicionesDiagonales = [self.position().up(1).left(1), self.position().up(1).right(1)]
+        
+        posicionesDiagonales.forEach({ posicion =>
+            if (self.hayPiezaEnemigaEnRango(posicion)) {
+                const enemigos = game.getObjectsIn(posicion).filter{p => p.esNegro()}
+                if (not enemigos.isEmpty()) {
+                    const enemigo = enemigos.first()
+                    self.capturar(enemigo)
+                }
+            }
+        })
+        
+        const posicionFrente = self.position().up(1)
+        const enemigosFrente = game.getObjectsIn(posicionFrente).filter{p => p.esNegro()}
+        if (not enemigosFrente.isEmpty()) {
+            const enemigoFrente = enemigosFrente.first()
+            // Ambos peones se destruyen
+            self.desaparece()
+            reyBlanco.añadirRecursos(enemigoFrente.valor() / 2)
+            enemigoFrente.desaparece()
+            game.say(self, "Colisión!")
+        }
+    }
+
+
+    method intentarCapturar() {
+        // Verificar posiciones diagonales superiores para captura
+        const posicionesDiagonales = [self.position().up(1).left(1), self.position().up(1).right(1)]
+        
+        posicionesDiagonales.forEach({ posicion =>
+            // Verificar que la posición esté dentro del tablero
+            if (self.posicionValida(posicion)) {
+                const enemigosEnPosicion = game.getObjectsIn(posicion).filter{pieza => pieza.esNegro()}
+                if (not enemigosEnPosicion.isEmpty()) {
+                    const enemigo = enemigosEnPosicion.first()
+                    self.capturarDirectamente(enemigo)
+                }
+            }
+        })
+        
+        // Verificar colisión frontal
+        const posicionFrente = self.position().up(1)
+        if (self.posicionValida(posicionFrente)) {
+            const enemigosFrente = game.getObjectsIn(posicionFrente).filter{pieza => pieza.esNegro()}
+            if (not enemigosFrente.isEmpty()) {
+                const enemigoFrente = enemigosFrente.first()
+                // Ambos peones se destruyen en colisión frontal
+                self.desaparece()
+                enemigoFrente.desaparece()
+                reyBlanco.añadirRecursos(enemigoFrente.valor() / 2)
+                game.say(self, "¡Colisión!")
+            }
+        }
+    }
+    
+    method capturarDirectamente(enemigo) {
+        // Captura directa sin verificaciones adicionales
+        const posicionCaptura = enemigo.position()
+        console.println("Peón en " + self.position() + " captura enemigo en " + posicionCaptura)
+        self.mover(posicionCaptura)
+        enemigo.desaparece()
+        score.addScore(enemigo.valor())
+        reyBlanco.añadirRecursos(enemigo.valor())
+        game.say(self, "¡Capturado!")
+    }
+    
+    method capturar(pieza) {
+        const posicionAtaque = pieza.position() 
+        
         if (self.hayPiezaEnemigaEnRango(posicionAtaque)){
-            // Si cumple las condiciones, el peón se mueve a esa posición y captura.
             self.mover(posicionAtaque)
             pieza.desaparece()
             score.addScore(pieza.valor())
-            recursos.añadirRecursos(pieza.valor())
+            reyBlanco.añadirRecursos(pieza.valor())
+            game.say(self, "¡Capturado!")
         }
-  }
+    }
 
-  method hayPiezaEnemigaEnRango(posicion) {
-      // 1. ¿Hay enemigo?
-      const enemigos = game.getObjectsIn(posicion).filter{p => p.esNegro()}
-      const hayEnemigo = not enemigos.isEmpty()
-      
-      // 2. ¿Está el enemigo en una casilla de captura diagonal válida?
-      const enRangoDiagonal = posicion == self.position().up(1).left(1) or 
-                              posicion == self.position().up(1).right(1)
-                              
-      return hayEnemigo and enRangoDiagonal
-  }
+    method hayPiezaEnemigaEnRango(posicion) {
+        // 1. ¿Hay enemigo?
+        const enemigos = game.getObjectsIn(posicion).filter{p => p.esNegro()}
+        const hayEnemigo = not enemigos.isEmpty()
+        
+        // 2. ¿Está el enemigo en una casilla de captura diagonal válida?
+        const enRangoDiagonal = posicion == self.position().up(1).left(1) or 
+                                posicion == self.position().up(1).right(1)
+                                
+        return hayEnemigo and enRangoDiagonal
+    }
+
+    method posicionValida(posicion) {
+        return posicion.x() >= 0 and posicion.x() < game.width() and 
+               posicion.y() >= 0 and posicion.y() < game.height()
+    }
 
     method esNegro() {return false}
 
-    method desaparece() {game.removeVisual(self)}
+    method desaparece() {
+        game.removeVisual(self)
+    }
   }
 
 

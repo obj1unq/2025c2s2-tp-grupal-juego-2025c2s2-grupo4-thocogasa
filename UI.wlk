@@ -36,7 +36,7 @@ object piezasRestantes {
     var property position = game.at(5, 5)
 
     method text() {
-        return "Enem. Rest.: " //+ enemigos.piezasRestantes()
+        return "Enem. Rest.: " + oleada.enemigosRestantes()
     }
 
     method textColor() {
