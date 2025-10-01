@@ -2245,3 +2245,4 @@
 {"level":"info","message":"⌛ Validating enemigosRoto.wlk","timeElapsed":111,"timestamp":"2025-10-01T12:05:36.800Z"}
 {"level":"info","message":"⌛ Building environment","timeElapsed":112,"timestamp":"2025-10-01T12:05:37.560Z"}
 {"level":"info","message":"⌛ Validating enemigosRoto.wlk","timeElapsed":101,"timestamp":"2025-10-01T12:05:37.663Z"}
+{"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34majedrez.Ajedrez\u001b[39m\u001b[23m on \u001b[3m\u001b[34m/home/santiago/Documents/GitHub/miniChess\u001b[39m\u001b[23m","ok":true,"timeElapsed":410,"timestamp":"2025-10-01T12:56:03.666Z"}

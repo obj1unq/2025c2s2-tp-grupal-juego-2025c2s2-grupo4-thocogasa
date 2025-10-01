@@ -1,5 +1,8 @@
 import aliados.*
 object reyBlanco {
+  var property recursos = 100
+  var property vidas = 3
+
   var property position = game.at(2,0)
   
   method image() {
@@ -16,6 +19,14 @@ object reyBlanco {
     if(self.puedeMover(self.position().left(1))){
       position = self.position().left(1)
     }
+  }
+
+  method añadirRecursos(valor) {
+    recursos = recursos + valor
+  }
+
+  method perderVida() {
+    vidas = vidas - 1
   }
 
   method puedeMover(unaPosicion) = unaPosicion.x() >= 0 && unaPosicion.x() <= 4 
