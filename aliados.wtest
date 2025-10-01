@@ -1,6 +1,6 @@
 import piezas.*
 import aliados.*
-import enemigos.*
+import Enemigo.*
 import wollok.game.*
 
 describe "tests de aliados" {

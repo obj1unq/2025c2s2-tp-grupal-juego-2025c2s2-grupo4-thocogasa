@@ -118,18 +118,7 @@ object oleada {
     enemigosActivos.forEach({enemigo => enemigo.avanzarACoronar()}) 
   }
 
-  method spawner() {
-    game.onTick(1000, "Lanzar Enemigos", { => if (not enemigosFuturos.isEmpty()){
-
-                                          self.sacarEnemigo()
-                                          } else 
-                                          {
-                                            game.removeTickEvent(" Lanzar Enemigos")
-                                          }
-    
-    
-    })
-  }
+  
 
 }
 
@@ -152,61 +141,3 @@ Interfaz que si funciono con este codigo
 */
 
 // haciendolo con clases 
-class Enemigo {
-  var property position = 0.randomUpTo(game.width() - 2) // es mas adaptable 
-  
-  method image() {
-    return if(position.y() == 0) "RNegro.png" else "PNegroSilla.png"
-  }
-
-  method esNegro() {
-    return true
-  }
-
-  method desaparecer() {
-    game.removeVisual(self)
-  }
-  method avanzarACoronar() {
-		position = game.at(position.x(), (position.y()-1).max(0)) //este es como el de gravedad
-
-    if(position.y() == 0){
-      game.say(self, "Gane")
-      game.stop()
-    } // preguntar si agregar 
-	}
-}
-object enemigosConClase {
-  const enemigosFuturos = [] // lista con enemigos solo deben aparecer
-  const enemigosActivos = [] // una vez afuera ellos deben avanzar 
-
-  method crearOleada(cantidadDeEnemigos) {
-    cantidadDeEnemigos.times({=> enemigosFuturos.add(new Enemigo())})
-  }
-  method sacarEnemigo() { //acasacamos al enemigo
-  //sino inicalizar variable al estilo contador y 
-    if (not enemigosFuturos.isEmpty()){ //
-      const firstEnemy = enemigosFuturos.first() //LAS CONSTANTE DEBERIAN ESTAR ARRIBA
-      enemigosFuturos.remove(firstEnemy)
-      enemigosActivos.add(firstEnemy)
-      game.addVisual(firstEnemy)
-    }
-    //return if (not enemigosFuturos.isEmpty()) enemigosFuturos.remove(enemigosFuturos.first())
-  }
-  method moverEnemigos() {
-    enemigosActivos.forEach({enemigo => enemigo.avanzarACoronar()}) 
-  }
-}
-/*
-times(action) 
-4.times({ i => console.println(i) }) ==> Answers
-si lo tradusco a crear enemigos puedo pasarle parametros si hay  y ya 
-=> n.times({parametrosSiHay => enemigosFuturos.add(new Enemigo()) })
-
-nex nombreDeCLase crea la clase
-Ejecuta la acción dada n veces (n = self)
-
-Self debe ser un valor entero positivo.
-
-El cierre debe tener un argumento (el índice va de 1 a sí mismo)
-*/
-//LINK COMANDOS: https://www.wollok.org/documentation/language/#wollok.lib.assert

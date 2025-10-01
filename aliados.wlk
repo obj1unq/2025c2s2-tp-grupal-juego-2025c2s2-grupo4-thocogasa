@@ -1,5 +1,5 @@
 import piezas.*
-import enemigos.*
+import Enemigo.*
 import wollok.game.*
 import UI.*
 

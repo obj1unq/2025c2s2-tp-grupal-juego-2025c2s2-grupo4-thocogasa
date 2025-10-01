@@ -1,6 +1,6 @@
 import wollok.game.*
 import piezas.*
-import enemigos.*
+import Enemigo.*
 import aliados.*
 import UI.*
 
@@ -14,7 +14,7 @@ program Ajedrez {
 	game.boardGround("Tablero.png")
 	game.addVisual(reyBlanco)
 
-	game.addVisual(enemigo)
+	
 	game.showAttributes(reyBlanco)
 
 	//UI
@@ -22,6 +22,10 @@ program Ajedrez {
 	game.addVisual(recursos)
 	game.addVisual(vidas)
 
+	oleadas.crearOleada(5)
+	oleadas.validarPosicion()
+	//oleadas.spawner()
+	//game.onTick(1000, "Mover Enemigos", {oleadas.moverEnemigos()})
 
 	keyboard.right().onPressDo({reyBlanco.moverDerecha()})
 	keyboard.left().onPressDo({reyBlanco.moverIzquierda()})
