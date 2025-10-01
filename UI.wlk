@@ -30,14 +30,6 @@ object recursos {
     method textColor() {
         return "#FFFFFF"
     }
-    
-    method restarRecursos(valor) {
-        reyBlanco.recursos(reyBlanco.recursos() - valor)
-    }
-    
-    method añadirRecursos(valor) {
-        reyBlanco.añadirRecursos(valor)
-    }
 }
 
 object piezasRestantes {

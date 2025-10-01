@@ -36,17 +36,21 @@ object reyBlanco {
     recursos = recursos + valor
   }
 
+  method restarRecursos(valor) {
+    recursos = recursos - valor
+  }
+
   method perderVida() {
     vidas = vidas - 1
   }
 
   method puedeMover(unaPosicion) = unaPosicion.x() >= 0 && unaPosicion.x() <= 4 
 
-  method colocarPeon() {    
-    if (self.puedeColocarPeon(PeonBlanco.valor(), self.position().up(1))) {
-      const nuevoPeon = new PeonBlanco(position = self.position().up(1))
+  method intentarColocarPeon() {
+    const nuevoPeon = new PeonBlanco(position = self.position().up(1))
+    if (self.puedeColocarPeon(nuevoPeon.valor(), self.position().up(1))) {
       game.addVisual(nuevoPeon)
-      recursos.restarRecursos(PeonBlanco.valor())
+      self.restarRecursos(nuevoPeon.valor())
     }
   }
 

@@ -7,7 +7,7 @@ import UI.*
   class PeonBlanco {
     var property image ="PBlanco.png"
     var property position
-    const valor = 20
+    var property valor = 20
 
     method mover(direccion){
         position = direccion
@@ -17,10 +17,6 @@ import UI.*
         const nuevoPeon = new PeonBlanco(position = _posicion)
         game.addVisual(nuevoPeon)
         recursos.restarRecursos(valor)
-    }
-    
-    method valor() {
-        return valor
     }
 
   method capturar(pieza) {
@@ -48,23 +44,7 @@ import UI.*
                               
       return hayEnemigo and enRangoDiagonal
   }
-/*
-    method capturar(pieza) {
-        if (self.hayPiezaEnemigaEnRango(pieza.position())){
-            self.mover(pieza.position())
-            pieza.desaparece()
-            score.addScore(pieza.valor())
-        }
-    }
 
-    method hayPiezaEnemigaEnRango(posicion) {
-        const enemigos = game.getObjectsIn(posicion).filter{p => p.esNegro()}
-        return not enemigos.isEmpty()
-                    and 
-                (posicion == self.position().up(1).left(1) or 
-                posicion == self.position().up(1).right(1)) //están uno en diagonal a izquierda o derecha
-    }
-*/
     method esNegro() {return false}
 
     method desaparece() {game.removeVisual(self)}
