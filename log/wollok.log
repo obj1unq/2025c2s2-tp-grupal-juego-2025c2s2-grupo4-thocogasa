@@ -2234,3 +2234,14 @@
 {"level":"info","message":"⌛ Validating UI.wlk","timeElapsed":116,"timestamp":"2025-09-30T02:26:55.163Z"}
 {"exitCode":"SIGINT","level":"info","message":"👾 Game executed ajedrez.Ajedrez on /home/santiago/Documents/GitHub/miniChess","timeElapsed":118901,"timestamp":"2025-09-30T02:28:10.589Z"}
 {"level":"info","message":"🚀 Program executed \u001b[3m\u001b[34majedrez.Ajedrez\u001b[39m\u001b[23m on \u001b[3m\u001b[34m/home/santiago/Documents/GitHub/miniChess\u001b[39m\u001b[23m","ok":true,"timeElapsed":341,"timestamp":"2025-09-30T02:28:16.491Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":219,"timestamp":"2025-10-01T12:05:30.016Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":106,"timestamp":"2025-10-01T12:05:30.124Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":121,"timestamp":"2025-10-01T12:05:30.784Z"}
+{"level":"info","message":"⌛ Validating enemigos.wlk","timeElapsed":162,"timestamp":"2025-10-01T12:05:30.947Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":114,"timestamp":"2025-10-01T12:05:31.062Z"}
+{"level":"info","message":"⌛ Validating aliados.wlk","timeElapsed":120,"timestamp":"2025-10-01T12:05:31.495Z"}
+{"level":"info","message":"⌛ Validating enemigos.wlk","timeElapsed":112,"timestamp":"2025-10-01T12:05:31.611Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":130,"timestamp":"2025-10-01T12:05:36.517Z"}
+{"level":"info","message":"⌛ Validating enemigosRoto.wlk","timeElapsed":111,"timestamp":"2025-10-01T12:05:36.800Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":112,"timestamp":"2025-10-01T12:05:37.560Z"}
+{"level":"info","message":"⌛ Validating enemigosRoto.wlk","timeElapsed":101,"timestamp":"2025-10-01T12:05:37.663Z"}
