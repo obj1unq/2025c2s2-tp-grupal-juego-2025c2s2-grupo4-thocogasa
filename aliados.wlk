@@ -7,9 +7,16 @@ import UI.*
   class PeonBlanco {
     var property image ="PBlanco.png"
     var property position
+    const valor = 20
 
     method mover(direccion){
         position = direccion
+    }
+
+    method colocarEn(_posicion) {
+        const nuevoPeon = new PeonBlanco(position = _posicion)
+        game.addVisual(nuevoPeon)
+        recursos.restarRecursos(valor)
     }
 
 
@@ -23,6 +30,7 @@ import UI.*
             self.mover(posicionAtaque)
             pieza.desaparece()
             score.addScore(pieza.valor())
+            recursos.añadirRecursos(pieza.valor())
         }
   }
 

@@ -21,11 +21,15 @@ object score {
 }
 
 object recursos { // Quizá los recursos tenga que estar en un objeto Rey, para no tener que entrar a la UI para gastar plata.
-    var property recursos = 0
+    var property recursos = 5000
     var property position = game.at(5, 6)
 
     method añadirRecursos(valor) {
         recursos = recursos + valor
+    }
+
+    method restarRecursos(valor) {
+        recursos = recursos - valor
     }
 	
 	method text() {

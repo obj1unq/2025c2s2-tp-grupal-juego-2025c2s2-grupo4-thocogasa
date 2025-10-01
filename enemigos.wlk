@@ -14,3 +14,4 @@ var property position = game.at(self.positionX(),7)
   // TODO: Los peones enemigos tienen que bajar cada x cantidad de ticks
   
 }
+

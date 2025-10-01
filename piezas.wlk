@@ -1,4 +1,7 @@
 import aliados.*
+import UI.*
+import wollok.game.*
+
 object reyBlanco {
   var property position = game.at(2,0)
   
@@ -20,14 +23,23 @@ object reyBlanco {
 
   method puedeMover(unaPosicion) = unaPosicion.x() >= 0 && unaPosicion.x() <= 4 
 
-/*
-  method colocarPeon(){
-    var nuevoPeon = new PeonBlanco(position = game.at(self.position().x(), 2))
+
+  method colocar(pieza){
+    pieza.adquirir()
+    self.puedeColocar(pieza, self.position().up(1))
+    game.addVisual(pieza)
+    recursos.restarRecursos(pieza.valor())
   }
 
-  method sePuedeColocar() =  (self.position().x(), 2) 
+  method puedeColocar(pieza, ubicacion) {
+    const posicion = game.at(self.position().x(), 1)
+    if ((recursos.recursos()< pieza.valor()) or !game.getObjectsIn(ubicacion).isEmpty()) { 
+      self.error("no se puede colocar pieza")} 
+    
+  }
 
-  */
+
+
 }
 
 
