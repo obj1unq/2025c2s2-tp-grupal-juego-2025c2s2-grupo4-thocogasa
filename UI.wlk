@@ -20,20 +20,11 @@ object score {
     }
 }
 
-object recursos { // Quizá los recursos tenga que estar en un objeto Rey, para no tener que entrar a la UI para gastar plata.
-    var property recursos = 5000
+object recursos {
     var property position = game.at(5, 6)
-
-    method añadirRecursos(valor) {
-        recursos = recursos + valor
-    }
-
-    method restarRecursos(valor) {
-        recursos = recursos - valor
-    }
 	
 	method text() {
-		return "$$$: " + self.recursos()
+		return "$$$: " + reyBlanco.recursos()
 	}
 
     method textColor() {
@@ -42,15 +33,10 @@ object recursos { // Quizá los recursos tenga que estar en un objeto Rey, para 
 }
 
 object vidas {
-    var property vidas = 3
     var property position = game.at(5, 0)
 
-    method perderVida() {
-        vidas = vidas - 1
-    }
-    
     method text() {
-        return "HP: " + self.vidas()
+        return "HP: " + reyBlanco.vidas()
     }
 
     method textColor() {
