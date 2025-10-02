@@ -11,12 +11,17 @@ import UI.*
 
     method mover(direccion){
         position = direccion
+        self.coronar()
     }
+
+  method estaEnUltimaFila() {
+    return position.y() == game.height()-1
+  }
 
     method colocarEn(_posicion) {
         const nuevoPeon = new PeonBlanco(position = _posicion)
         game.addVisual(nuevoPeon)
-        recursos.restarRecursos(valor)
+        reyBlanco.restarRecursos(valor)
     }
 
   method capturar(pieza) {
@@ -29,7 +34,7 @@ import UI.*
             self.mover(posicionAtaque)
             pieza.desaparece()
             score.addScore(pieza.valor())
-            recursos.añadirRecursos(pieza.valor())
+            reyBlanco.añadirRecursos(pieza.valor())
         }
   }
 
@@ -48,15 +53,34 @@ import UI.*
     method esNegro() {return false}
 
     method desaparece() {game.removeVisual(self)}
+
+    method coronar() {
+      if (self.estaEnUltimaFila()) {
+        reyBlanco.añadirRecursos(valor * 5)
+        self.desaparece()
+        }
+    }
+
+    method adquirir(){}
   }
 
+  class Negros {
+    var property image
+    var property position
+    var property valor = 10
+    
+    method esNegro() {return true}
+    method desaparece() {game.removeVisual(self)}
+
+
+  }
 
   object negro1 {
       var property image = "PNegro.png"
       var property position = game.at(1,2)
       method esNegro() {return true}
       method desaparece() {game.removeVisual(self)}
-      // var property valor = 1 
+      var property valor = 1 
   }
 
   object negro2 {
@@ -64,8 +88,17 @@ import UI.*
       var property position = game.at(2,3)
       method esNegro() {return true}
       method desaparece() {game.removeVisual(self)}
-      // var property valor = 1
+      var property valor = 1
   }
+
+    object negro3 {
+      var property image = "PNegro.png"
+      var property position = game.at(2,7)
+      method esNegro() {return true}
+      method desaparece() {game.removeVisual(self)}
+      var property valor = 1
+  }
+
 
     const blanco1 = new PeonBlanco(image="PBlanco.png", position= game.at(0,1))
     const blanco2 = new PeonBlanco(image="PBlanco.png", position= game.at(2,1))
