@@ -2279,3 +2279,9 @@
 {"level":"info","message":"⌛ Building environment","timeElapsed":447,"timestamp":"2025-10-02T23:48:54.271Z"}
 {"level":"info","message":"⌛ Validating aliados.wtest","timeElapsed":257,"timestamp":"2025-10-02T23:48:54.566Z"}
 {"level":"info","message":"🧪 Test runner executed on c:\\Users\\Gabriel\\Desktop\\ProyectosWollok\\GIT\\2025c2s2-tp-grupal-juego-2025c2s2-grupo4-thocogasa","result":{"errored":0,"failed":0,"ok":1},"testsFailed":[],"timeElapsed":1737,"timestamp":"2025-10-02T23:49:05.105Z"}
+{"level":"info","message":"⌛ Building environment","timeElapsed":427,"timestamp":"2025-10-02T23:49:12.660Z"}
+{"level":"info","message":"⌛ Validating aliados.wlk","timeElapsed":338,"timestamp":"2025-10-02T23:49:13.001Z"}
+{"level":"info","message":"⌛ Validating aliados.wtest","timeElapsed":216,"timestamp":"2025-10-02T23:49:13.217Z"}
+{"level":"info","message":"⌛ Validating enemigos.wlk","timeElapsed":257,"timestamp":"2025-10-02T23:49:13.477Z"}
+{"level":"info","message":"⌛ Validating piezas.wlk","timeElapsed":226,"timestamp":"2025-10-02T23:49:13.703Z"}
+{"level":"info","message":"⌛ Validating ajedrez.wpgm","timeElapsed":287,"timestamp":"2025-10-02T23:49:13.990Z"}
