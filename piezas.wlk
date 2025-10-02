@@ -16,7 +16,7 @@ object reyBlanco {
     if (vidas == 2) {
       return "RBlanco1Hit.png"
     } else if (vidas == 1) {
-      return "RBlanco2Hit"
+      return "RBlanco2Hit.png"
     } else if (vidas <= 0) {
       return "RBlanco3Hit.png"
     } else {
