@@ -23,8 +23,10 @@ object mecanicasJuego {
     
     method verificarTodasLasColisiones() {
         const peonesBlancosEnJuego = game.allVisuals().filter({ visual =>
-            visual.className() == "aliados.PeonBlanco"
+            visual.className() == "aliados.PeonBlanco" or visual.className() == "aliados.Caballos"
         })
+
+        
                 
         peonesBlancosEnJuego.forEach({ peon => peon.intentarCapturar() })
         
