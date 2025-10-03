@@ -4,7 +4,9 @@ import piezas.*
 object enemigo {
 const property positionX = 0.randomUpTo(game.width() - 2)// 
 var property position = game.at(self.positionX(),7)
-  method image() {
+
+
+method image() {
     return "PNegroSilla.png"
   }
 
