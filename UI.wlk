@@ -5,14 +5,14 @@ import enemigos.*
 
 object score {
     var property score = 0
-    var property position = game.at(5, 7)
+    var property position = game.at(6, 7)
 
     method addScore(valor) {
         score = score + valor
     }
 	
 	method text() {
-		return "Pts: " + self.score()
+		return " " + self.score()
 	}
 
     method textColor() {
@@ -21,10 +21,10 @@ object score {
 }
 
 object recursos {
-    var property position = game.at(5, 6)
+    var property position = game.at(6, 6)
 	
 	method text() {
-		return "$$$: " + reyBlanco.recursos()
+		return " " + reyBlanco.recursos()
 	}
 
     method textColor() {
@@ -33,10 +33,10 @@ object recursos {
 }
 
 object piezasRestantes {
-    var property position = game.at(5, 5)
+    var property position = game.at(6, 5)
 
     method text() {
-        return "Enem. Rest.: " + oleada.enemigosRestantes()
+        return " " + oleada.enemigosRestantes()
     }
 
     method textColor() {
@@ -45,10 +45,10 @@ object piezasRestantes {
 }
 
 object vidas {
-    var property position = game.at(5, 0)
+    var property position = game.at(6, 0)
 
     method text() {
-        return "HP: " + reyBlanco.vidas()
+        return " " + reyBlanco.vidas()
     }
 
     method textColor() {

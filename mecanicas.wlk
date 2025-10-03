@@ -25,9 +25,7 @@ object mecanicasJuego {
         const peonesBlancosEnJuego = game.allVisuals().filter({ visual =>
             visual.className() == "aliados.PeonBlanco"
         })
-        
-        console.println("Verificando " + peonesBlancosEnJuego.size() + " peones blancos")
-        
+                
         peonesBlancosEnJuego.forEach({ peon => peon.intentarCapturar() })
         
         if (oleada.oleadaCompleta()) {

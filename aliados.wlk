@@ -40,7 +40,6 @@ import UI.*
             self.desaparece()
             reyBlanco.añadirRecursos(enemigoFrente.valor() / 2)
             enemigoFrente.desaparece()
-            game.say(self, "Colisión!")
         }
     }
 
@@ -70,7 +69,6 @@ import UI.*
                 self.desaparece()
                 enemigoFrente.desaparece()
                 reyBlanco.añadirRecursos(enemigoFrente.valor() / 2)
-                game.say(self, "¡Colisión!")
             }
         }
     }
@@ -78,12 +76,10 @@ import UI.*
     method capturarDirectamente(enemigo) {
         // Captura directa sin verificaciones adicionales
         const posicionCaptura = enemigo.position()
-        console.println("Peón en " + self.position() + " captura enemigo en " + posicionCaptura)
         self.mover(posicionCaptura)
         enemigo.desaparece()
         score.addScore(enemigo.valor())
         reyBlanco.añadirRecursos(enemigo.valor())
-        game.say(self, "¡Capturado!")
     }
     
     method capturar(pieza) {
@@ -94,7 +90,6 @@ import UI.*
             pieza.desaparece()
             score.addScore(pieza.valor())
             reyBlanco.añadirRecursos(pieza.valor())
-            game.say(self, "¡Capturado!")
         }
     }
 

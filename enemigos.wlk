@@ -7,7 +7,7 @@ class Enemigo {
   var property valor = 10
 
   method image() {
-    return if(position.y() == 0) "RNegro.png" else "PNegroSilla.png"
+    return "PNegro.png"
   }
 
   method desaparece() {
@@ -128,7 +128,7 @@ object enemigo {
   var property valor = 10
   
   method image() {
-    return "PNegroSilla.png"
+    return "PNegro.png"
   }
 
   method desaparece() {
