@@ -29,6 +29,7 @@ program Ajedrez {
 	keyboard.right().onPressDo({reyBlanco.moverDerecha()})
 	keyboard.left().onPressDo({reyBlanco.moverIzquierda()})
 	keyboard.p().onPressDo({reyBlanco.intentarColocarPeon()})
+	keyboard.k().onPressDo({reyBlanco.intentarColocarCaballo()})
 	
 	// Debug oleada
 	keyboard.space().onPressDo({oleada.iniciarOleada()})
