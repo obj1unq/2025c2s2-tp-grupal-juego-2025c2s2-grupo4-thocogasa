@@ -64,10 +64,9 @@ object reyBlanco {
   }
 
   method colocar(pieza){
-    pieza.adquirir()
     self.puedeColocar(pieza, self.position().up(1))
     game.addVisual(pieza)
-    recursos.restarRecursos(pieza.valor())
+    self.restarRecursos(pieza.valor())
   }
 
   method puedeColocar(pieza, ubicacion) {

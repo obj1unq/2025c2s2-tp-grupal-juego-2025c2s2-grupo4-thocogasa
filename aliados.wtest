@@ -4,6 +4,10 @@ import enemigos.*
 import wollok.game.*
 
 describe "tests de aliados" {
+    method initialize(){
+        game.height(8)
+	    game.width(7)
+    }
 
 
     test "reconocimiento enemigos" {
@@ -19,5 +23,35 @@ describe "tests de aliados" {
 
         blanco1.capturar(negro2)
         assert.equals(game.at(2,3), blanco1.position())
+    }
+
+    test "falla capturar enemigos" {
+        const blanco4 = new PeonBlanco(image="PBlanco.png", position= game.at(1,6))
+        const blanco5 = new PeonBlanco(image="PBlanco.png", position= game.at(2,5))
+        game.addVisual(blanco4)
+        game.addVisual(blanco5)
+        blanco4.capturar(blanco5)
+        // no debería capturar pieza y las dos piezas deberían estar en el mismo lugar.
+        assert.equals(game.at(1,6), blanco4.position())
+        assert.equals(game.at(2,5), blanco5.position())
+    }
+
+    test "coronar" {
+        game.addVisual(reyBlanco)
+        reyBlanco.recursos(20)
+        reyBlanco.colocar(blanco1)
+        assert.equals(0, reyBlanco.recursos())
+
+        const blanco7 = new PeonBlanco(image="PBlanco.png", position= game.at(4,6))
+        const negro7 = new Negros(image="PNegro.png", position= game.at(3,7))
+        game.addVisual(blanco7)
+        game.addVisual(negro7)
+        blanco7.capturar(negro7)
+        assert.equals(110, reyBlanco.recursos())
+        assert.that(game.getObjectsIn(game.at(3,7)).isEmpty())
+
+
+
+
     }
 }
