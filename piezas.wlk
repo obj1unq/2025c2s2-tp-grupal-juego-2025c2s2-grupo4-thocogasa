@@ -7,12 +7,16 @@ object reyBlanco {
   var property vidas = 3
 
   var property position = game.at(2,0)
+
+  const listaPiezasAliadas = []
+  
+  method listaPiezasAliadas() = listaPiezasAliadas
   
   method image() {
     if (vidas == 2) {
       return "RBlanco1Hit.png"
     } else if (vidas == 1) {
-      return "RBlanco2Hit"
+      return "RBlanco2Hit.png"
     } else if (vidas <= 0) {
       return "RBlanco3Hit.png"
     } else {
@@ -50,6 +54,7 @@ object reyBlanco {
     const nuevoPeon = new PeonBlanco(position = self.position().up(1))
     if (self.puedeColocarPeon(nuevoPeon.valor(), self.position().up(1))) {
       game.addVisual(nuevoPeon)
+      listaPiezasAliadas.add(nuevoPeon)
       self.restarRecursos(nuevoPeon.valor())
     }
   }
@@ -69,6 +74,13 @@ object reyBlanco {
     if ((recursos < pieza.valor()) or !game.getObjectsIn(ubicacion).isEmpty()) { 
       self.error("no se puede colocar pieza")} 
     
+  }
+
+  method limpiarAliadosInactivos() {
+      const aliadosAEliminar = listaPiezasAliadas.filter({ aliado => 
+          aliado.position().y() == 0 or not game.hasVisual(aliado)
+      })
+      aliadosAEliminar.forEach({ aliado => listaPiezasAliadas.remove(aliado) })
   }
 }
 
