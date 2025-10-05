@@ -117,9 +117,7 @@ import UI.*
 
     method esNegro() {return false}
 
-    method desaparece() {
-        game.removeVisual(self)
-    }
+
     method desaparece() {game.removeVisual(self)}
 
     method coronar() {
