@@ -76,9 +76,9 @@ object reyBlanco {
     
   }
 
-    method intentarColocarCaballo() {
-    const nuevoCaballo = new Caballos(position = game.at(self.position().x().max(1), 0))
-    if (self.puedeColocarPeon(nuevoCaballo.valor(), self.position().left(1))) {
+  method intentarColocarCaballo() {
+    const nuevoCaballo = new Caballos(position = self.position().up(1))
+    if (self.puedeColocarPeon(nuevoCaballo.valor(), self.position().up(1))) {
       game.addVisual(nuevoCaballo)
       listaPiezasAliadas.add(nuevoCaballo)
       self.restarRecursos(nuevoCaballo.valor())

@@ -27,7 +27,6 @@ object mecanicasJuego {
         })
 
         
-                
         peonesBlancosEnJuego.forEach({ peon => peon.intentarCapturar() })
         
         if (oleada.oleadaCompleta()) {

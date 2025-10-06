@@ -131,7 +131,7 @@ import UI.*
   }
 
 class Caballos {
-    var property image ="caballoBlancoB.jpg"
+    var property image ="CBlanco.png"
     var property position
     var property valor = 50
 
@@ -282,40 +282,3 @@ const nuevoCaballo = new Caballos(position = reyBlanco.position().right(1) )
 
 
   }
-
-  object negro1 {
-      var property image = "PNegro.png"
-      var property position = game.at(1,2)
-      method esNegro() {return true}
-      method desaparece() {game.removeVisual(self)}
-      var property valor = 1 
-  }
-
-  object negro2 {
-      var property image = "PNegro.png"
-      var property position = game.at(2,3)
-      method esNegro() {return true}
-      method desaparece() {game.removeVisual(self)}
-      var property valor = 1
-  }
-
-    object negro3 {
-      var property image = "PNegro.png"
-      var property position = game.at(2,7)
-      method esNegro() {return true}
-      method desaparece() {game.removeVisual(self)}
-      var property valor = 1
-  }
-
-
-    const blanco1 = new PeonBlanco(image="PBlanco.png", position= game.at(0,1))
-    const blanco2 = new PeonBlanco(image="PBlanco.png", position= game.at(2,1))
-    const blanco3 = new PeonBlanco(image="PBlanco.png", position= game.at(3,1))
-
-        /*	
-	game.addVisual(enemigo)
-	game.addVisual(negro1)
-	game.addVisual(negro2)
-	game.addVisual(blanco1)
-	game.addVisual(blanco2)
-	game.addVisual(blanco3)*/
