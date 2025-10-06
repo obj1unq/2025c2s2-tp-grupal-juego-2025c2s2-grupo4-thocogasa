@@ -6,13 +6,19 @@ import mecanicas.*
 class Enemigo {
   var property position = game.at(0.randomUpTo(4), 7)
   var property valor = 10
+  var property muerto = false
 
   method image() {
-    return "PNegro.png"
+    if (!muerto) { 
+      return "PNegro.png"
+    } else {
+      return "PBlancoMuerto.gif"
+    }
   }
 
   method desaparece() {
-    game.removeVisual(self)
+    muerto = true
+    game.schedule(500, { game.removeVisual(self) })
   }
 
   method esNegro() {
@@ -141,7 +147,7 @@ object enemigo {
   }
 
   method desaparece() {
-    game.removeVisual(self)
+    self.image()
   }
   
   method esNegro() {
