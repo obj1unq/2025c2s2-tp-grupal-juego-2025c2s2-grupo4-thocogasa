@@ -25,6 +25,23 @@ Puede servir como un tutorial divertido para aprender los movimientos de algunas
 + El Rey blanco puede evitar lo anterior si se interpone en la trayectoria del peón enemigo, pero esto consume 1HP (punto de daño). Si nuestro rey pierde todo su HP, también muere.
 
 
+---
+### FUTURAS IMPLEMENTACIONES
+* Esteticas
+- [ ] agregar sonido
+- [ ] agregar "animaciones" de piezas 
+- [ ] agregar texto en pantalla
+
+
+* Aliados
+* [ ] alfiles
+* [ ] torres
+* [ ] Damas
+
+* Enemigos
+- [ ] mas enemigos ademas de peones
+
+
 
 
 
