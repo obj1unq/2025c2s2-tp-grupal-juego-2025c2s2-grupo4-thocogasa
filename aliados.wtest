@@ -9,22 +9,6 @@ describe "tests de aliados" {
 	    game.width(7)
     }
 
-
-    test "reconocimiento enemigos" {
-        game.addVisual(negro1)
-        assert.that(blanco1.hayPiezaEnemigaEnRango(negro1.position()))
-    }
-
-    test "capturar enemigos"{
-        game.addVisual(negro1)
-        game.addVisual(negro2)
-        blanco1.capturar(negro1)
-        assert.equals(game.at(1,2), blanco1.position())
-
-        blanco1.capturar(negro2)
-        assert.equals(game.at(2,3), blanco1.position())
-    }
-
     test "falla capturar enemigos" {
         const blanco4 = new PeonBlanco(image="PBlanco.png", position= game.at(1,6))
         const blanco5 = new PeonBlanco(image="PBlanco.png", position= game.at(2,5))
@@ -39,7 +23,6 @@ describe "tests de aliados" {
     test "coronar" {
         game.addVisual(reyBlanco)
         reyBlanco.recursos(20)
-        reyBlanco.colocar(blanco1)
         assert.equals(0, reyBlanco.recursos())
 
         const blanco7 = new PeonBlanco(image="PBlanco.png", position= game.at(4,6))

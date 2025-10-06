@@ -1,3 +1,4 @@
+import mecanicas.*
 import aliados.*
 import UI.*
 import wollok.game.*
@@ -48,7 +49,7 @@ object reyBlanco {
     vidas = vidas - 1
   }
 
-  method puedeMover(unaPosicion) = unaPosicion.x() >= 0 && unaPosicion.x() <= 4 
+  method puedeMover(unaPosicion) = unaPosicion.x() >= 0 && unaPosicion.x() <= 4 && mecanicasJuego.juegoActivo()
 
   method intentarColocarPeon() {
     const nuevoPeon = new PeonBlanco(position = self.position().up(1))
@@ -60,7 +61,7 @@ object reyBlanco {
   }
 
   method puedeColocarPeon(valor, ubicacion) {
-    return (recursos >= valor) and game.getObjectsIn(ubicacion).isEmpty()
+    return (recursos >= valor) && game.getObjectsIn(ubicacion).isEmpty() && mecanicasJuego.juegoActivo()
   }
 
   method colocar(pieza){
@@ -71,9 +72,7 @@ object reyBlanco {
 
   method puedeColocar(pieza, ubicacion) {
     const posicion = game.at(self.position().x().up(1), 0)
-    if ((recursos < pieza.valor()) or !game.getObjectsIn(ubicacion).isEmpty()) { 
-      self.error("no se puede colocar pieza")} 
-    
+    return recursos < pieza.valor() || !game.getObjectsIn(ubicacion).isEmpty() && mecanicasJuego.juegoActivo()
   }
 
   method intentarColocarCaballo() {
@@ -91,33 +90,11 @@ object reyBlanco {
       })
       aliadosAEliminar.forEach({ aliado => listaPiezasAliadas.remove(aliado) })
   }
+
+  method reiniciar() {
+    recursos = 100
+    vidas = 3
+    position = game.at(2,0)
+    listaPiezasAliadas.clear()
+  }
 }
-
-
-/*
-object reyNegro {
-  method image() {
-    return "RNegro.png"
-  }
-
-  var property position = game.at(2,7)
-  }*/
-
-/*
-  class Peon {
-    var property image
-    var property position
-  }
-
-  const negro1 = new Peon(image="PNegroSilla.png", position=game.at(0,6) )
-  const negro2 = new Peon(image="PNegroSilla.png", position=game.at(1,6) )
-  const negro3 = new Peon(image="PNegroSilla.png", position=game.at(2,6) )
-  const negro4 = new Peon(image="PNegroSilla.png", position=game.at(3,6) )
-  const negro5 = new Peon(image="PNegroSilla.png", position=game.at(4,6) )
-
-  const blanco1 = new Peon(image="PBlanco.png", position= game.at(0,1))
-  const blanco2 = new Peon(image="PBlanco.png", position= game.at(1,1))
-  const blanco3 = new Peon(image="PBlanco.png", position= game.at(2,1))
-  const blanco4 = new Peon(image="PBlanco.png", position= game.at(3,1))
-  const blanco5 = new Peon(image="PBlanco.png", position= game.at(4,1))
-*/

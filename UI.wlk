@@ -18,6 +18,10 @@ object score {
     method textColor() {
         return "#FFFFFF"
     }
+
+    method reiniciar() {
+        score = 0
+    }
 }
 
 object recursos {

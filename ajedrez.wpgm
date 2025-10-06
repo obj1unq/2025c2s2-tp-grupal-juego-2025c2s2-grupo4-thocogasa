@@ -35,6 +35,9 @@ program Ajedrez {
 	keyboard.space().onPressDo({oleada.iniciarOleada()})
 	keyboard.s().onPressDo({oleada.detenerOleada()})
 	
+	// Reiniciar juego
+	keyboard.r().onPressDo({mecanicasJuego.reiniciarJuego()})
+	
 	// Empieza solo a los 2 segundos
 	game.schedule(2000, {
 		oleada.iniciarOleada()

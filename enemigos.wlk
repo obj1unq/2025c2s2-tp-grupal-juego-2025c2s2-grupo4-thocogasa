@@ -1,6 +1,7 @@
 import wollok.game.*
 import piezas.*
 import aliados.*
+import mecanicas.*
 
 class Enemigo {
   var property position = game.at(0.randomUpTo(4), 7)
@@ -24,8 +25,8 @@ class Enemigo {
     if(position.y() == 0) {
       reyBlanco.perderVida() // quizá tendríamos que cambiar esto para que el jugador se tenga que parar en frente
       if(reyBlanco.vidas() <= 0) {
-        game.say(self, "¡Enemigo coronó! Game Over")
-        game.stop()
+        game.say(self, "¡Game Over! Presiona R para reiniciar")
+        mecanicasJuego.gameOver()
       } else {
         self.desaparece()
       }
@@ -120,6 +121,14 @@ object oleada {
   method oleadaCompleta() {
     return enemigosPorSpawnear.isEmpty() and enemigosActivos.isEmpty()
   }
+
+  method reiniciar() {
+    self.detenerOleada()
+    enemigosPorSpawnear.clear()
+    enemigosActivos.clear()
+    spawnerActivo = false
+    movimientoActivo = false
+  }
 }
 
 object enemigo {
@@ -144,8 +153,8 @@ object enemigo {
     if(position.y() == 0) {
       reyBlanco.perderVida()
       if(reyBlanco.vidas() <= 0) {
-        game.say(self, "¡Enemigo coronó! Game Over")
-        game.stop()
+        game.say(self, "¡Game Over! Presiona R para reiniciar")
+        mecanicasJuego.gameOver()
       }
     }
   }

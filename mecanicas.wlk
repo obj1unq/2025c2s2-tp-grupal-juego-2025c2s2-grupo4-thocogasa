@@ -10,7 +10,7 @@ object mecanicasJuego {
     method iniciarVerificaciones() {
         if (not verificacionActiva) {
             verificacionActiva = true
-            game.onTick(500, "verificar_colisiones", { => self.verificarTodasLasColisiones() })
+            game.onTick(250, "verificar_colisiones", { => self.verificarTodasLasColisiones() })
         }
     }
     
@@ -19,6 +19,51 @@ object mecanicasJuego {
             verificacionActiva = false
             game.removeTickEvent("verificar_colisiones")
         }
+    }
+    
+    method reiniciarJuego() {
+        // Detener todas las verificaciones y oleadas
+        self.detenerVerificaciones()
+        oleada.detenerOleada()
+        
+        // Limpiar todos los visuales excepto el rey blanco y UI
+        const visualesAMantener = [reyBlanco, score, recursos, vidas, piezasRestantes]
+        game.allVisuals().forEach({ visual =>
+            if (not visualesAMantener.contains(visual)) {
+                game.removeVisual(visual)
+            }
+        })
+        
+        // Resetear estado del rey blanco
+        reyBlanco.reiniciar()
+        
+        // Resetear score
+        score.reiniciar()
+        
+        // Resetear oleada
+        oleada.reiniciar()
+        
+        game.say(reyBlanco, "¡Juego reiniciado!")
+        
+        // Reiniciar el juego después de 1 segundo
+        game.schedule(1000, {
+            oleada.crearOleada(8)
+            oleada.iniciarOleada()
+            self.iniciarVerificaciones()
+        })
+    }
+    
+    method gameOver() {
+        // Detener todas las verificaciones y oleadas pero mantener el juego corriendo
+        self.detenerVerificaciones()
+        oleada.detenerOleada()
+        
+        // El juego sigue corriendo, solo se detienen las mecánicas
+        // El jugador puede presionar R para reiniciar
+    }
+
+    method juegoActivo() {
+        return verificacionActiva
     }
     
     method verificarTodasLasColisiones() {
