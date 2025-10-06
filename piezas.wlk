@@ -70,10 +70,19 @@ object reyBlanco {
   }
 
   method puedeColocar(pieza, ubicacion) {
-    const posicion = game.at(self.position().x(), 1)
+    const posicion = game.at(self.position().x().up(1), 0)
     if ((recursos < pieza.valor()) or !game.getObjectsIn(ubicacion).isEmpty()) { 
       self.error("no se puede colocar pieza")} 
     
+  }
+
+    method intentarColocarCaballo() {
+    const nuevoCaballo = new Caballos(position = game.at(self.position().x().max(1), 0))
+    if (self.puedeColocarPeon(nuevoCaballo.valor(), self.position().left(1))) {
+      game.addVisual(nuevoCaballo)
+      listaPiezasAliadas.add(nuevoCaballo)
+      self.restarRecursos(nuevoCaballo.valor())
+    }
   }
 
   method limpiarAliadosInactivos() {

@@ -49,9 +49,24 @@ describe "tests de aliados" {
         blanco7.capturar(negro7)
         assert.equals(110, reyBlanco.recursos())
         assert.that(game.getObjectsIn(game.at(3,7)).isEmpty())
+    }
 
+    test "caballos" {
+        game.addVisual(reyBlanco)
+        reyBlanco.recursos(100)
+        reyBlanco.colocar(nuevoCaballo)
+        assert.equals(50, reyBlanco.recursos())
 
-
-
+        const negroA = new Negros(image="PNegro.png", position= game.at(5,1))
+        const negroB = new Negros(image="PNegro.png", position= game.at(4,3))
+        game.addVisual(negroA)
+        game.addVisual(negroB)
+        nuevoCaballo.capturar(negroA)
+        assert.equals(60, reyBlanco.recursos())
+        assert.notThat(game.getObjectsIn(game.at(5,1)).isEmpty())
+        assert.equals([nuevoCaballo], game.getObjectsIn(game.at(5,1)))
+        nuevoCaballo.capturar(negroB)
+        assert.equals(70, reyBlanco.recursos())
+        assert.equals([nuevoCaballo], game.getObjectsIn(game.at(4,3)))
     }
 }
