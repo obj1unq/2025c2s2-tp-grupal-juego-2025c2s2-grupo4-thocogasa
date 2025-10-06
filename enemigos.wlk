@@ -44,10 +44,11 @@ object oleada {
   method crearOleada(cantidad) {
     cantidad.times({ i => enemigosPorSpawnear.add(new Enemigo()) })
   }
+  /*
 
   method agregarEnemigo(enemigo) {
     enemigosPorSpawnear.add(enemigo)
-  }
+  }*/
 
   method spawnearSiguienteEnemigo() {
     if (not enemigosPorSpawnear.isEmpty()) {
@@ -119,6 +120,14 @@ object oleada {
 
   method oleadaCompleta() {
     return enemigosPorSpawnear.isEmpty() and enemigosActivos.isEmpty()
+  }
+
+  // SOLO para test
+  method getEnemigosPorSpawnear() {
+    return enemigosPorSpawnear
+  }
+  method getEnemigosActivos() {
+    return enemigosActivos
   }
 }
 
