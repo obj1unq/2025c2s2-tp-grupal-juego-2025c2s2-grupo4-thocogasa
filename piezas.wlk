@@ -26,14 +26,20 @@ object reyBlanco {
   }
 
   method moverDerecha() {
-    if(self.puedeMover(self.position().right(1))){
-      position = self.position().right(1)
+    self.validarMover(self.position().right(1))
+    position = self.position().right(1)
     }
-  }
+
 
   method moverIzquierda() {
-    if(self.puedeMover(self.position().left(1))){
-      position = self.position().left(1)
+    self.validarMover(self.position().left(1))
+    position = self.position().left(1)
+
+  }
+
+  method validarMover(unaPosicion){
+    if(!self.puedeMover(unaPosicion)){
+      self.error("")
     }
   }
 
