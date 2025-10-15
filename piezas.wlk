@@ -59,7 +59,7 @@ object reyBlanco {
 
   method intentarColocarPeon() {
     const nuevoPeon = new PeonBlanco(position = self.position().up(1))
-    if (self.puedeColocarPeon(nuevoPeon.valor(), self.position().up(1))) {
+    if (self.puedeColocarPeon(nuevoPeon.valor(), self.position().up(1))) { //TODO: cambiar por validación
       game.addVisual(nuevoPeon)
       listaPiezasAliadas.add(nuevoPeon)
       self.restarRecursos(nuevoPeon.valor())
