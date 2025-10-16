@@ -30,15 +30,12 @@ class Enemigo {
   }
 
   method avanzar() {
-    // don't start another move while animating or if already dead
     if (not (animando or muerto)) {
       const nuevaPos = game.at(position.x(), (position.y() - 1).max(0))
 
-      // move to the new cell immediately so the animation shows in the correct cell
       position = nuevaPos
       animando = true
 
-      // after the animation duration, stop animating and handle reaching the end
       game.schedule(1200, {
         animando = false
 
