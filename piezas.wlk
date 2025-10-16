@@ -104,3 +104,82 @@ object reyBlanco {
     listaPiezasAliadas.clear()
   }
 }
+
+class Peon {
+  var property position = game.at(0.randomUpTo(4), 7)
+  const property recompensa = 10
+  var property muerto = false
+
+  /*method image() {
+    if (!muerto) { 
+      return "PNegro.png"
+    } else {
+      return "PBlancoMuerto.gif"
+    }
+  }
+  el metodo image seria mejor que se definiera en las subclases asi no tendria que redefinirse en
+  el lugar
+  */
+
+  method desaparece() {
+    muerto = true
+    game.schedule(500, { game.removeVisual(self) })
+  }
+
+  method esNegro() {
+    return true
+  }
+
+}
+
+class Caballo {
+  var property position = game.at(0.randomUpTo(4), 7)
+  const property recompensa = 50 //recordar preguntar que puntaje va a otorgar 
+  var property muerto = false
+
+  method image() {
+  if (!muerto) { 
+    return "CNegro.png"
+  } else {
+    return "PBlancoMuerto.gif" // lo dejo asi por si mas adelante se ve agrega una imagen para verlo
+  }
+
+  } 
+  
+  method desaparece() {
+    muerto = true
+    game.schedule(500, { game.removeVisual(self) })
+  }
+  
+  method esNegro() {
+    return false
+  }
+    
+}
+class Alfil {
+  var property position = game.at(0.randomUpTo(4), 7)
+  const property recompensa = 20 //recordar preguntar que puntaje va a otorgar 
+  var property muerto = false
+  
+  method desaparece() {
+    muerto = true
+    game.schedule(500, { game.removeVisual(self) })
+  }
+  method esNegro() {
+    return false
+  }
+}
+
+class Torre {
+  var property position = game.at(0.randomUpTo(4), 7)
+  const property recompensa = 30 //recordar preguntar que puntaje va a otorgar 
+  var property muerto = false
+
+  method desaparece() {
+    muerto = true
+    game.schedule(500, { game.removeVisual(self) })
+  }
+  method esNegro() {
+    return false
+  }
+}
