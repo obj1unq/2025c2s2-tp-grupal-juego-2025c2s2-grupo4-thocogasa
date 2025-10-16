@@ -7,13 +7,17 @@ class Enemigo {
   var property position = game.at(0.randomUpTo(4), 7)
   var property valor = 10
   var property muerto = false
+  var property animando = false
 
   method image() {
-    if (!muerto) { 
-      return "PNegro.png"
-    } else {
+    if (muerto) {
       return "PBlancoMuerto.gif"
     }
+    if (animando) {
+      // show walking animation while moving between cells
+      return "PNegroWalk.gif"
+    }
+    return "PNegro.png"
   }
 
   method desaparece() {
@@ -26,16 +30,28 @@ class Enemigo {
   }
 
   method avanzar() {
-    position = game.at(position.x(), (position.y() - 1).max(0))
-    
-    if(position.y() == 0) {
-      reyBlanco.perderVida() // quizá tendríamos que cambiar esto para que el jugador se tenga que parar en frente
-      if(reyBlanco.vidas() <= 0) {
-        game.say(self, "¡Game Over! Presiona R para reiniciar")
-        mecanicasJuego.gameOver()
-      } else {
-        self.desaparece()
-      }
+    // don't start another move while animating or if already dead
+    if (not (animando or muerto)) {
+      const nuevaPos = game.at(position.x(), (position.y() - 1).max(0))
+
+      // move to the new cell immediately so the animation shows in the correct cell
+      position = nuevaPos
+      animando = true
+
+      // after the animation duration, stop animating and handle reaching the end
+      game.schedule(1200, {
+        animando = false
+
+        if (position.y() == 0) {
+          reyBlanco.perderVida()
+          if (reyBlanco.vidas() <= 0) {
+            game.say(self, "¡Game Over! Presiona R para reiniciar")
+            mecanicasJuego.gameOver()
+          } else {
+            self.desaparece()
+          }
+        }
+      })
     }
   }
 }
@@ -141,13 +157,18 @@ object enemigo {
   const property positionX = 0.randomUpTo(4)
   var property position = game.at(self.positionX(),7)
   var property valor = 10
+  var property muerto = false
+  var property animando = false
   
   method image() {
+    if (muerto) { return "PBlancoMuerto.gif" }
+    if (animando) { return "PNegroWalk.gif" }
     return "PNegro.png"
   }
 
   method desaparece() {
-    self.image()
+    muerto = true
+    game.schedule(500, { game.removeVisual(self) })
   }
   
   method esNegro() {
@@ -155,13 +176,23 @@ object enemigo {
   }
 
   method avanzar() {
-    position = game.at(position.x(), (position.y() - 1).max(0))
-    if(position.y() == 0) {
-      reyBlanco.perderVida()
-      if(reyBlanco.vidas() <= 0) {
-        game.say(self, "¡Game Over! Presiona R para reiniciar")
-        mecanicasJuego.gameOver()
-      }
+    if (not (animando or muerto)) {
+      const nuevaPos = game.at(position.x(), (position.y() - 1).max(0))
+      position = nuevaPos
+      animando = true
+      game.schedule(1200, {
+        animando = false
+
+        if(position.y() == 0) {
+          reyBlanco.perderVida()
+          if(reyBlanco.vidas() <= 0) {
+            game.say(self, "¡Game Over! Presiona R para reiniciar")
+            mecanicasJuego.gameOver()
+          } else {
+            self.desaparece()
+          }
+        }
+      })
     }
   }
 }
