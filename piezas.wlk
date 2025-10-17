@@ -104,3 +104,73 @@ object reyBlanco {
     listaPiezasAliadas.clear()
   }
 }
+
+// SE CREAN LAS SUPERCLASES
+
+class Peon {
+  var property position 
+  var property valor 
+  var property muerto = false
+
+  method desaparece() {
+    muerto = true
+    game.schedule(500, { game.removeVisual(self) })
+  }
+
+  method esNegro() {
+    return true
+  }
+
+}
+
+class Caballo {
+  var property position = game.at(0.randomUpTo(4), 7)
+  var property valor = 0 //recordar preguntar que puntaje va a otorgar 
+  var property muerto = false
+
+  method image() {
+  if (!muerto) { 
+    return "CNegro.png"
+  } else {
+    return "PBlancoMuerto.gif" // lo dejo asi por si mas adelante se ve agrega una imagen para verlo
+  }
+
+  } 
+  
+  method desaparece() {
+    muerto = true
+    game.schedule(500, { game.removeVisual(self) })
+  }
+  
+  method esNegro() {
+    return false
+  }
+    
+}
+class Alfil {
+  var property position = game.at(0.randomUpTo(4), 7)
+  var property valor = 0 //recordar preguntar que puntaje va a otorgar 
+  var property muerto = false
+  
+  method desaparece() {
+    muerto = true
+    game.schedule(500, { game.removeVisual(self) })
+  }
+  method esNegro() {
+    return false
+  }
+}
+
+class Torre {
+  var property position = game.at(0.randomUpTo(4), 7)
+  var property valor = 0 //recordar preguntar que puntaje va a otorgar 
+  var property muerto = false
+
+  method desaparece() {
+    muerto = true
+    game.schedule(500, { game.removeVisual(self) })
+  }
+  method esNegro() {
+    return false
+  }
+}
