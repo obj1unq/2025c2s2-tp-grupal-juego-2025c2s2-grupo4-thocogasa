@@ -2,43 +2,8 @@ import wollok.game.*
 import piezas.*
 import aliados.*
 import mecanicas.*
+import UI.*
 
-class Enemigo {
-  var property position = game.at(0.randomUpTo(4), 7)
-  var property valor = 10
-  var property muerto = false
-
-  method image() {
-    if (!muerto) { 
-      return "PNegro.png"
-    } else {
-      return "PBlancoMuerto.gif"
-    }
-  }
-
-  method desaparece() {
-    muerto = true
-    game.schedule(500, { game.removeVisual(self) })
-  }
-
-  method esNegro() {
-    return true
-  }
-
-  method avanzar() {
-    position = game.at(position.x(), (position.y() - 1).max(0))
-    
-    if(position.y() == 0) {
-      reyBlanco.perderVida() // quizá tendríamos que cambiar esto para que el jugador se tenga que parar en frente
-      if(reyBlanco.vidas() <= 0) {
-        game.say(self, "¡Game Over! Presiona R para reiniciar")
-        mecanicasJuego.gameOver()
-      } else {
-        self.desaparece()
-      }
-    }
-  }
-}
 
 object oleada {
   const enemigosPorSpawnear = []
@@ -49,7 +14,7 @@ object oleada {
   var movimientoActivo = false
 
   method crearOleada(cantidad) {
-    cantidad.times({ i => enemigosPorSpawnear.add(new Enemigo()) })
+    cantidad.times({ i => enemigosPorSpawnear.add(new PeonEnemigo()) })
   }
 
   method agregarEnemigo(enemigo) {
@@ -137,32 +102,33 @@ object oleada {
   }
 }
 
-object enemigo {
-  const property positionX = 0.randomUpTo(4)
-  var property position = game.at(self.positionX(),7)
-  var property valor = 10
-  
+// CREAMOS LAS SUBCLASES DE LAS PIEZAS EN SU VERSION DE ENEMIGOS
+
+class PeonEnemigo inherits Peon(
+  position = game.at(0.randomUpTo(4), 7),
+  valor = 10
+) { 
+
+
   method image() {
-    return "PNegro.png"
+    if (!muerto) { 
+      return "PNegro.png"
+    } else {
+      return "PBlancoMuerto.gif"
+    }
   }
-
-  method desaparece() {
-    self.image()
-  }
-  
-  method esNegro() {
-    return true
-  }
-
   method avanzar() {
     position = game.at(position.x(), (position.y() - 1).max(0))
+   
     if(position.y() == 0) {
-      reyBlanco.perderVida()
+      sonidos.playGolpeAlRey() //Aca para que coincida con el golpe | actualizacion: no funciona bien, ya que funciona cuando pierde una vida, modificar
+      reyBlanco.perderVida() 
       if(reyBlanco.vidas() <= 0) {
         game.say(self, "¡Game Over! Presiona R para reiniciar")
         mecanicasJuego.gameOver()
+      } else {
+        self.desaparece()
       }
     }
   }
 }
-

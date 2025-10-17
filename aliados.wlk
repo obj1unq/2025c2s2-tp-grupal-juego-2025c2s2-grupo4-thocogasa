@@ -4,10 +4,12 @@ import wollok.game.*
 import UI.*
 
 
-  class PeonBlanco {
+  class PeonBlanco inherits Peon(
+     position = null,
+     valor = 20
+  ){
     var property image ="PBlanco.png"
-    var property position
-    var property valor = 20
+
 
     method mover(direccion){
         position = direccion
@@ -43,6 +45,7 @@ import UI.*
             const enemigoFrente = enemigosFrente.first()
             // Ambos peones se destruyen
             self.desaparece()
+            
             reyBlanco.añadirRecursos(enemigoFrente.valor() / 2)
             enemigoFrente.desaparece()
         }
@@ -83,6 +86,7 @@ import UI.*
         const posicionCaptura = enemigo.position()
         self.mover(posicionCaptura)
         enemigo.desaparece()
+        sonidos.playCaptureSound() // aca ya que la pieza come
         score.addScore(enemigo.valor())
         reyBlanco.añadirRecursos(enemigo.valor())
     }
@@ -92,6 +96,7 @@ import UI.*
         
         if (self.hayPiezaEnemigaEnRango(posicionAtaque)){
             self.mover(posicionAtaque)
+            sonidos.playCaptureSound() // suena sonido aca ya que la pieza come
             pieza.desaparece()
             score.addScore(pieza.valor())
             reyBlanco.añadirRecursos(pieza.valor())
@@ -115,10 +120,10 @@ import UI.*
                posicion.y() >= 0 and posicion.y() < game.height()
     }
 
-    method esNegro() {return false}
+    override method esNegro() {return false}
 
 
-    method desaparece() {game.removeVisual(self)}
+    override method desaparece() {game.removeVisual(self)}
 
     method coronar() {
       if (self.estaEnUltimaFila()) {
@@ -130,10 +135,11 @@ import UI.*
     method adquirir(){}
   }
 
-class Caballos {
+class CaballosBlancos inherits Peon(
+    position = null,
+    valor = 50) {
+
     var property image ="CBlanco.png"
-    var property position
-    var property valor = 50
 
     method mover(direccion){
         position = direccion
@@ -259,9 +265,9 @@ class Caballos {
                posicion.y() >= 0 and posicion.y() < game.height()
     }
 
-    method esNegro() {return false}
+    override method esNegro() {return false}
 
-    method desaparece() {game.removeVisual(self)}
+    override method desaparece() {game.removeVisual(self)}
 
     method coronar() {
     }
@@ -270,7 +276,7 @@ class Caballos {
 
 }
 
-const nuevoCaballo = new Caballos(position = reyBlanco.position().right(1) )
+const nuevoCaballo = new CaballosBlancos(position = reyBlanco.position().right(1) )
 
   class Negros {
     var property image

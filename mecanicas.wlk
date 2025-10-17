@@ -25,7 +25,8 @@ object mecanicasJuego {
         // Detener todas las verificaciones y oleadas
         self.detenerVerificaciones()
         oleada.detenerOleada()
-        
+        sonidos.detenerTodo()
+
         // Limpiar todos los visuales excepto el rey blanco y UI
         const visualesAMantener = [reyBlanco, score, recursos, vidas, piezasRestantes]
         game.allVisuals().forEach({ visual =>
@@ -57,7 +58,8 @@ object mecanicasJuego {
         // Detener todas las verificaciones y oleadas pero mantener el juego corriendo
         self.detenerVerificaciones()
         oleada.detenerOleada()
-        
+        sonidos.detenerTodo()
+        sonidos.playGameOver()
         // El juego sigue corriendo, solo se detienen las mecánicas
         // El jugador puede presionar R para reiniciar
     }

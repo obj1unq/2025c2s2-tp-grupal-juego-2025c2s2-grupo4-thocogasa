@@ -52,6 +52,7 @@ object reyBlanco {
   }
 
   method perderVida() {
+    //sonidos.playGolpeAlRey() // aca para que coincida con el momento. poner otro sonido
     vidas = vidas - 1
   }
 
@@ -82,7 +83,7 @@ object reyBlanco {
   }
 
   method intentarColocarCaballo() {
-    const nuevoCaballo = new Caballos(position = self.position().up(1))
+    const nuevoCaballo = new CaballosBlancos(position = self.position().up(1))
     if (self.puedeColocarPeon(nuevoCaballo.valor(), self.position().up(1))) {
       game.addVisual(nuevoCaballo)
       listaPiezasAliadas.add(nuevoCaballo)
@@ -102,5 +103,75 @@ object reyBlanco {
     vidas = 3
     position = game.at(2,0)
     listaPiezasAliadas.clear()
+  }
+}
+
+// SE CREAN LAS SUPERCLASES
+
+class Peon {
+  var property position 
+  var property valor 
+  var property muerto = false
+
+  method desaparece() {
+    muerto = true
+    game.schedule(500, { game.removeVisual(self) })
+  }
+
+  method esNegro() {
+    return true
+  }
+
+}
+
+class Caballo {
+  var property position 
+  var property valor 
+  var property muerto = false
+
+  method image() {
+  if (!muerto) { 
+    return "CNegro.png"
+  } else {
+    return "PBlancoMuerto.gif" // lo dejo asi por si mas adelante se ve agrega una imagen para verlo
+  }
+
+  } 
+  
+  method desaparece() {
+    muerto = true
+    game.schedule(500, { game.removeVisual(self) })
+  }
+  
+  method esNegro() {
+    return false
+  }
+    
+}
+class Alfil {
+  var property position 
+  var property valor
+  var property muerto = false
+  
+  method desaparece() {
+    muerto = true
+    game.schedule(500, { game.removeVisual(self) })
+  }
+  method esNegro() {
+    return false
+  }
+}
+
+class Torre {
+  var property position 
+  var property valor 
+  var property muerto = false
+
+  method desaparece() {
+    muerto = true
+    game.schedule(500, { game.removeVisual(self) })
+  }
+  method esNegro() {
+    return false
   }
 }
