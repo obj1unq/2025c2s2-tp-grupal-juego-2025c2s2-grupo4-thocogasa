@@ -105,21 +105,12 @@ object reyBlanco {
   }
 }
 
-class Peon {
-  var property position = game.at(0.randomUpTo(4), 7)
-  const property recompensa = 10
-  var property muerto = false
+// SE CREAN LAS SUPERCLASES
 
-  /*method image() {
-    if (!muerto) { 
-      return "PNegro.png"
-    } else {
-      return "PBlancoMuerto.gif"
-    }
-  }
-  el metodo image seria mejor que se definiera en las subclases asi no tendria que redefinirse en
-  el lugar
-  */
+class Peon {
+  var property position 
+  var property valor 
+  var property muerto = false
 
   method desaparece() {
     muerto = true
@@ -134,7 +125,7 @@ class Peon {
 
 class Caballo {
   var property position = game.at(0.randomUpTo(4), 7)
-  const property recompensa = 50 //recordar preguntar que puntaje va a otorgar 
+  var property valor = 0 //recordar preguntar que puntaje va a otorgar 
   var property muerto = false
 
   method image() {
@@ -158,7 +149,7 @@ class Caballo {
 }
 class Alfil {
   var property position = game.at(0.randomUpTo(4), 7)
-  const property recompensa = 20 //recordar preguntar que puntaje va a otorgar 
+  var property valor = 0 //recordar preguntar que puntaje va a otorgar 
   var property muerto = false
   
   method desaparece() {
@@ -172,7 +163,7 @@ class Alfil {
 
 class Torre {
   var property position = game.at(0.randomUpTo(4), 7)
-  const property recompensa = 30 //recordar preguntar que puntaje va a otorgar 
+  var property valor = 0 //recordar preguntar que puntaje va a otorgar 
   var property muerto = false
 
   method desaparece() {

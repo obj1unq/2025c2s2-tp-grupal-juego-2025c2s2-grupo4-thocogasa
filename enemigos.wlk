@@ -99,3 +99,36 @@ object oleada {
     movimientoActivo = false
   }
 }
+
+// CREAMOS LAS SUBCLASES DE LAS PIEZAS EN SU VERSION DE ENEMIGOS
+
+class PeonEnemigo inherits Peon{
+
+  override method position() {
+    return game.at(0.randomUpTo(4), 7)
+  }
+  override method valor() {
+    return 20
+  }
+
+  method image() {
+    if (!muerto) { 
+      return "PNegro.png"
+    } else {
+      return "PBlancoMuerto.gif"
+    }
+  }
+  method avanzar() {
+    position = game.at(position.x(), (position.y() - 1).max(0))
+   
+    if(position.y() == 0) {
+      reyBlanco.perderVida() 
+      if(reyBlanco.vidas() <= 0) {
+        game.say(self, "¡Game Over! Presiona R para reiniciar")
+        mecanicasJuego.gameOver()
+      } else {
+        self.desaparece()
+      }
+    }
+  }
+}
