@@ -59,3 +59,36 @@ object vidas {
         return "#FFFFFF"
     }
 }
+
+//AGREGANDO SONIDOS
+
+object sonidos {
+    var property sonidoDeFondo = game.sound("sonidoDeFondo.wav") //cargo el sonido
+    //var property captureSound = game.sound("pieceEat.wav") 
+    //var property golpeAlRey = game.sound("KingHurt.wav") no funciona bien si lo asigno
+
+    method iniciarMusicaDeFondo() {
+        sonidoDeFondo.shouldLoop(true) // esto indica que el sonido se repita automaticamente
+    }
+    
+    method playGameOver() {
+      game.sound("game_over.mp3").play()
+    }
+
+    method playSonidoDeFondo() {
+      sonidoDeFondo.play() // play() inicia la resproduccion de musica
+    }
+    method playCaptureSound() {
+      game.sound("pieceEat.wav").play()
+    }
+    method playGolpeAlRey() {
+      game.sound("KingHurt.wav").play()
+    }
+
+    method detenerTodo() {
+        sonidoDeFondo.stop()
+        //game.sound("pieceEat.wav").stop()
+        //game.sound("KingHurt.wav").stop()
+    }
+
+}

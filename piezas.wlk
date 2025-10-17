@@ -52,6 +52,7 @@ object reyBlanco {
   }
 
   method perderVida() {
+    //sonidos.playGolpeAlRey() // aca para que coincida con el momento. poner otro sonido
     vidas = vidas - 1
   }
 
@@ -82,7 +83,7 @@ object reyBlanco {
   }
 
   method intentarColocarCaballo() {
-    const nuevoCaballo = new Caballos(position = self.position().up(1))
+    const nuevoCaballo = new CaballosBlancos(position = self.position().up(1))
     if (self.puedeColocarPeon(nuevoCaballo.valor(), self.position().up(1))) {
       game.addVisual(nuevoCaballo)
       listaPiezasAliadas.add(nuevoCaballo)
@@ -124,8 +125,8 @@ class Peon {
 }
 
 class Caballo {
-  var property position = game.at(0.randomUpTo(4), 7)
-  var property valor = 0 //recordar preguntar que puntaje va a otorgar 
+  var property position 
+  var property valor 
   var property muerto = false
 
   method image() {
@@ -148,8 +149,8 @@ class Caballo {
     
 }
 class Alfil {
-  var property position = game.at(0.randomUpTo(4), 7)
-  var property valor = 0 //recordar preguntar que puntaje va a otorgar 
+  var property position 
+  var property valor
   var property muerto = false
   
   method desaparece() {
@@ -162,8 +163,8 @@ class Alfil {
 }
 
 class Torre {
-  var property position = game.at(0.randomUpTo(4), 7)
-  var property valor = 0 //recordar preguntar que puntaje va a otorgar 
+  var property position 
+  var property valor 
   var property muerto = false
 
   method desaparece() {
