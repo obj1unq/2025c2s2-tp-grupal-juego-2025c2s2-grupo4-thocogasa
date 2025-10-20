@@ -51,6 +51,8 @@ object mecanicasJuego {
             oleada.crearOleada(8)
             oleada.iniciarOleada()
             self.iniciarVerificaciones()
+            sonidos.iniciarMusicaDeFondo()
+            sonidos.playSonidoDeFondo()
         })
     }
     

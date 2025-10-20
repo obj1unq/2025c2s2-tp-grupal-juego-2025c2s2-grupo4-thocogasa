@@ -49,9 +49,10 @@ program Ajedrez {
 	
 	// Empieza solo a los 2 segundos
 	game.schedule(2000, {
-		sonidos.playSonidoDeFondo()
-		oleada.iniciarOleada()
-		mecanicasJuego.iniciarVerificaciones()
-	})
+        sonidos.iniciarMusicaDeFondo()
+        sonidos.playSonidoDeFondo()
+        oleada.iniciarOleada()
+        mecanicasJuego.iniciarVerificaciones()
+    })
 	game.start()
 }

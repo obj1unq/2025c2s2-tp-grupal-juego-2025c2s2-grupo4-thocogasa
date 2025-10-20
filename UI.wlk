@@ -63,12 +63,12 @@ object vidas {
 //AGREGANDO SONIDOS
 
 object sonidos {
-    var property sonidoDeFondo = game.sound("sonidoDeFondo.wav") //cargo el sonido
+    var property sonidoDeFondo = game.sound("sonidoDeFondo.mp3") //cargo el sonido
     //var property captureSound = game.sound("pieceEat.wav") 
     //var property golpeAlRey = game.sound("KingHurt.wav") no funciona bien si lo asigno
 
     method iniciarMusicaDeFondo() {
-        sonidoDeFondo.shouldLoop(true) // esto indica que el sonido se repita automaticamente
+        sonidoDeFondo.shouldLoop(true)
     }
     
     method playGameOver() {
@@ -76,13 +76,14 @@ object sonidos {
     }
 
     method playSonidoDeFondo() {
-      sonidoDeFondo.play() // play() inicia la resproduccion de musica
+      sonidoDeFondo.shouldLoop(true)
+      sonidoDeFondo.play()
     }
     method playCaptureSound() {
-      game.sound("pieceEat.wav").play()
+      game.sound("pieceEat.mp3").play()
     }
     method playGolpeAlRey() {
-      game.sound("KingHurt.wav").play()
+      game.sound("KingHurt.mp3").play()
     }
 
     method detenerTodo() {
