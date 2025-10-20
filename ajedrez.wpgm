@@ -19,6 +19,13 @@ program Ajedrez {
 	
 	game.showAttributes(reyBlanco)
 
+	//SONIDO DE FONDO
+	
+	//const music = game.sound("sonidoDeFondo.wav")
+    //music.shouldLoop(true)// esto indica que el sonido se repita automaticamente
+	
+
+
 	//UI
 	game.addVisual(score)
 	game.addVisual(recursos)
@@ -33,13 +40,16 @@ program Ajedrez {
 	
 	// Debug oleada
 	keyboard.space().onPressDo({oleada.iniciarOleada()})
+								//sonidos.sonidoDeFondo().resume()})
 	keyboard.s().onPressDo({oleada.detenerOleada()})
+	                        //sonidos.sonidoDeFondo().pause()})
 	
 	// Reiniciar juego
 	keyboard.r().onPressDo({mecanicasJuego.reiniciarJuego()})
 	
 	// Empieza solo a los 2 segundos
 	game.schedule(2000, {
+		sonidos.playSonidoDeFondo()
 		oleada.iniciarOleada()
 		mecanicasJuego.iniciarVerificaciones()
 	})
