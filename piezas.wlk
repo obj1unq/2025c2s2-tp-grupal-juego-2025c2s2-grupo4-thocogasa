@@ -25,6 +25,10 @@ object reyBlanco {
     }
   }
 
+  method esNegro() {
+    return false
+  } // agregue este metodo para resolver un error que aparecia en las colisiones,
+  
   method moverDerecha() {
     self.validarMover(self.position().right(1))
     position = self.position().right(1)
@@ -109,8 +113,8 @@ object reyBlanco {
 // SE CREAN LAS SUPERCLASES
 
 class Peon {
-  var property position 
-  var property valor 
+  //var property position 
+  //var property valor 
   var property muerto = false
 
   method desaparece() {
@@ -119,14 +123,14 @@ class Peon {
   }
 
   method esNegro() {
-    return true
+    return false
   }
 
 }
 
 class Caballo {
-  var property position 
-  var property valor 
+  //var property position 
+  //var property valor 
   var property muerto = false
 
   method image() {

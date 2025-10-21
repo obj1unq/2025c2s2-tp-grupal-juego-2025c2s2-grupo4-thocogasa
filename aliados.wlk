@@ -4,12 +4,10 @@ import wollok.game.*
 import UI.*
 
 
-  class PeonBlanco inherits Peon(
-     position = null,
-     valor = 20
-  ){
+  class PeonBlanco inherits Peon{
+    var property position 
+    var property valor = 20
     var property image ="PBlanco.png"
-
 
     method mover(direccion){
         position = direccion
@@ -86,7 +84,6 @@ import UI.*
         const posicionCaptura = enemigo.position()
         self.mover(posicionCaptura)
         enemigo.desaparece()
-        sonidos.playCaptureSound() // aca ya que la pieza come
         score.addScore(enemigo.valor())
         reyBlanco.añadirRecursos(enemigo.valor())
     }
@@ -96,8 +93,6 @@ import UI.*
         
         if (self.hayPiezaEnemigaEnRango(posicionAtaque)){
             self.mover(posicionAtaque)
-            sonidos.playCaptureSound() // suena sonido aca ya que la pieza come
-            pieza.desaparece()
             score.addScore(pieza.valor())
             reyBlanco.añadirRecursos(pieza.valor())
         }
@@ -120,7 +115,7 @@ import UI.*
                posicion.y() >= 0 and posicion.y() < game.height()
     }
 
-    override method esNegro() {return false}
+    //override method esNegro() {return false}
 
 
     override method desaparece() {game.removeVisual(self)}
@@ -135,10 +130,9 @@ import UI.*
     method adquirir(){}
   }
 
-class CaballosBlancos inherits Peon(
-    position = null,
-    valor = 50) {
-
+class CaballosBlancos inherits Caballo{
+    var property position
+    var property valor = 50
     var property image ="CBlanco.png"
 
     method mover(direccion){
@@ -199,7 +193,17 @@ class CaballosBlancos inherits Peon(
         posicionesDiagonales.forEach({ posicion =>
             // Verificar que la posición esté dentro del tablero
             if (self.posicionValida(posicion)) {
-                const enemigosEnPosicion = game.getObjectsIn(posicion).filter{pieza => pieza.esNegro()}
+                const enemigosEnPosicion = game.getObjectsIn(posicion).filter({pieza => 
+                                                                              try{
+                                                                                return pieza.esNegro()
+                                                                              } catch e : MessageNotUnderstoodException   {
+                                                                                return false
+                                                                                console.println("el objeto no entiende esNegro()")
+                                                                                }
+                                                                              })
+                //quiero ver que hay en la celda
+                
+                //console.println("Objetos en " + posicion + ": " + game.getObjectsIn(posicion))
                 if (not enemigosEnPosicion.isEmpty()) {
                     const enemigo = enemigosEnPosicion.first()
                     self.capturarDirectamente(enemigo)
@@ -265,7 +269,7 @@ class CaballosBlancos inherits Peon(
                posicion.y() >= 0 and posicion.y() < game.height()
     }
 
-    override method esNegro() {return false}
+    //override method esNegro() {return false}
 
     override method desaparece() {game.removeVisual(self)}
 

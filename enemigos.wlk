@@ -2,7 +2,6 @@ import wollok.game.*
 import piezas.*
 import aliados.*
 import mecanicas.*
-import UI.*
 
 
 object oleada {
@@ -104,11 +103,9 @@ object oleada {
 
 // CREAMOS LAS SUBCLASES DE LAS PIEZAS EN SU VERSION DE ENEMIGOS
 
-class PeonEnemigo inherits Peon(
-  position = game.at(0.randomUpTo(4), 7),
-  valor = 10
-) { 
-
+class PeonEnemigo inherits Peon { 
+  var property position = game.at((0..4).anyOne(), 7)//0.randomUpTo(4)
+  var property valor = 10
 
   method image() {
     if (!muerto) { 
@@ -117,11 +114,11 @@ class PeonEnemigo inherits Peon(
       return "PBlancoMuerto.gif"
     }
   }
+  override method esNegro() {return true}
   method avanzar() {
     position = game.at(position.x(), (position.y() - 1).max(0))
    
     if(position.y() == 0) {
-      sonidos.playGolpeAlRey() //Aca para que coincida con el golpe | actualizacion: no funciona bien, ya que funciona cuando pierde una vida, modificar
       reyBlanco.perderVida() 
       if(reyBlanco.vidas() <= 0) {
         game.say(self, "¡Game Over! Presiona R para reiniciar")
