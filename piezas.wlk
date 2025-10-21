@@ -153,8 +153,10 @@ class Caballo {
     
 }
 class Alfil {
-  var property position 
-  var property valor
+  //var property position, valor como estos atributos van a pertenecer a ambos ya sea en aliados como enemigos
+  //sin embargo en cada uno se va a volver a reimplementar si la forma de llamarlos es similar a cuando se hacen instancia
+  //sugiero que cada subclase declare esos 2 atributos por lo menos hasta confirmar que rehacer atributos por cada subclase 
+  //sea una buena practica
   var property muerto = false
   
   method desaparece() {
@@ -167,8 +169,7 @@ class Alfil {
 }
 
 class Torre {
-  var property position 
-  var property valor 
+  //var property position, valor 
   var property muerto = false
 
   method desaparece() {
