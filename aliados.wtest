@@ -1,4 +1,4 @@
-import piezas.*
+import rey.*
 import aliados.*
 import enemigos.*
 import wollok.game.*

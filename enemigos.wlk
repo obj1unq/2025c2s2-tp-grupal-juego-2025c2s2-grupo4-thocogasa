@@ -1,5 +1,5 @@
 import wollok.game.*
-import piezas.*
+import rey.*
 import aliados.*
 import mecanicas.*
 
@@ -106,10 +106,19 @@ object oleada {
   }
 } // CREAMOS LAS SUBCLASES DE LAS PIEZAS EN SU VERSION DE ENEMIGOS
 
-class PeonEnemigo inherits Peon {
+class PeonEnemigo {
   var property position = game.at((0 .. 4).anyOne(), 7) //0.randomUpTo(4)
   var property valor = 10
+  var property muerto = false
   
+  method desaparece() {
+    muerto = true
+    game.schedule(500, { game.removeVisual(self) })
+  }
+  
+  method esNegro() = true
+
+
   method image() {
     if (!muerto) {
       return "PNegro.png"
@@ -117,8 +126,6 @@ class PeonEnemigo inherits Peon {
       return "PBlancoMuerto.gif"
     }
   }
-  
-  override method esNegro() = true
   
   method avanzar() {
     position = game.at(position.x(), (position.y() - 1).max(0))
