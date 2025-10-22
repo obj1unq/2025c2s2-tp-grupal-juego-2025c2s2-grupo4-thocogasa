@@ -5,44 +5,46 @@ import aliados.*
 import UI.*
 import mecanicas.*
 
-
 program Ajedrez {
 	game.title("miniChess")
 	game.cellSize(64)
 	game.height(8)
 	game.width(7)
-
+	
 	game.boardGround("Tablero.png")
 	game.addVisual(reyBlanco)
-
+	
 	oleada.crearOleada(8)
 	
 	game.showAttributes(reyBlanco)
-
+	
 	//UI
 	game.addVisual(score)
 	game.addVisual(recursos)
 	game.addVisual(vidas)
 	game.addVisual(piezasRestantes)
-
+	
 	// Controles
-	keyboard.right().onPressDo({reyBlanco.moverDerecha()})
-	keyboard.left().onPressDo({reyBlanco.moverIzquierda()})
-	keyboard.p().onPressDo({reyBlanco.intentarColocarPeon()})
-	keyboard.k().onPressDo({reyBlanco.intentarColocarCaballo()})
+	keyboard.right().onPressDo({ reyBlanco.moverDerecha() })
+	keyboard.left().onPressDo({ reyBlanco.moverIzquierda() })
+	keyboard.p().onPressDo({ reyBlanco.intentarColocarPeon() })
+	keyboard.k().onPressDo({ reyBlanco.intentarColocarCaballo() })
 	
 	// Debug oleada
-	keyboard.space().onPressDo({oleada.iniciarOleada()})
-	keyboard.s().onPressDo({oleada.detenerOleada()})
-
+	keyboard.space().onPressDo({ oleada.iniciarOleada() })
+	keyboard.s().onPressDo({ oleada.detenerOleada() })
+	
 	
 	// Reiniciar juego
-	keyboard.r().onPressDo({mecanicasJuego.reiniciarJuego()})
+	keyboard.r().onPressDo({ mecanicasJuego.reiniciarJuego() })
 	
 	// Empieza solo a los 2 segundos
-	game.schedule(2000, {
-        oleada.iniciarOleada()
-        mecanicasJuego.iniciarVerificaciones()
-    })
+	game.schedule(
+		2000,
+		{ 
+			oleada.iniciarOleada()
+			mecanicasJuego.iniciarVerificaciones()
+		}
+	)
 	game.start()
 }
