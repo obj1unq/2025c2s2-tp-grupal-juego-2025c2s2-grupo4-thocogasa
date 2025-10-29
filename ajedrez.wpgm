@@ -7,7 +7,7 @@ import mecanicas.*
 import oleadas.* 
 
 program Ajedrez {
-	game.title("miniChess")
+	game.title("Last Pawn Standing")
 	game.cellSize(64)
 	game.height(8)
 	game.width(7)
