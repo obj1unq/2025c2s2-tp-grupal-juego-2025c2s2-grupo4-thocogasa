@@ -8,4 +8,5 @@ object images {
     method alfilBlanco() = "ABlanco.png"
     method torreNegro() = "TNegro.png"
     method torreBlanco() = "TBlanco.png"
+    method piezaMuerta() = "PBlancoMuerto.gif"
 }

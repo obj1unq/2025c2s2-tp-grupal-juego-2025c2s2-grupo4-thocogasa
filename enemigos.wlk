@@ -5,19 +5,9 @@ import mecanicas.*
 import enemigo.*
 import images.*
 
-class PeonEnemigo inherits Enemigo (valor = 10) {
-  method image() {
-    if (muerto) {
-      return images.peonMuerto()
-    } else {
-      return images.peonNegro()
-    }
-  }
-}
+class PeonEnemigo inherits Enemigo (valor = 10, imagenPieza = images.peonNegro()) {}
 
-class AlfilNegro inherits Enemigo (valor = 30) {
-  method image() = images.alfilNegro()
-  
+class AlfilNegro inherits Enemigo (valor = 30, imagenPieza = images.alfilNegro()) {
   override method avanzar() {
     const diagonalDer = game.at(
       (position.x() + 1).min(4),
