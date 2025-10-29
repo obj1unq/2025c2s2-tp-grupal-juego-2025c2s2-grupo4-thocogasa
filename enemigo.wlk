@@ -10,7 +10,10 @@ class Enemigo {
   var property muerto = false
   var property imagenPieza
   const jaque = new jaqueMate(piezaDueña = self)
+  var contador = 0
   
+  method posicionesAvanzables()
+
   method image() {
     if (muerto) {
       return images.piezaMuerta()
@@ -21,17 +24,19 @@ class Enemigo {
   
   method desaparece() {
     muerto = true
+    if (game.hasVisual(jaque)) {
+      game.removeVisual(jaque)
+    }
     game.schedule(500, { game.removeVisual(self) })
   }
   
   method esNegro() = true
   
   method avanzar() {
-    var contador = 0
-
-    if (position.y() == 1 && contador != 3){
+    if (position.y() == 1 && contador <= 3){
       contador = contador + 1
-      game.addVisual(jaque) // WIP. TIENE QUE CHECKEAR SI HAY JAQUE Y ELIMINARLO.
+      game.say(self, "contador " + contador)
+      self.intentarAñadirJaque()
     } else {
       position = game.at(position.x(), (position.y() - 1).max(0))
     }
@@ -41,16 +46,25 @@ class Enemigo {
 
   method capturarPieza() {
     const enemigosAcá = game.getObjectsIn(position).filter( { pieza => !pieza.esNegro() } )
-    
+    // TODO: Esto no funca bien, hay que hacer que sólo coma a veces, no siempre.
     if (not enemigosAcá.isEmpty()) {
         const enemigoAcá= enemigosAcá.first()
 
         enemigoAcá.desaparece()
     }
   }
+
+  method intentarAñadirJaque() {
+    if (!game.hasVisual(jaque)) {
+      game.addVisual(jaque)
+    }
+  }
+
+  method jaquePosition() {
+    return game.at(position.x(), (position.y() - 1).max(0))
+  }
   
   method capturarRey() {
-    // TODO: Acá iría el estado jaque. Habría que hacer que el enemigo pare antes de moverse a la última casilla y highlightee la casilla donde iría, dándole al rey una oportunidad.
     if (position.y() == 0) {
       reyBlanco.perderVida()
       if (reyBlanco.vidas() <= 0) {
