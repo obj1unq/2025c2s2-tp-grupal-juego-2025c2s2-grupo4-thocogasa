@@ -17,6 +17,6 @@ class jaqueMate {
     var property image = "CheckMate.gif"
 
     method position() {
-        return piezaDueña.jaquePosition()
+        return piezaDueña.siguientePosicion()
     }
 }

@@ -10,42 +10,10 @@ class PeonEnemigo inherits Enemigo (valor = 10, imagenPieza = images.peonNegro()
 }
 
 class AlfilNegro inherits Enemigo (valor = 30, imagenPieza = images.alfilNegro()) {
-  override method posicionesAvanzables() = [null]
-
-  override method avanzar() {
-    const diagonalDer = game.at(
-      (position.x() + 1).min(4),
-      (position.y() - 1).max(0)
-    )
-    const diagonalIzq = game.at(
-      (position.x() - 1).max(0),
-      (position.y() - 1).max(0)
-    )
-    const ambasDiagonales = #{diagonalDer, diagonalIzq}
-    
-    if (position.x() == 0) {
-      position = diagonalDer
-    } else {
-      if (position.x() == 4) {
-        position = diagonalIzq
-      } else {
-        position = ambasDiagonales.anyOne()
-      }
-    }
-    
-  /*  self.capturarPieza() */
-    self.capturarRey()
-  }
-
-  override method jaquePosition() {
-    return null
-  }
+  override method posicionesAvanzables() = [self.position().right(1).down(1), self.position().left(1).down(1)]
 }
 
-class CaballoNegro inherits Enemigo (valor = 50, imagenPieza = images.caballoNegro()) {
-  override method avanzar() {
-    
-  }
+class CaballoNegro inherits Enemigo (valor = 50, imagenPieza = images.caballoNegro()) { 
 }
 
 /*

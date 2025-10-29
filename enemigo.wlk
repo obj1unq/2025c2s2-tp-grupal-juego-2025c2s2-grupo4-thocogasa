@@ -13,6 +13,11 @@ class Enemigo {
   var contador = 0
   
   method posicionesAvanzables()
+  method siguientePosicion() {
+    return self.posicionesAvanzables().filter({ posicion => self.posicionValida(posicion) }).anyOne()
+  }
+
+  method posicionValida(posicion) = (((posicion.x() >= 0) && (posicion.x() < 4)) && (posicion.y() >= 0)) && (posicion.y() < game.height())
 
   method image() {
     if (muerto) {
@@ -38,7 +43,7 @@ class Enemigo {
       game.say(self, "contador " + contador)
       self.intentarAñadirJaque()
     } else {
-      position = game.at(position.x(), (position.y() - 1).max(0))
+      position = self.siguientePosicion()
     }
     
     self.capturarRey()
@@ -58,10 +63,6 @@ class Enemigo {
     if (!game.hasVisual(jaque)) {
       game.addVisual(jaque)
     }
-  }
-
-  method jaquePosition() {
-    return game.at(position.x(), (position.y() - 1).max(0))
   }
   
   method capturarRey() {
