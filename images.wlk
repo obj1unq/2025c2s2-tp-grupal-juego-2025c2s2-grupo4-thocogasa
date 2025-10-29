@@ -9,4 +9,5 @@ object images {
     method torreNegro() = "TNegro.png"
     method torreBlanco() = "TBlanco.png"
     method piezaMuerta() = "PBlancoMuerto.gif"
+    method jaqueMate() = "CheckMate.gif"
 }

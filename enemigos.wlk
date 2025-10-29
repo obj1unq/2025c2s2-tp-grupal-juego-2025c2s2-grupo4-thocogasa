@@ -34,6 +34,12 @@ class AlfilNegro inherits Enemigo (valor = 30, imagenPieza = images.alfilNegro()
   }
 }
 
+class CaballoNegro inherits Enemigo (valor = 50, imagenPieza = images.caballoNegro()) {
+  override method avanzar() {
+    
+  }
+}
+
 /*
 object movimientosEnemigos {
   method peones(posicionOrigen){

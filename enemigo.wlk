@@ -42,6 +42,8 @@ class Enemigo {
   }
   
   method capturarRey() {
+
+    // TODO: Acá iría el estado jaque. Habría que hacer que el enemigo pare antes de moverse a la última casilla y highlightee la casilla donde iría, dándole al rey una oportunidad.
     if (position.y() == 0) {
       reyBlanco.perderVida()
       if (reyBlanco.vidas() <= 0) {
