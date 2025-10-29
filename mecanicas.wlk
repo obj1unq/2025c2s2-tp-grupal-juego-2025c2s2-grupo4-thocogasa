@@ -3,6 +3,7 @@ import rey.*
 import enemigos.*
 import aliados.*
 import UI.*
+import oleadas.*
 
 object mecanicasJuego {
   var property verificacionActiva = false

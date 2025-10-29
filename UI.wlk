@@ -2,6 +2,7 @@ import wollok.game.*
 import rey.*
 import aliados.*
 import enemigos.*
+import oleadas.*
 
 object score {
   var property score = 0

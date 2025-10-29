@@ -4,6 +4,7 @@ import enemigos.*
 import aliados.*
 import UI.*
 import mecanicas.*
+import oleadas.* 
 
 program Ajedrez {
 	game.title("miniChess")

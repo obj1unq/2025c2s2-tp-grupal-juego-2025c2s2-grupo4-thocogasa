@@ -3,18 +3,7 @@ import enemigos.*
 import wollok.game.*
 import UI.*
 import aliado.*
-
-object images {
-    method peonNegro() = "PNegro.png"
-    method peonBlanco() = "PBlanco.png"
-    method peonMuerto() = "PBlancoMuerto.gif"
-    method caballoNegro() = "CNegro.png"
-    method caballoBlanco() = "CBlanco.png"
-    method alfilNegro() = "ANegro.png"
-    method alfilBlanco() = "ABlanco.png"
-    method torreNegro() = "TNegro.png"
-    method torreBlanco() = "TBlanco.png"
-}
+import images.*
 
 class PeonBlanco inherits Aliado(valor = 20, image = images.peonBlanco()) {
     override method posicionesDiagonales() = [self.position().up(1).left(1), self.position().up(1).right(1)]
