@@ -12,7 +12,6 @@ class Aliado {
 
     method mover(posiciónx, posicióny) {
         position = game.at(posiciónx, posicióny)
-        combo = 1
     }
 
     method estaEnLaUltimaFila() {
@@ -57,6 +56,7 @@ class Aliado {
     }
 
     method capturarDirectamente(enemigo) {
+
         const posicionCaptura = enemigo.position()
         self.mover(posicionCaptura.x(), posicionCaptura.y())
         enemigo.desaparece()
@@ -67,6 +67,12 @@ class Aliado {
         if(combo > 1){
             game.say(self, "X" + combo)
         }
+        game.schedule(2000, {self.reiniciarCombos()})
+
+    }
+
+    method reiniciarCombos(){
+        combo = 1
     }
 
     method posicionValida(posicion) = (((posicion.x() >= 0) and (posicion.x() < game.width())) and (posicion.y() >= 0)) and (posicion.y() < game.height())
