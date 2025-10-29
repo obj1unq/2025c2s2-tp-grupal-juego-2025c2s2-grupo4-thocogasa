@@ -14,7 +14,7 @@ object oleada {
   var movimientoActivo = false
   
   method enemigoAleatorio() {
-    const enemigosDisponibles = [new PeonEnemigo(), new AlfilNegro()]
+    const enemigosDisponibles = [new PeonEnemigo(), new AlfilNegro(), new CaballoNegro()]
 
     return enemigosDisponibles.anyOne()
   }

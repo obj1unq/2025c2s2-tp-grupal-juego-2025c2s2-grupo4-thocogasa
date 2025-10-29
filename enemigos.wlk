@@ -13,17 +13,6 @@ class AlfilNegro inherits Enemigo (valor = 30, imagenPieza = images.alfilNegro()
   override method posicionesAvanzables() = [self.position().right(1).down(1), self.position().left(1).down(1)]
 }
 
-class CaballoNegro inherits Enemigo (valor = 50, imagenPieza = images.caballoNegro()) { 
+class CaballoNegro inherits Enemigo (valor = 50, imagenPieza = images.caballoNegro()) {
+  override method posicionesAvanzables() = [self.position().right(2).down(1), self.position().left(2).down(1), self.position().right(1).down(2), self.position().left(1).down(2)]
 }
-
-/*
-object movimientosEnemigos {
-  method peones(posicionOrigen){
-    return game.at(posicionOrigen.x(), (posicionOrigen.y() - 1).max(0))
-  }
-
-  method alfiles(posicionOrigen) {
-       return game.at(
-        posicionOrigen.x().left(1) , 
-        (posicionOrigen.y() - 1).max(0))
-  } */
