@@ -13,12 +13,14 @@ object oleada {
   var spawnerActivo = false
   var movimientoActivo = false
   
-  method crearOleada(cantidad) {
-    cantidad.times({ i => enemigosPorSpawnear.add(new PeonEnemigo()) })
+  method enemigoAleatorio() {
+    const enemigosDisponibles = [new PeonEnemigo(), new AlfilNegro()]
+
+    return enemigosDisponibles.anyOne()
   }
-  
-  method agregarEnemigo(enemigo) {
-    enemigosPorSpawnear.add(enemigo)
+
+  method crearOleada(cantidad) {
+    cantidad.times({ i => enemigosPorSpawnear.add(self.enemigoAleatorio()) })
   }
   
   method spawnearSiguienteEnemigo() {
