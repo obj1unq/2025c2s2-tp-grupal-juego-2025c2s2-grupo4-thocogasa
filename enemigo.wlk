@@ -9,6 +9,7 @@ class Enemigo {
   var property valor
   var property muerto = false
   var property imagenPieza
+  const jaque = new jaqueMate(piezaDueña = self)
   
   method image() {
     if (muerto) {
@@ -26,7 +27,14 @@ class Enemigo {
   method esNegro() = true
   
   method avanzar() {
-    position = game.at(position.x(), (position.y() - 1).max(0))
+    var contador = 0
+
+    if (position.y() == 1 && contador != 3){
+      contador = contador + 1
+      game.addVisual(jaque) // WIP. TIENE QUE CHECKEAR SI HAY JAQUE Y ELIMINARLO.
+    } else {
+      position = game.at(position.x(), (position.y() - 1).max(0))
+    }
     
     self.capturarRey()
   }
@@ -42,7 +50,6 @@ class Enemigo {
   }
   
   method capturarRey() {
-
     // TODO: Acá iría el estado jaque. Habría que hacer que el enemigo pare antes de moverse a la última casilla y highlightee la casilla donde iría, dándole al rey una oportunidad.
     if (position.y() == 0) {
       reyBlanco.perderVida()

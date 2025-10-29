@@ -9,5 +9,14 @@ object images {
     method torreNegro() = "TNegro.png"
     method torreBlanco() = "TBlanco.png"
     method piezaMuerta() = "PBlancoMuerto.gif"
-    method jaqueMate() = "CheckMate.gif"
+}
+
+class jaqueMate {
+    var position = game.center()
+    const piezaDueña
+    var property image = "CheckMate.gif"
+
+    method position() {
+        return piezaDueña.jaquePosition()
+    }
 }
