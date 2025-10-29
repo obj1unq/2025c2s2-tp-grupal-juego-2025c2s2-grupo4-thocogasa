@@ -30,6 +30,16 @@ class Enemigo {
     
     self.capturarRey()
   }
+
+  method capturarPieza() {
+    const enemigosAcá = game.getObjectsIn(position).filter( { pieza => !pieza.esNegro() } )
+    
+    if (not enemigosAcá.isEmpty()) {
+        const enemigoAcá= enemigosAcá.first()
+
+        enemigoAcá.desaparece()
+    }
+  }
   
   method capturarRey() {
     if (position.y() == 0) {

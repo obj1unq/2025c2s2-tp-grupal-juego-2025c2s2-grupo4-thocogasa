@@ -29,6 +29,7 @@ class AlfilNegro inherits Enemigo (valor = 30, imagenPieza = images.alfilNegro()
       }
     }
     
+    self.capturarPieza()
     self.capturarRey()
   }
 }
