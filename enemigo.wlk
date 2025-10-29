@@ -14,10 +14,16 @@ class Enemigo {
   
   method posicionesAvanzables()
   method siguientePosicion() {
-    return self.posicionesAvanzables().filter({ posicion => self.posicionValida(posicion) }).anyOne()
+    const candidatos = self.posicionesAvanzables().filter({ posicion => self.posicionValida(posicion) })
+    if (candidatos.isEmpty()) {
+      // No hay posiciones válidas a las que avanzar: quedarse en la posición actual
+      return position
+    } else {
+      return candidatos.anyOne()
+    }
   }
 
-  method posicionValida(posicion) = (((posicion.x() >= 0) && (posicion.x() < 4)) && (posicion.y() >= 0)) && (posicion.y() < game.height())
+  method posicionValida(posicion) = (((posicion.x() >= 0) && (posicion.x() < 5)) && (posicion.y() >= 0)) && (posicion.y() < game.height())
 
   method image() {
     if (muerto) {
