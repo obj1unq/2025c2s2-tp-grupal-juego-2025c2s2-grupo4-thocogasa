@@ -7,10 +7,12 @@ class Aliado {
     var property valor
     var property position = game.at(0, 1)
     var property image
+    var property combo = 1
     method posicionesDiagonales() 
 
     method mover(posiciónx, posicióny) {
         position = game.at(posiciónx, posicióny)
+        combo = 1
     }
 
     method estaEnLaUltimaFila() {
@@ -58,8 +60,13 @@ class Aliado {
         const posicionCaptura = enemigo.position()
         self.mover(posicionCaptura.x(), posicionCaptura.y())
         enemigo.desaparece()
-        score.addScore(enemigo.valor())
-        reyBlanco.añadirRecursos(enemigo.valor())
+        
+        reyBlanco.añadirRecursos(enemigo.valor() * combo)
+        score.addScore(enemigo.valor() * combo)
+        combo = combo+1
+        if(combo > 1){
+            game.say(self, "X" + combo)
+        }
     }
 
     method posicionValida(posicion) = (((posicion.x() >= 0) and (posicion.x() < game.width())) and (posicion.y() >= 0)) and (posicion.y() < game.height())
