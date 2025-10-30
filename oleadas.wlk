@@ -115,6 +115,7 @@ object oleada {
   method reiniciar() {
     self.detenerOleada()
     timers.nextId(0)
+    
     enemigosPorSpawnear.clear()
     enemigosActivos.clear()
     spawnerActivo = false

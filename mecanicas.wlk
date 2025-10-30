@@ -7,6 +7,8 @@ import oleadas.*
 import leaderboard.*
 import namePrompt.*
 import escenas.ajedrez.*
+import sound.*
+
 
 object mecanicasJuego {
   var property verificacionActiva = false
@@ -30,6 +32,7 @@ object mecanicasJuego {
   }
   
   method reiniciarJuego() {
+    sonidos.stopSonidoDeFondo()
     // Detener todas las verificaciones y oleadas
     self.detenerVerificaciones()
     oleada.detenerOleada()
@@ -70,6 +73,7 @@ object mecanicasJuego {
     game.schedule(
       1000,
       { 
+        sonidos.playFondo()
         oleada.crearOleada(8)
         oleada.iniciarOleada()
         return self.iniciarVerificaciones()
@@ -80,6 +84,8 @@ object mecanicasJuego {
   method gameOver() {
     self.detenerVerificaciones()
     oleada.detenerOleada()
+    sonidos.stopSonidoDeFondo()
+    sonidos.playGameOver()
     game.schedule(0, { self.requestPlayerName() })
   }
   

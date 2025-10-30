@@ -3,6 +3,7 @@ import rey.*
 import enemigos.*
 import aliados.*
 import UI.*
+import sound.*
 import mecanicas.*
 import oleadas.*
 import leaderboard.*
@@ -42,6 +43,7 @@ object ajedrez inherits Escena {
 		game.schedule(
 			2000,
 			{ 
+				sonidos.playFondo()
 				oleada.iniciarOleada()
 				mecanicasJuego.iniciarVerificaciones()
 			}

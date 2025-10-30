@@ -88,6 +88,7 @@ object reyBlanco inherits Pieza (
     //recursos = 100
     //vidas = 3
     position = game.at(2, 0)
+    
     listaPiezasAliadas.clear()
   }
 
