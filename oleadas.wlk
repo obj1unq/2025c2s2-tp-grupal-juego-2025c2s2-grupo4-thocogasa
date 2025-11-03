@@ -13,6 +13,7 @@ object oleada {
   var spawnerActivo = false
   var movimientoActivo = false
   var property enTransicion = false
+  var property nivel = 1
   
   method enemigoAleatorio() { //TODO: Rehacer esto para que tome en cuenta el "Nivel" de oleada, desbloqueando enemigos con el paso del tiempo.
     const enemigosDisponibles = [new PeonEnemigo(), new AlfilNegro(), new CaballoNegro(), new TorreNegro()]

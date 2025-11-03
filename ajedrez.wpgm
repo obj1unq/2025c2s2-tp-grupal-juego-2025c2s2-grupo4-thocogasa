@@ -15,7 +15,7 @@ program Ajedrez {
 	game.boardGround("Tablero.png")
 	game.addVisual(reyBlanco)
 	
-	oleada.crearOleada(8)
+	oleada.crearOleada(5)
 	
 	game.showAttributes(reyBlanco)
 	

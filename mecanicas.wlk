@@ -7,7 +7,7 @@ import oleadas.*
 
 object mecanicasJuego {
   var property verificacionActiva = false
-  
+
   method iniciarVerificaciones() {
     if (not verificacionActiva) {
       verificacionActiva = true
@@ -85,11 +85,12 @@ object mecanicasJuego {
   method siguienteNivel() {
     if (not oleada.estaEnTransicion()) {
       oleada.iniciarTransicion()
+      oleada.nivel(oleada.nivel() + 1)
       game.say(reyBlanco, "¡Oleada completada!")
       game.schedule(
         2000,
         { 
-          oleada.crearOleada(oleada.enemigosRestantes() + 3)
+          oleada.crearOleada(oleada.nivel() + 5)
           oleada.iniciarOleada()
           oleada.terminarTransicion()
         }
