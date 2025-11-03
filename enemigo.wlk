@@ -55,11 +55,10 @@ class Enemigo {
     self.capturarRey()
   }
 
-  method capturarPieza() {
+  method capturarPieza() { // TODO: Rehacer este método/overridearlo en cada pieza enemiga. Ahora mismo sólo come si está sobre otra pieza, (Y nunca se llama rn)
     const enemigosAcá = game.getObjectsIn(position).filter( { pieza => !pieza.esNegro() } )
-    // TODO: Esto no funca bien, hay que hacer que sólo coma a veces, no siempre.
     if (not enemigosAcá.isEmpty()) {
-        const enemigoAcá= enemigosAcá.first()
+        const enemigoAcá = enemigosAcá.first()
 
         enemigoAcá.desaparece()
     }

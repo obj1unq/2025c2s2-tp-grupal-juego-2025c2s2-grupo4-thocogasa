@@ -16,3 +16,8 @@ class AlfilNegro inherits Enemigo (valor = 30, imagenPieza = images.alfilNegro()
 class CaballoNegro inherits Enemigo (valor = 50, imagenPieza = images.caballoNegro()) {
   override method posicionesAvanzables() = [self.position().right(2).down(1), self.position().left(2).down(1), self.position().right(1).down(2), self.position().left(1).down(2)]
 }
+
+class TorreNegro inherits Enemigo (valor = 50, imagenPieza = images.torreNegro()) {
+  override method posicionesAvanzables() = [self.position().down(1)]
+  
+}
