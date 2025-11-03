@@ -24,7 +24,7 @@ class Enemigo {
     }
   }
 
-  method posicionValida(posicion) = (((posicion.x() >= 0) && (posicion.x() < 5)) && (posicion.y() >= 0)) && (posicion.y() < game.height())
+  method posicionValida(posicion) = (((posicion.x() >= 0) && (posicion.x() < 5)) && (posicion.y() >= 0)) && (posicion.y() < game.height() && game.getObjectsIn(posicion).filter({ obj => obj.esNegro() }).isEmpty())
 
   method image() {
     if (muerto) {
@@ -66,7 +66,7 @@ class Enemigo {
             const piezasEnPos = game.getObjectsIn(pos).filter(
               { pieza => try { return not pieza.esNegro() } catch e : MessageNotUnderstoodException { return false } }
             )
-            if (not piezasEnPos.isEmpty()) {
+            if (not piezasEnPos.isEmpty() && position.y() != 1) {
               const piezaAComer = piezasEnPos.first()
               position = pos
               piezaAComer.desaparece()
@@ -90,6 +90,7 @@ class Enemigo {
         game.say(self, "¡Game Over! Presiona R para reiniciar")
         mecanicasJuego.gameOver()
       } else {
+        reyBlanco.perderVida()
         self.desaparece()
       }
     }
