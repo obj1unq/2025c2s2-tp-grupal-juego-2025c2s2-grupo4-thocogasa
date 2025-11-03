@@ -50,6 +50,10 @@ object reyBlanco {
   method restarRecursos(valor) {
     recursos -= valor
   }
+
+  method desaparece() { // El rey no desaparece de una pero lo necesitamos por el polimorfismo
+    self.perderVida()
+  }
   
   method perderVida() {
     //sonidos.playGolpeAlRey() // aca para que coincida con el momento. poner otro sonido

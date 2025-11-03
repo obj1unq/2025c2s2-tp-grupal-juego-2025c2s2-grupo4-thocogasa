@@ -11,8 +11,9 @@ class Enemigo {
   var property imagenPieza
   const jaque = new jaqueMate(piezaDueña = self)
   var contador = 0
-  
   method posicionesAvanzables()
+  method posicionesCapturables()
+
   method siguientePosicion() {
     const candidatos = self.posicionesAvanzables().filter({ posicion => self.posicionValida(posicion) })
     if (candidatos.isEmpty()) {
@@ -51,17 +52,30 @@ class Enemigo {
     } else {
       position = self.siguientePosicion()
     }
-    
+
+    self.capturarPieza()
     self.capturarRey()
   }
 
-  method capturarPieza() { // TODO: Rehacer este método/overridearlo en cada pieza enemiga. Ahora mismo sólo come si está sobre otra pieza, (Y nunca se llama rn)
-    const enemigosAcá = game.getObjectsIn(position).filter( { pieza => !pieza.esNegro() } )
-    if (not enemigosAcá.isEmpty()) {
-        const enemigoAcá = enemigosAcá.first()
-
-        enemigoAcá.desaparece()
-    }
+  method capturarPieza() {
+    var capturó = false
+    self.posicionesCapturables().forEach(
+      { pos =>
+        if (not capturó) {
+          if (self.posicionValida(pos)) {
+            const piezasEnPos = game.getObjectsIn(pos).filter(
+              { pieza => try { return not pieza.esNegro() } catch e : MessageNotUnderstoodException { return false } }
+            )
+            if (not piezasEnPos.isEmpty()) {
+              const piezaAComer = piezasEnPos.first()
+              position = pos
+              piezaAComer.desaparece()
+              capturó = true
+            }
+          }
+        }
+      }
+    )
   }
 
   method intentarAñadirJaque() {
@@ -72,7 +86,6 @@ class Enemigo {
   
   method capturarRey() {
     if (position.y() == 0) {
-      reyBlanco.perderVida()
       if (reyBlanco.vidas() <= 0) {
         game.say(self, "¡Game Over! Presiona R para reiniciar")
         mecanicasJuego.gameOver()
