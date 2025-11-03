@@ -12,11 +12,14 @@ object images {
 }
 
 class jaqueMate {
-    var position = game.center()
     const piezaDueña
     var property image = "CheckMate.gif"
 
     method position() {
-        return piezaDueña.position()
+        try {
+            return piezaDueña.position()
+        } catch e : MessageNotUnderstoodException {
+            return game.center()
+        }
     }
 }

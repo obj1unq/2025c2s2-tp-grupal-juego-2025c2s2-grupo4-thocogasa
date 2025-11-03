@@ -39,22 +39,34 @@ class Enemigo {
     if (game.hasVisual(jaque)) {
       game.removeVisual(jaque)
     }
+    try { // No se estaba eliminando el jaque, hay que revisar
+      const posJaque = jaque.position()
+      game.getObjectsIn(posJaque).forEach({ obj =>
+        try {
+          if (obj.image() == jaque.image()) {
+            if (game.hasVisual(obj)) game.removeVisual(obj)
+          }
+        } catch e : MessageNotUnderstoodException { }
+      })
+    } catch e : MessageNotUnderstoodException { }
     game.schedule(500, { game.removeVisual(self) })
   }
   
   method esNegro() = true
   
   method avanzar() {
-    if (position.y() == 1 && contador <= 3){
-      contador = contador + 1
-      game.say(self, "contador " + contador)
-      self.intentarAñadirJaque()
-    } else {
-      position = self.siguientePosicion()
-    }
+    if (not muerto) {
+      if (position.y() == 1 && contador <= 3){
+        contador = contador + 1
+        game.say(self, "contador " + contador)
+        self.intentarAñadirJaque()
+      } else {
+        position = self.siguientePosicion()
+      }
 
-    self.capturarPieza()
-    self.capturarRey()
+      self.capturarPieza()
+      self.capturarRey()
+    }
   }
 
   method capturarPieza() {
@@ -79,7 +91,8 @@ class Enemigo {
   }
 
   method intentarAñadirJaque() {
-    if (!game.hasVisual(jaque)) {
+    // No añadir jaque si el enemigo ya está muerto.
+    if (not muerto && !game.hasVisual(jaque)) {
       game.addVisual(jaque)
     }
   }
