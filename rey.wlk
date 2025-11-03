@@ -71,18 +71,23 @@ object reyBlanco {
   method hayPiezasAliadas(pos) = game.getObjectsIn(pos).filter({ obj => try { return !obj.esNegro() } catch e : MessageNotUnderstoodException { return false } }).isEmpty()
 
   method intentarColocarPieza(pieza) {
-      if (self.puedeColocar(pieza, self.position().up(1))) {
-        self.desaparecerEnemigoSiHay(self.position().up(1))
+      if (self.puedeColocar(pieza, self.position().up(1)) && !self.hayEnemigoEn(self.position().up(1))) {
         pieza.position(self.position().up(1))
         game.addVisual(pieza)
         listaPiezasAliadas.add(pieza)
         self.restarRecursos(pieza.valor())
+      } else if (self.puedeColocar(pieza, self.position().up(1)) && self.hayEnemigoEn(self.position().up(1))) {
+        self.restarRecursos(pieza.valor())
+        self.desaparecerEnemigoSiHay(self.position().up(1))
       }
   }
 
+  method hayEnemigoEn(pos) = !game.getObjectsIn(pos).filter({ obj => try { return obj.esNegro() } catch e : MessageNotUnderstoodException { return false } }).isEmpty()
+
   method desaparecerEnemigoSiHay(pos) {
     const enemigos = game.getObjectsIn(pos).filter({ obj => try { return obj.esNegro() } catch e : MessageNotUnderstoodException { return false } })
-    enemigos.forEach({ enemigo => enemigo.desaparece() })
+    enemigos.forEach({ enemigo => enemigo.desaparece()
+                                  self.añadirRecursos(enemigo.valor() / 2) })
   }
   
   method limpiarAliadosInactivos() {
