@@ -24,7 +24,7 @@ class Enemigo {
     }
   }
 
-  method posicionValida(posicion) = (((posicion.x() >= 0) && (posicion.x() < 5)) && (posicion.y() >= 0)) && (posicion.y() < game.height() && game.getObjectsIn(posicion).filter({ obj => obj.esNegro() }).isEmpty())
+  method posicionValida(posicion) = (((posicion.x() >= 0) && (posicion.x() < 5)) && (posicion.y() >= 0)) && (posicion.y() < game.height() && game.getObjectsIn(posicion).filter({ obj => try { return obj.esNegro() } catch e : MessageNotUnderstoodException { return false } }).isEmpty())
 
   method image() {
     if (muerto) {
