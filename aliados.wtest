@@ -2,6 +2,9 @@ import rey.*
 import aliados.*
 import enemigos.*
 import wollok.game.*
+import images.*
+import aliados.*
+import enemigos.*
 
 describe "tests de aliados" {
   method initialize() {

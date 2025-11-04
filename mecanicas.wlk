@@ -3,10 +3,11 @@ import rey.*
 import enemigos.*
 import aliados.*
 import UI.*
+import oleadas.*
 
 object mecanicasJuego {
   var property verificacionActiva = false
-  
+
   method iniciarVerificaciones() {
     if (not verificacionActiva) {
       verificacionActiva = true
@@ -67,11 +68,8 @@ object mecanicasJuego {
   }
   
   method gameOver() {
-    // Detener todas las verificaciones y oleadas pero mantener el juego corriendo
     self.detenerVerificaciones()
     oleada.detenerOleada()
-    // El juego sigue corriendo, solo se detienen las mecánicas
-    // El jugador puede presionar R para reiniciar
   }
   
   method juegoActivo() = verificacionActiva
@@ -85,13 +83,18 @@ object mecanicasJuego {
   }
   
   method siguienteNivel() {
-    game.say(reyBlanco, "¡Oleada completada!")
-    game.schedule(
-      2000,
-      { 
-        oleada.crearOleada(oleada.enemigosRestantes() + 3)
-        oleada.iniciarOleada()
-      }
-    )
+    if (not oleada.estaEnTransicion()) {
+      oleada.iniciarTransicion()
+      oleada.nivel(oleada.nivel() + 1)
+      game.say(reyBlanco, "¡Oleada completada!")
+      game.schedule(
+        2000,
+        { 
+          oleada.crearOleada(oleada.nivel() + 5)
+          oleada.iniciarOleada()
+          oleada.terminarTransicion()
+        }
+      )
+    }
   }
 }

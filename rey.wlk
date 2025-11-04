@@ -50,6 +50,10 @@ object reyBlanco {
   method restarRecursos(valor) {
     recursos -= valor
   }
+
+  method desaparece() { // El rey no desaparece de una pero lo necesitamos por el polimorfismo
+    self.perderVida()
+  }
   
   method perderVida() {
     //sonidos.playGolpeAlRey() // aca para que coincida con el momento. poner otro sonido
@@ -59,23 +63,31 @@ object reyBlanco {
   method puedeMover(
     unaPosicion
   ) = ((unaPosicion.x() >= 0) && (unaPosicion.x() <= 4)) && mecanicasJuego.juegoActivo()
-  
-  method colocar(pieza) {
-    self.puedeColocar(pieza, self.position().up(1))
-    game.addVisual(pieza)
-    self.restarRecursos(pieza.valor())
-  }
-  
+
   method puedeColocar(pieza, ubicacion) {
-    const posicion = self.position().up(1)
-    return (recursos < pieza.valor()) || ((!game.getObjectsIn(ubicacion).isEmpty()) && mecanicasJuego.juegoActivo())
+    return recursos >= pieza.valor() && self.hayPiezasAliadas(ubicacion) && mecanicasJuego.juegoActivo()
   }
 
-  method intentarColocarPieza(pieza, _position) {
-      pieza.position(_position)
-      game.addVisual(pieza)
-      listaPiezasAliadas.add(pieza)
-      self.restarRecursos(pieza.valor())
+  method hayPiezasAliadas(pos) = game.getObjectsIn(pos).filter({ obj => try { return !obj.esNegro() } catch e : MessageNotUnderstoodException { return false } }).isEmpty()
+
+  method intentarColocarPieza(pieza) {
+      if (self.puedeColocar(pieza, self.position().up(1)) && !self.hayEnemigoEn(self.position().up(1))) {
+        pieza.position(self.position().up(1))
+        game.addVisual(pieza)
+        listaPiezasAliadas.add(pieza)
+        self.restarRecursos(pieza.valor())
+      } else if (self.puedeColocar(pieza, self.position().up(1)) && self.hayEnemigoEn(self.position().up(1))) {
+        self.restarRecursos(pieza.valor())
+        self.desaparecerEnemigoSiHay(self.position().up(1))
+      }
+  }
+
+  method hayEnemigoEn(pos) = !game.getObjectsIn(pos).filter({ obj => try { return obj.esNegro() } catch e : MessageNotUnderstoodException { return false } }).isEmpty()
+
+  method desaparecerEnemigoSiHay(pos) {
+    const enemigos = game.getObjectsIn(pos).filter({ obj => try { return obj.esNegro() } catch e : MessageNotUnderstoodException { return false } })
+    enemigos.forEach({ enemigo => enemigo.desaparece()
+                                  self.añadirRecursos(enemigo.valor() / 2) })
   }
   
   method limpiarAliadosInactivos() {
