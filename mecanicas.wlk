@@ -30,6 +30,7 @@ object mecanicasJuego {
     // Detener todas las verificaciones y oleadas
     self.detenerVerificaciones()
     oleada.detenerOleada()
+    oleada.nivel(1)
     
     // Limpiar todos los visuales excepto el rey blanco y UI
     const visualesAMantener = [

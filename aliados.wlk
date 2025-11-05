@@ -5,8 +5,12 @@ import UI.*
 import aliado.*
 import images.*
 
-class PeonBlanco inherits Aliado(valor = 20, image = images.peonBlanco()) {
+class PeonBlanco inherits Aliado(valor = 20, image = images.peonBlanco(false)) {
     override method posicionesDiagonales() = [self.position().up(1).left(1), self.position().up(1).right(1)]
+    override method mover(posiciónx, posicióny) {
+        super(posiciónx, posicióny)
+        self.intentarCoronar()
+    }
 }
 
 class CaballoBlanco inherits Aliado(valor = 50, image = images.caballoBlanco()) {

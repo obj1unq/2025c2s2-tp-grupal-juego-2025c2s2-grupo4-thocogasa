@@ -2,6 +2,7 @@ import rey.*
 import enemigos.*
 import wollok.game.*
 import UI.*
+import images.*
 
 class Aliado {
     var property valor
@@ -90,11 +91,16 @@ class Aliado {
         })
     }
 
-    method coronar() {
+    method intentarCoronar() {
         if (self.estaEnLaUltimaFila()) {
-            reyBlanco.añadirRecursos(valor * 5)
-            self.desaparece()
+            self.coronar()
         }
+    }
+
+    method coronar() {
+        reyBlanco.añadirRecursos(valor * 5)
+        self.image(images.peonBlanco(true))
+        game.schedule(1400, { game.removeVisual(self) })
     }
 
     method esNegro() = false
