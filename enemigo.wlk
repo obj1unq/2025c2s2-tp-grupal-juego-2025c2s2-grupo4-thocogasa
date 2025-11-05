@@ -29,7 +29,7 @@ class Enemigo {
 
   method estáDentroDelTablero(posicion) = (((posicion.x() >= 0) && (posicion.x() < 5)) && (posicion.y() >= 0)) && (posicion.y() < game.height())
 
-  method piezasNegrasEn(pos) = game.getObjectsIn(pos).filter({ obj => try { return obj.esNegro() } catch e : MessageNotUnderstoodException { return false } })
+  method piezasNegrasEn(pos) = game.getObjectsIn(pos).filter({ obj => return obj.esNegro() })
 
   method image() {
     return if (muerto) images.piezaMuerta() else imagenPieza
@@ -67,7 +67,7 @@ class Enemigo {
         if (not capturó) {
           if (self.posicionValida(pos)) {
             const piezasEnPos = game.getObjectsIn(pos).filter(
-              { pieza => try { return not pieza.esNegro() } catch e : MessageNotUnderstoodException { return false } }
+              { pieza =>  return not pieza.esNegro() }
             )
             if (not piezasEnPos.isEmpty() && position.y() != 1) {
               const piezaAComer = piezasEnPos.first()

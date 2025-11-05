@@ -25,14 +25,7 @@ class Aliado {
         self.posicionesDiagonales().forEach(
         { posicion =>
             if (self.posicionValida(posicion)) {
-            const enemigosEnPosicion = game.getObjectsIn(posicion).filter(
-                { pieza => try {
-                    return pieza.esNegro()
-                } catch e : MessageNotUnderstoodException {
-                    console.println("el objeto no entiende esNegro()")
-                    return false
-                } }
-            )
+            const enemigosEnPosicion = game.getObjectsIn(posicion).filter({ pieza => return pieza.esNegro() })
 
             if (not enemigosEnPosicion.isEmpty()) {
                 const enemigo = enemigosEnPosicion.first()
@@ -46,7 +39,7 @@ class Aliado {
         const posicionFrente = self.position().up(1)
         if (self.posicionValida(posicionFrente)) {
         const enemigosFrente = game.getObjectsIn(posicionFrente).filter(
-            { pieza => try { return pieza.esNegro() } catch e : MessageNotUnderstoodException { return false } }
+            { pieza => return pieza.esNegro() }
         )
             if (not enemigosFrente.isEmpty()) {
                 const enemigoFrente = enemigosFrente.first()

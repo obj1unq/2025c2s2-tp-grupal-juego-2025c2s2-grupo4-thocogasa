@@ -15,11 +15,5 @@ class JaqueMate {
     const piezaDueña
     var property image = "CheckMate.gif"
 
-    method position() {
-        try {
-            return piezaDueña.position()
-        } catch e : MessageNotUnderstoodException {
-            return game.center()
-        }
-    }
+    method position() = piezaDueña.position()
 }

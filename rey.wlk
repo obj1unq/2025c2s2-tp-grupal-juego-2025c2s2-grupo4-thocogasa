@@ -58,7 +58,7 @@ object reyBlanco {
     return recursos >= pieza.valor() && self.hayPiezasAliadas(ubicacion) && mecanicasJuego.juegoActivo()
   }
 
-  method hayPiezasAliadas(pos) = game.getObjectsIn(pos).filter({ obj => try { return !obj.esNegro() } catch e : MessageNotUnderstoodException { return false } }).isEmpty()
+  method hayPiezasAliadas(pos) = game.getObjectsIn(pos).filter({ obj => return !obj.esNegro()  }).isEmpty()
 
   method intentarColocarPieza(pieza) {
       if (self.puedeColocar(pieza, self.position().up(1)) && !self.hayEnemigoEn(self.position().up(1))) {
@@ -72,10 +72,10 @@ object reyBlanco {
       }
   }
 
-  method hayEnemigoEn(pos) = !game.getObjectsIn(pos).filter({ obj => try { return obj.esNegro() } catch e : MessageNotUnderstoodException { return false } }).isEmpty()
+  method hayEnemigoEn(pos) = !game.getObjectsIn(pos).filter({ obj => return obj.esNegro() }).isEmpty()
 
   method desaparecerEnemigoSiHay(pos) {
-    const enemigos = game.getObjectsIn(pos).filter({ obj => try { return obj.esNegro() } catch e : MessageNotUnderstoodException { return false } })
+    const enemigos = game.getObjectsIn(pos).filter({ obj => return obj.esNegro() })
     enemigos.forEach({ enemigo => enemigo.desaparece()
                                   self.añadirRecursos(enemigo.valor() / 2) })
   }
