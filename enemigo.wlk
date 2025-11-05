@@ -39,16 +39,6 @@ class Enemigo {
     if (game.hasVisual(jaque)) {
       game.removeVisual(jaque)
     }
-    try { // No se estaba eliminando el jaque, hay que revisar
-      const posJaque = jaque.position()
-      game.getObjectsIn(posJaque).forEach({ obj =>
-        try {
-          if (obj.image() == jaque.image()) {
-            if (game.hasVisual(obj)) game.removeVisual(obj)
-          }
-        } catch e : MessageNotUnderstoodException { }
-      })
-    } catch e : MessageNotUnderstoodException { }
     game.schedule(500, { game.removeVisual(self) })
   }
   
