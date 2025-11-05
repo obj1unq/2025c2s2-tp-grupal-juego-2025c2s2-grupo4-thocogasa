@@ -9,7 +9,7 @@ class Enemigo {
   var property valor
   var property muerto = false
   var property imagenPieza
-  const jaque = new jaqueMate(piezaDueña = self)
+  const jaque = new JaqueMate(piezaDueña = self)
   var contador = 0
   method posicionesAvanzables()
   method posicionesCapturables()

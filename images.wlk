@@ -11,7 +11,7 @@ object images {
     method piezaMuerta() = "PBlancoMuerto.gif"
 }
 
-class jaqueMate {
+class JaqueMate {
     const piezaDueña
     var property image = "CheckMate.gif"
 
