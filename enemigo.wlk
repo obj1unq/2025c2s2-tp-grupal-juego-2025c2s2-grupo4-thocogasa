@@ -16,12 +16,7 @@ class Enemigo {
 
   method siguientePosicion() {
     const candidatos = self.posicionesAvanzables().filter({ posicion => self.posicionValida(posicion) })
-    if (candidatos.isEmpty()) {
-      // No hay posiciones válidas a las que avanzar: quedarse en la posición actual
-      return position
-    } else {
-      return candidatos.anyOne()
-    }
+    return if (candidatos.isEmpty()) position else candidatos.anyOne()
   }
 
   method posicionValida(posicion) {
@@ -37,11 +32,7 @@ class Enemigo {
   method piezasNegrasEn(pos) = game.getObjectsIn(pos).filter({ obj => try { return obj.esNegro() } catch e : MessageNotUnderstoodException { return false } })
 
   method image() {
-    if (muerto) {
-      return images.piezaMuerta()
-    } else {
-      return imagenPieza
-    }
+    return if (muerto) images.piezaMuerta() else imagenPieza
   }
   
   method desaparece() {

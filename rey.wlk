@@ -11,21 +11,11 @@ object reyBlanco {
   
   method listaPiezasAliadas() = listaPiezasAliadas
   
-  method image() {
-    if (vidas == 2) {
-      return "RBlanco1Hit.png"
-    } else {
-      if (vidas == 1) {
-        return "RBlanco2Hit.png"
-      } else {
-        if (vidas <= 0) {
-          return "RBlanco3Hit.png"
-        } else {
-          return "RBlanco.png"
-        }
-      }
-    }
-  }
+ method image() =
+    if (vidas <= 0) "RBlanco3Hit.png"
+    else if (vidas == 1) "RBlanco2Hit.png"
+    else if (vidas == 2) "RBlanco1Hit.png"
+    else "RBlanco.png"
   
   method esNegro() = false
   
