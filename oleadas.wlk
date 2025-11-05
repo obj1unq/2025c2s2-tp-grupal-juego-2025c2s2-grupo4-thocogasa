@@ -15,10 +15,14 @@ object oleada {
   var property enTransicion = false
   var property nivel = 1
   
-  method enemigoAleatorio() { //TODO: Rehacer esto para que tome en cuenta el "Nivel" de oleada, desbloqueando enemigos con el paso del tiempo.
-    const enemigosDisponibles = [new PeonEnemigo(), new AlfilNegro(), new CaballoNegro(), new TorreNegro()]
+  method enemigoAleatorio() {
+    const disponibles = []
+    if (nivel >= 0) disponibles.add(new PeonEnemigo())
+    if (nivel >= 3) disponibles.add(new TorreNegro())
+    if (nivel >= 5) disponibles.add(new AlfilNegro())
+    if (nivel >= 7) disponibles.add(new CaballoNegro())
 
-    return enemigosDisponibles.anyOne()
+    return if (disponibles.isEmpty()) new PeonEnemigo() else disponibles.anyOne()
   }
 
   method crearOleada(cantidad) {
