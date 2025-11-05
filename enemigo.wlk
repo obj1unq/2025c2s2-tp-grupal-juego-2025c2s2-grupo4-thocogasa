@@ -24,7 +24,17 @@ class Enemigo {
     }
   }
 
-  method posicionValida(posicion) = (((posicion.x() >= 0) && (posicion.x() < 5)) && (posicion.y() >= 0)) && (posicion.y() < game.height() && game.getObjectsIn(posicion).filter({ obj => try { return obj.esNegro() } catch e : MessageNotUnderstoodException { return false } }).isEmpty())
+  method posicionValida(posicion) {
+    if (posicion.y() == 0) {
+      return self.position().y() == 1 && self.estáDentroDelTablero(posicion) && self.piezasNegrasEn(posicion).isEmpty()
+    } else {
+      return self.estáDentroDelTablero(posicion) && self.piezasNegrasEn(posicion).isEmpty()
+    }
+  }
+
+  method estáDentroDelTablero(posicion) = (((posicion.x() >= 0) && (posicion.x() < 5)) && (posicion.y() >= 0)) && (posicion.y() < game.height())
+
+  method piezasNegrasEn(pos) = game.getObjectsIn(pos).filter({ obj => try { return obj.esNegro() } catch e : MessageNotUnderstoodException { return false } })
 
   method image() {
     if (muerto) {
