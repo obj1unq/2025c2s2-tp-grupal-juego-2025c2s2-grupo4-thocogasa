@@ -11,7 +11,7 @@ object reyBlanco {
   
   method listaPiezasAliadas() = listaPiezasAliadas
   
- method image() =
+  method image() =
     if (vidas <= 0) "RBlanco3Hit.png"
     else if (vidas == 1) "RBlanco2Hit.png"
     else if (vidas == 2) "RBlanco1Hit.png"
