@@ -4,6 +4,7 @@ import aliados.*
 import mecanicas.*
 import enemigo.*
 import enemigos.*
+import images.*
 
 object oleada {
   const enemigosPorSpawnear = []
@@ -119,11 +120,18 @@ object oleada {
 
   method iniciarTransicion() {
     enTransicion = true
+    game.addVisual(transiciónOleada)
   }
 
   method terminarTransicion() {
     enTransicion = false
+    game.removeVisual(transiciónOleada)
   }
 
   method estaEnTransicion() = enTransicion
+}
+
+object transiciónOleada {
+  var property position = game.at(2, 4)
+  var property image = images.transicionOleada()
 }

@@ -1,3 +1,4 @@
+import oleadas.*
 object images {
     method peonNegro() = "PNegro.png"
     method peonBlanco(corono) = if (corono) "PBlancoCoronar.gif" else "PBlanco.png"
@@ -9,6 +10,7 @@ object images {
     method torreNegro() = "TNegro.png"
     method torreBlanco() = "TBlanco.png"
     method piezaMuerta() = "PBlancoMuerto.gif"
+    method transicionOleada() = "OleadaGanada.gif"
 }
 
 class JaqueMate {
