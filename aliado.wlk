@@ -61,7 +61,7 @@ class Aliado {
         
         reyBlanco.añadirRecursos(enemigo.valor() * combo)
         score.addScore(enemigo.valor() * combo)
-        combo = combo+1
+        combo = combo + 1
         if(combo > 1){
             game.say(self, "x" + combo)
         }

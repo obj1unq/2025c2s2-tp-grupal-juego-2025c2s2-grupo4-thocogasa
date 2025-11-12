@@ -4,7 +4,7 @@ import UI.*
 object leaderboard {
   const entries = []         // { name, score }
   const displayed = []
-  var property maxEntries = 5
+  var property maxEntries = 3
   var property visible = false
 
   method addEntry(name, valor) {
@@ -16,23 +16,37 @@ object leaderboard {
     self.addEntry(name, score.score())
   }
 
-  method top(n) = entries.take(n)
+  method top(n) {
+    const result = []
+    const desired = if (n > entries.size()) entries.size() else n
+    desired.times({ _ =>
+      var best = null
+      entries.forEach({ e =>
+        if (not result.contains(e)) {
+          if (best == null or e.value() > best.value()) best = e
+        }
+      })
+      if (best != null) result.add(best)
+    })
+    return result
+  }
 
   method clear() { entries.clear() }
 
   method show() {
     displayed.forEach({ d => if (game.hasVisual(d)) game.removeVisual(d) })
     displayed.clear()
-    var row = 2
-    entries.forEach({ e =>
+    const topEntries = self.top(maxEntries).reverse()
+    var row = 2 + (topEntries.size() - 1)
+    topEntries.forEach({ e =>
       const line = new LeaderboardEntry(
         name = e.name(),
         value = e.value(),
-        position = game.at(6, row)
+        position = game.at(5, row)
       )
       displayed.add(line)
       game.addVisual(line)
-      row = row + 1
+      row = row - 1
     })
   }
 
@@ -50,7 +64,7 @@ object leaderboard {
 class LeaderboardEntry {
   var property name = "Anon"
   var property value = 0
-  var property position = game.at(6, 2)
+  var property position = game.at(5, 2)
   method text() = self.name() + " " + self.value()
   method textColor() = "000000ff"
 }
