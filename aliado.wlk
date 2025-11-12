@@ -46,6 +46,7 @@ class Aliado {
                 enemigoFrente.desaparece()
                 game.schedule(500, { game.removeVisual(self) })
                 reyBlanco.añadirRecursos(enemigoFrente.valor() / 2)
+                score.addScore(enemigoFrente.valor() / 2)
                 capturado = true
             }
         }
@@ -92,6 +93,7 @@ class Aliado {
 
     method coronar() {
         reyBlanco.añadirRecursos(valor * 5)
+        score.addScore(valor * 5)
         self.image(images.peonBlanco(true))
         game.schedule(1400, { game.removeVisual(self) })
     }

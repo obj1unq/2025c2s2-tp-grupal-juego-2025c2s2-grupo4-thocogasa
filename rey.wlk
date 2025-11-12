@@ -77,7 +77,8 @@ object reyBlanco {
   method desaparecerEnemigoSiHay(pos) {
     const enemigos = game.getObjectsIn(pos).filter({ obj => return obj.esNegro() })
     enemigos.forEach({ enemigo => enemigo.desaparece()
-                                  self.añadirRecursos(enemigo.valor() / 2) })
+                                  self.añadirRecursos(enemigo.valor() / 2)
+                                  score.addScore(enemigo.valor() / 2) })
   }
   
   method limpiarAliadosInactivos() {
