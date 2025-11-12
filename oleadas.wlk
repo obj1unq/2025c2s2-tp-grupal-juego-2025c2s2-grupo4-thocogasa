@@ -8,7 +8,7 @@ import images.*
 
 object oleada {
   const enemigosPorSpawnear = []
-  const enemigosActivos = []
+  const property enemigosActivos = []
   var property intervaloSpawn = 2000
   var property intervaloMovimiento = 1500
   var spawnerActivo = false
