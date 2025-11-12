@@ -131,7 +131,7 @@ object oleada {
   method estaEnTransicion() = enTransicion
 }
 
-object transiciónOleada {
+object transiciónOleada { //TODO Este no debería de poder ser capturado, habría que añadirle es negro o fallar o algo
   var property position = game.at(2, 4)
   var property image = images.transicionOleada()
 }
