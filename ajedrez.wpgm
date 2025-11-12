@@ -5,6 +5,7 @@ import aliados.*
 import UI.*
 import mecanicas.*
 import oleadas.* 
+import leaderboard.* 
 
 program Ajedrez {
 	game.title("Last Pawn Standing")
@@ -30,6 +31,7 @@ program Ajedrez {
 	keyboard.left().onPressDo({ reyBlanco.moverIzquierda() })
 	keyboard.p().onPressDo({ reyBlanco.intentarColocarPieza(new PeonBlanco()) })
 	keyboard.k().onPressDo({ reyBlanco.intentarColocarPieza(new CaballoBlanco()) })	
+	keyboard.l().onPressDo({ leaderboard.toggle() })
 	// Debug oleada
 	keyboard.space().onPressDo({ oleada.iniciarOleada() })
 	keyboard.s().onPressDo({ oleada.detenerOleada() })
@@ -46,5 +48,8 @@ program Ajedrez {
 			mecanicasJuego.iniciarVerificaciones()
 		}
 	)
+	// Cargar leaderboard persistente desde disco (si existe)
+	leaderboard.loadFromDisk()
+
 	game.start()
 }

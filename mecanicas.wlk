@@ -4,6 +4,7 @@ import enemigos.*
 import aliados.*
 import UI.*
 import oleadas.*
+import leaderboard.*
 
 object mecanicasJuego {
   var property verificacionActiva = false
@@ -71,6 +72,8 @@ object mecanicasJuego {
   method gameOver() {
     self.detenerVerificaciones()
     oleada.detenerOleada()
+    leaderboard.addCurrentScoreWithName("Jugador")
+    leaderboard.show()
   }
   
   method juegoActivo() = verificacionActiva
