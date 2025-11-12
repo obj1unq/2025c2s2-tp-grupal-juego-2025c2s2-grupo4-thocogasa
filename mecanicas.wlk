@@ -74,7 +74,6 @@ object mecanicasJuego {
     self.detenerVerificaciones()
     oleada.detenerOleada()
     game.schedule(0, { self.requestPlayerName() })
-    game.schedule(200, { leaderboard.show() })
   }
   
     method requestPlayerName() {

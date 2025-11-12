@@ -67,6 +67,7 @@ object namePrompt {
     awaiting = false
     if (game.hasVisual(promptVisual)) game.removeVisual(promptVisual)
     leaderboard.addCurrentScoreWithName(name)
+    leaderboard.show()
   }
 
   method updatePrompt() {
@@ -76,7 +77,7 @@ object namePrompt {
 
 class NamePromptVisual {
   var property textValue = ""
-  var property position = game.at(2, 9)
+  var property position = game.at(2, 4)
   method text() = self.textValue()
   method textColor() = "#FFFF00"
 }

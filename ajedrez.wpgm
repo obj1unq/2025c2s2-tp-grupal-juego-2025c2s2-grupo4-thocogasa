@@ -48,8 +48,6 @@ program Ajedrez {
 			mecanicasJuego.iniciarVerificaciones()
 		}
 	)
-	// Cargar leaderboard persistente desde disco (si existe)
-	leaderboard.loadFromDisk()
 
 	game.start()
 }

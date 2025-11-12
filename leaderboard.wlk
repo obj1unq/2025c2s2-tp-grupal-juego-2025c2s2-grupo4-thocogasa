@@ -45,9 +45,6 @@ object leaderboard {
     visible = not visible
     if (visible) self.show() else self.hide()
   }
-
-  method saveToDisk() { }
-  method loadFromDisk() { }
 }
 
 class LeaderboardEntry {
