@@ -3,6 +3,7 @@ import enemigos.*
 import wollok.game.*
 import UI.*
 import images.*
+import oleadas.*
 
 class Aliado {
     var property valor
@@ -21,12 +22,13 @@ class Aliado {
 
     method intentarCapturar() {
         var capturado = false
+        
 
         self.posicionesDiagonales().forEach(
         { posicion =>
             if (self.posicionValida(posicion)) {
-            const enemigosEnPosicion = game.getObjectsIn(posicion).filter({ pieza => return pieza.esNegro() })
-
+            const enemigosEnPosicion = game.getObjectsIn(posicion).filter({ pieza => return pieza.esNegro() }) //self.enemigoEnPosicion(posicion)
+//preguntar si se puede usar try catch ya que puede haber enemigos pero no en esa posicion y find devuelve error
             if (not enemigosEnPosicion.isEmpty()) {
                 const enemigo = enemigosEnPosicion.first()
                 self.capturarDirectamente(enemigo)
@@ -53,7 +55,18 @@ class Aliado {
 
         return capturado
     }
+/*
+Logica: 
+pasar primero 
+enemigoACapturar = oleada.enemigosActivos().find({enemigo => posicion})
 
+Aca lo encuentro
+si lo en
+*/
+method enemigoEnPosicion(posicion){
+    return oleada.enemigosActivos().find({enemigo => enemigo.position() == posicion})
+
+}
     method capturarDirectamente(enemigo) {
 
         const posicionCaptura = enemigo.position()
