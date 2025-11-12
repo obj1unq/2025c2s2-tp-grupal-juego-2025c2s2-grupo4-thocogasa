@@ -5,6 +5,7 @@ import aliados.*
 import UI.*
 import oleadas.*
 import leaderboard.*
+import namePrompt.*
 
 object mecanicasJuego {
   var property verificacionActiva = false
@@ -72,10 +73,13 @@ object mecanicasJuego {
   method gameOver() {
     self.detenerVerificaciones()
     oleada.detenerOleada()
-    leaderboard.addCurrentScoreWithName("Jugador")
-    leaderboard.show()
+    game.schedule(0, { self.requestPlayerName() })
+    game.schedule(200, { leaderboard.show() })
   }
   
+    method requestPlayerName() {
+      namePrompt.ask()
+    }
   method juegoActivo() = verificacionActiva
   
   method verificarTodasLasColisiones() {
