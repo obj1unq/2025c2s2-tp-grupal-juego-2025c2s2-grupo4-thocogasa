@@ -52,5 +52,5 @@ class LeaderboardEntry {
   var property value = 0
   var property position = game.at(6, 2)
   method text() = self.name() + " " + self.value()
-  method textColor() = "#FFFFFF"
+  method textColor() = "000000ff"
 }

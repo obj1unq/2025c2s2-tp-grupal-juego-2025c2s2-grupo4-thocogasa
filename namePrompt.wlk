@@ -79,5 +79,6 @@ class NamePromptVisual {
   var property textValue = ""
   var property position = game.at(2, 4)
   method text() = self.textValue()
-  method textColor() = "#FFFF00"
+  method textColor() = "FFFF00"
+
 }
