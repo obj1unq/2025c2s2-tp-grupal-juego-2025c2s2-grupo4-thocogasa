@@ -33,12 +33,12 @@ program Ajedrez {
 	keyboard.num(2).onPressDo({ reyBlanco.intentarColocarPieza(new CaballoBlanco()) })	
 	keyboard.l().onPressDo({ leaderboard.toggle() })
 	// Debug oleada
-	keyboard.space().onPressDo({ oleada.iniciarOleada() })
-	keyboard.s().onPressDo({ oleada.detenerOleada() })
+	//keyboard.space().onPressDo({ oleada.iniciarOleada() })
+	//keyboard.s().onPressDo({ oleada.detenerOleada() })
 	
 	
 	// Reiniciar juego
-	keyboard.r().onPressDo({ mecanicasJuego.reiniciarJuego() })
+	keyboard.alt().onPressDo({ mecanicasJuego.reiniciarJuego() })
 	
 	// Empieza solo a los 2 segundos
 	game.schedule(

@@ -1,3 +1,4 @@
+import mecanicas.*
 import wollok.game.*
 import UI.*
 import leaderboard.*
@@ -67,6 +68,7 @@ object namePrompt {
     awaiting = false
     if (game.hasVisual(promptVisual)) game.removeVisual(promptVisual)
     leaderboard.addCurrentScoreWithName(name)
+    mecanicasJuego.reiniciarJuego()
     leaderboard.show()
   }
 
