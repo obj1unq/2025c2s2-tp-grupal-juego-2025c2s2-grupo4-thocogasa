@@ -1,0 +1,62 @@
+import wollok.game.*
+import rey.*
+import enemigos.*
+import aliados.*
+import UI.*
+import mecanicas.*
+import oleadas.*
+import leaderboard.*
+import escenas.cambioDeEscena.*
+
+object ajedrez inherits Escena {
+	
+	override method mostrar() {
+		game.addVisual(reyBlanco)
+		visuales.add(reyBlanco)
+		
+		oleada.crearOleada(5)
+		game.showAttributes(reyBlanco)
+		
+		//UI
+		game.addVisual(score)
+		visuales.add(score)
+		game.addVisual(recursos)
+		visuales.add(recursos)
+		game.addVisual(vidas)
+		visuales.add(vidas)
+		game.addVisual(piezasRestantes)
+		visuales.add(piezasRestantes)
+		
+		
+		// Controles
+		keyboard.right().onPressDo({ reyBlanco.moverDerecha() })
+		keyboard.left().onPressDo({ reyBlanco.moverIzquierda() })
+		keyboard.num(1).onPressDo(
+			{ reyBlanco.intentarColocarPieza(new PeonBlanco()) }
+		)
+		keyboard.num(2).onPressDo(
+			{ reyBlanco.intentarColocarPieza(new CaballoBlanco()) }
+		)
+		keyboard.l().onPressDo({ leaderboard.toggle() })
+		
+		//Reiniciar juego
+		keyboard.alt().onPressDo({ mecanicasJuego.reiniciarJuego() })
+		// Empieza solo a los 2 segundos
+		game.schedule(
+			2000,
+			{ 
+				oleada.iniciarOleada()
+				mecanicasJuego.iniciarVerificaciones()
+			}
+		)
+	}
+	
+	override method ocultar() {
+		mecanicasJuego.detenerVerificaciones()
+		
+		oleada.detenerOleada()
+		oleada.reiniciar()
+		
+		super()
+	}
+}

@@ -1,11 +1,6 @@
 import wollok.game.*
-import rey.*
-import enemigos.*
-import aliados.*
-import UI.*
-import mecanicas.*
-import oleadas.* 
-import leaderboard.* 
+import escenas.menuPrincipal.*
+import escenas.cambioDeEscena.*
 
 program Ajedrez {
 	game.title("Last Pawn Standing")
@@ -14,40 +9,7 @@ program Ajedrez {
 	game.width(7)
 	
 	game.boardGround("Tablero.png")
-	game.addVisual(reyBlanco)
-	
-	oleada.crearOleada(5)
-	
-	game.showAttributes(reyBlanco)
-	
-	//UI
-	game.addVisual(score)
-	game.addVisual(recursos)
-	game.addVisual(vidas)
-	game.addVisual(piezasRestantes)
-	
-	// Controles
-	keyboard.right().onPressDo({ reyBlanco.moverDerecha() })
-	keyboard.left().onPressDo({ reyBlanco.moverIzquierda() })
-	keyboard.num(1).onPressDo({ reyBlanco.intentarColocarPieza(new PeonBlanco()) })
-	keyboard.num(2).onPressDo({ reyBlanco.intentarColocarPieza(new CaballoBlanco()) })	
-	keyboard.l().onPressDo({ leaderboard.toggle() })
-	// Debug oleada
-	//keyboard.space().onPressDo({ oleada.iniciarOleada() })
-	//keyboard.s().onPressDo({ oleada.detenerOleada() })
-	
-	
-	// Reiniciar juego
-	keyboard.alt().onPressDo({ mecanicasJuego.reiniciarJuego() })
-	
-	// Empieza solo a los 2 segundos
-	game.schedule(
-		2000,
-		{ 
-			oleada.iniciarOleada()
-			mecanicasJuego.iniciarVerificaciones()
-		}
-	)
+	managerEscena.cargar(menuPrincipal)
 
 	game.start()
 }
