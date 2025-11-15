@@ -1,15 +1,18 @@
 import rey.*
+import aliado.*
 import aliados.*
+import enemigo.*
 import enemigos.*
 import wollok.game.*
 import images.*
-import aliados.*
-import enemigos.*
+import mecanicas.*
+import oleadas.*
 
-describe "tests de aliados" {
+describe "tests de peones" {
   method initialize() {
     game.height(8)
     game.width(7)
+    reyBlanco.reiniciar()
   }
   
   test "falla capturar enemigos" {
@@ -23,7 +26,7 @@ describe "tests de aliados" {
     )
     game.addVisual(blanco4)
     game.addVisual(blanco5)
-    blanco4.capturar(blanco5)
+    blanco4.intentarCapturar()
     // no debería capturar pieza y las dos piezas deberían estar en el mismo lugar.
     assert.equals(game.at(1, 6), blanco4.position())
     assert.equals(game.at(2, 5), blanco5.position())
@@ -32,36 +35,69 @@ describe "tests de aliados" {
   test "coronar" {
     game.addVisual(reyBlanco)
     reyBlanco.recursos(20)
-    assert.equals(0, reyBlanco.recursos())
+    assert.equals(20, reyBlanco.recursos())
     
     const blanco7 = new PeonBlanco(
       image = "PBlanco.png",
       position = game.at(4, 6)
     )
-    const negro7 = new Negros(image = "PNegro.png", position = game.at(3, 7))
+    const negro7 = new PeonEnemigo(
+        position = game.at(3, 7))
     game.addVisual(blanco7)
     game.addVisual(negro7)
-    blanco7.capturar(negro7)
-    assert.equals(110, reyBlanco.recursos())
-    assert.that(game.getObjectsIn(game.at(3, 7)).isEmpty())
+    blanco7.intentarCapturar()
+    assert.equals(130, reyBlanco.recursos())
+    blanco7.intentarCoronar()
+    assert.equals(230, reyBlanco.recursos())
   }
-  
-  test "caballos" {
-    game.addVisual(reyBlanco)
-    reyBlanco.recursos(100)
-    reyBlanco.colocar(nuevoCaballo)
+}
+
+describe "tests de caballos" {
+  method initialize() {
+    game.height(8)
+    game.width(7)
+    reyBlanco.reiniciar()
+    mecanicasJuego.verificacionActiva(true)
+  }
+  const nuevoCaballo = new CaballoBlanco() 
+
+  test "colocar caballo" {
+    assert.that(reyBlanco.puedeColocar(
+      nuevoCaballo, reyBlanco.position().up(1)))
+    reyBlanco.intentarColocarPieza(nuevoCaballo)
     assert.equals(50, reyBlanco.recursos())
-    
-    const negroA = new Negros(image = "PNegro.png", position = game.at(5, 1))
-    const negroB = new Negros(image = "PNegro.png", position = game.at(4, 3))
+    // chequea el valor descontado de Recursos
+  }
+
+  test "fallo colocar Pieza"{
+    const otraPieza = new PeonBlanco(
+      position = reyBlanco.position().up(1)
+    )
+    game.addVisual(otraPieza)
+    reyBlanco.intentarColocarPieza(nuevoCaballo)
+    assert.equals(100, reyBlanco.recursos())
+    //chequea que no pueda colocar Pieza si ya hay otro aliado
+  }
+
+    test "capturar con caballo varias piezas"{
+    const negroA = new PeonEnemigo(
+        position = game.at(3, 4))
+    const negroB = new AlfilNegro(
+      position = game.at(4, 2))
+    reyBlanco.intentarColocarPieza(nuevoCaballo)
+    assert.equals(50, reyBlanco.recursos())
+
     game.addVisual(negroA)
     game.addVisual(negroB)
-    nuevoCaballo.capturar(negroA)
-    assert.equals(60, reyBlanco.recursos())
-    assert.notThat(game.getObjectsIn(game.at(5, 1)).isEmpty())
-    assert.equals([nuevoCaballo], game.getObjectsIn(game.at(5, 1)))
-    nuevoCaballo.capturar(negroB)
-    assert.equals(70, reyBlanco.recursos())
-    assert.equals([nuevoCaballo], game.getObjectsIn(game.at(4, 3)))
+
+    nuevoCaballo.intentarCapturar()
+    assert.equals((50 + 30), reyBlanco.recursos())
+    assert.that(game.getObjectsIn(game.at(2, 1)).isEmpty())
+    assert.notThat(game.getObjectsIn(game.at(4, 2)).isEmpty())
+    assert.equals(2, nuevoCaballo.combo()) // combo = 1 + 1
+    
+    nuevoCaballo.intentarCapturar()
+    assert.equals((80) + (10*2), reyBlanco.recursos()) 
+    assert.equals(3, nuevoCaballo.combo()) // combo = 2+1
   }
 }
