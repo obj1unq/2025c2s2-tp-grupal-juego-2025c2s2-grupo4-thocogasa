@@ -27,3 +27,31 @@ class TorreBlanca inherits Proyectil (
         game.schedule(1400, { game.removeVisual(self) })
     }
 }
+
+class AlfilBlanco inherits Proyectil (
+    valor = 1,
+    image = images.alfilBlanco()
+){
+    override method posicionesDiagonales() = [
+        self.position().up(1).right(1), 
+        self.position().up(1).left(1)
+        ]
+
+        override method coronar(){
+        reyBlanco.añadirRecursos(valor / 4)
+        score.addScore(valor / 4)
+        self.image(images.peonBlanco(true))
+        game.schedule(1400, { game.removeVisual(self) })
+        }
+    
+    override method avanzarYComer() {
+        game.onTick(250, "movimiento", {
+            const miPos = self.position()
+            const random = #{1, -1}.anyOne()
+            self.mover(miPos.x()+random, miPos.y()+1)
+            self.intentarCapturar()
+        })
+
+    }
+
+}

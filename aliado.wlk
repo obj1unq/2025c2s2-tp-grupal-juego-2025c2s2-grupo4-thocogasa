@@ -111,8 +111,9 @@ method enemigoEnPosicion(posicion){
         self.image(images.peonBlanco(true))
         game.schedule(1400, { game.removeVisual(self) })
     }
+    //@gabriel HABRIA QUE HACER UN TEMPLATE DE CORONAR CON LAS DISTINTAS PIEZAS PARA CAMBIAR LO DEL VALOR
 
-    
+
 
     method esNegro() = false
     

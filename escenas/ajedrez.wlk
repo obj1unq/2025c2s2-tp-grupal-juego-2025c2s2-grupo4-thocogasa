@@ -43,6 +43,10 @@ object ajedrez inherits Escena {
 			{reyBlanco.disparar(new TorreBlanca())}
 		)
 
+		keyboard.num(4).onPressDo(
+			{reyBlanco.disparar(new AlfilBlanco())}
+		)
+
 
 		keyboard.l().onPressDo({ leaderboard.toggle() })
 		
