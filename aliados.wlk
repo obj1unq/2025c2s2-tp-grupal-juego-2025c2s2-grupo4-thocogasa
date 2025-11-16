@@ -29,7 +29,7 @@ class TorreBlanca inherits Proyectil (
 }
 
 class AlfilBlanco inherits Proyectil (
-    valor = 1,
+    valor = 70,
     image = images.alfilBlanco()
 ){
     override method posicionesDiagonales() = [
