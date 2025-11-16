@@ -35,7 +35,7 @@ Puede servir como un tutorial divertido para aprender los movimientos de algunas
 + Al colisionar con nuestras piezas, ganamos en recursos el valor de la pieza enemiga y la mitad de valor de nuestra pieza.
 
 ### COMBOS.
-+ Cada pieza aliada tiene un multiplicador por cada pieza que come. Por ejemplo, a la tercer pieza capturada el valor de los créditos obtenidos se multiplica por 3.
++ Cada pieza tiene un multiplicador por cada pieza que come. Por ejemplo, a la tercer pieza capturada el valor de los créditos obtenidos se multiplica por 3.
 
 
 [Proyecto To-Do](https://github.com/orgs/obj1unq/projects/3/views/1)
