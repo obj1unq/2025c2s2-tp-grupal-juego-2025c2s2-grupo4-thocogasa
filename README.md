@@ -2,11 +2,11 @@
 
 ## trabajo grupal POO1 2c2025 c2
 
-### Integrantes:
-* Condori, Ivana
-* Correa, Thomas
-* Kakazu, Gabriel
-* Fisela, Santiago
+### Integrantes THOCOGASA:
+* Correa, THOmas
+* COndori, Ivana
+* Kakazu, GAbriel
+* Fisela, SAntiago
 ---
 
 ## Este juego es una variante de ajedrez en tiempo real (el ajedrez tradicional es un juego de estrategia por turnos)
