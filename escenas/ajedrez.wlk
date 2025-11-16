@@ -7,6 +7,7 @@ import mecanicas.*
 import oleadas.*
 import leaderboard.*
 import escenas.cambioDeEscena.*
+import proyectiles.*
 
 object ajedrez inherits Escena {
 	
@@ -37,6 +38,12 @@ object ajedrez inherits Escena {
 		keyboard.num(2).onPressDo(
 			{ reyBlanco.intentarColocarPieza(new CaballoBlanco()) }
 		)
+
+		keyboard.num(3).onPressDo(
+			{reyBlanco.disparar(new TorreBlanca())}
+		)
+
+
 		keyboard.l().onPressDo({ leaderboard.toggle() })
 		
 		//Reiniciar juego

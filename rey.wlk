@@ -94,4 +94,11 @@ object reyBlanco {
     position = game.at(2, 0)
     listaPiezasAliadas.clear()
   }
+
+  method disparar(proyectil) {
+    self.intentarColocarPieza(proyectil)
+    proyectil.avanzarYComer()
+    }   
+
+
 }

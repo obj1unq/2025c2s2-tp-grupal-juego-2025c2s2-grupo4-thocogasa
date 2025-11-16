@@ -14,6 +14,7 @@ class Aliado {
 
     method mover(posiciónx, posicióny) {
         position = game.at(posiciónx, posicióny)
+        self.intentarCoronar()
     }
 
     method estaEnLaUltimaFila() {
@@ -110,6 +111,8 @@ method enemigoEnPosicion(posicion){
         self.image(images.peonBlanco(true))
         game.schedule(1400, { game.removeVisual(self) })
     }
+
+    
 
     method esNegro() = false
     
