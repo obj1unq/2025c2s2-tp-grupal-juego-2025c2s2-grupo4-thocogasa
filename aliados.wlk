@@ -18,34 +18,14 @@ class CaballoBlanco inherits Aliado(valor = 50, imagePieza = images.caballoBlanc
 class TorreBlanca inherits Proyectil (
     valor = 100,
     imagePieza = images.torreBlanco()) {
-        override method posicionesCapturables() = 
-            [self.position().up(2), self.position().up(1)]
-
-        override method coronar(){
-        reyBlanco.añadirRecursos(valor / 4)
-        score.addScore(valor / 4)
-        self.imagePieza(images.peonBlanco(true))
-            self.detenerTick()
-            game.schedule(1400, { game.removeVisual(self) })
-    }
+    override method posicionesCapturables() = [self.position().up(2), self.position().up(1)]
 }
 
 class AlfilBlanco inherits Proyectil (
     valor = 70,
     imagePieza = images.alfilBlanco()
 ){
-    override method posicionesCapturables() = [
-        self.position().up(1).right(1), 
-        self.position().up(1).left(1)
-        ]
-
-        override method coronar(){
-        reyBlanco.añadirRecursos(valor / 4)
-        score.addScore(valor / 4)
-        self.imagePieza(images.peonBlanco(true))
-                self.detenerTick()
-                game.schedule(1400, { game.removeVisual(self) })
-        }
+    override method posicionesCapturables() = [self.position().up(1).right(1), self.position().up(1).left(1)]
     
     override method avanzarYComer() {
         if (self.tickName() == null) {
@@ -55,6 +35,7 @@ class AlfilBlanco inherits Proyectil (
                 const random = #{1, -1}.anyOne()
                 self.mover(miPos.x()+random, miPos.y()+1)
                 self.intentarCapturar()
+                self.intentarCoronar()
             })
         }
 

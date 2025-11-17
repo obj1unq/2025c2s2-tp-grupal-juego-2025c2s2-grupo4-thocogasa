@@ -25,20 +25,7 @@ class Aliado inherits Pieza(ultimaFila = game.height() - 1, color = blanco, acce
                 reyBlanco.añadirRecursos(enemigoEnFrente.valor() / 2)
                 score.addScore(enemigoEnFrente.valor() / 2)
                 capturado = true
-        }*/
-
-    method posicionAleatoriaEnDiagonal(posicionesDiagonales) {
-        return posicionesDiagonales.anyOne()
-    }
-
-    method hayEnemigoEnPosicion(posicion){
-        return oleada.enemigosActivos().any({enemigo => enemigo.position() == posicion})
-
-    }
-
-    method enemigoEnPosicion(posicion){
-        return oleada.enemigosActivos().find({enemigo => enemigo.position() == posicion})
-    }
+    }*/
 
     override method capturar(enemigo) {
         super(enemigo)

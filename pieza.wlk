@@ -59,7 +59,7 @@ class Pieza {
     }
 
     method puedeCapturar(pos) {
-        return self.posicionValida(pos) && color.piezaContrariaEn(pos)
+        return self.posicionValida(pos) && color.hayPiezaContraria(pos)
     }
 
     method capturar(pieza) {
@@ -79,7 +79,11 @@ object negro {
     }
 
     method piezaEn(pos) {
-        return oleada.enemigosActivos().find({enemigo => enemigo.position() == pos})
+        return oleada.enemigosActivos().findOrElse({enemigo => enemigo.position() == pos}, { false })
+    }
+
+    method hayPiezaContraria(pos) {
+        return blanco.hayPieza(pos)
     }
 
     method piezaContrariaEn(pos) {
@@ -93,7 +97,11 @@ object blanco {
     }
 
     method piezaEn(pos) {
-        return reyBlanco.listaPiezasAliadas().find({aliado => aliado.position() == pos})
+        return reyBlanco.listaPiezasAliadas().findOrElse({aliado => aliado.position() == pos}, { false })
+    }
+
+    method hayPiezaContraria(pos) {
+        return negro.hayPieza(pos)
     }
 
     method piezaContrariaEn(pos) {
