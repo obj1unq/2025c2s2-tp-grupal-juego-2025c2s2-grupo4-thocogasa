@@ -36,29 +36,6 @@ class Aliado {
             }
             } }
         )
-/*
-Como puedo intentar recapturarlo para no hacer foreach
-ahora ¿que paso con las posiciones diagonales?
-Son 2, izquierda o deracha pero 
-        const posicionDiagonal = self.posicionAleatoriaEnDiagonal(self.posicionesDiagonales())//self.posicionesDiagonales()    //devuelve una lista de dos posibles pocisiones 
-        if(self.hayEnemigoEnPosicion(posicionDiagonal)){            
-            const enemigo = self.enemigoEnPosicion(posicionDiagonal)
-            self.capturarDirectamente(enemigo)
-            capturado = true
-        }
-
-        self.posicionesDiagonales().forEach(
-        { posicion =>
-            if (self.posicionValida(posicion)) {
-            const enemigosEnPosicion = game.getObjectsIn(posicion).filter({ pieza => return pieza.esNegro() }) 
-            if (not enemigosEnPosicion.isEmpty()) {
-                const enemigo = enemigosEnPosicion.first()
-                self.capturarDirectamente(enemigo)
-                capturado = true
-            }
-            } }
-        )
-*/
         // Verificar colisión frontal
         const posicionFrente = self.position().up(1) 
         if (self.posicionValida(posicionFrente) && self.hayEnemigoEnPosicion(posicionFrente)) { 
@@ -69,23 +46,7 @@ Son 2, izquierda o deracha pero
                 score.addScore(enemigoEnFrente.valor() / 2)
                 capturado = true
         }
-/*
-        // Verificar colisión frontal
-        const posicionFrente = self.position().up(1)
-        if (self.posicionValida(posicionFrente)) {
-        const enemigosFrente = game.getObjectsIn(posicionFrente).filter(
-            { pieza => return pieza.esNegro() }
-        )
-            if (not enemigosFrente.isEmpty()) {
-                const enemigoFrente = enemigosFrente.first()
-                enemigoFrente.desaparece()
-                game.schedule(500, { game.removeVisual(self) })
-                reyBlanco.añadirRecursos(enemigoFrente.valor() / 2)
-                score.addScore(enemigoFrente.valor() / 2)
-                capturado = true
-            }
-        }
-        }*/
+
         return capturado
     }
     method posicionAleatoriaEnDiagonal(posicionesDiagonales) {
@@ -147,13 +108,12 @@ Son 2, izquierda o deracha pero
     //@gabriel HABRIA QUE HACER UN TEMPLATE DE CORONAR CON LAS DISTINTAS PIEZAS PARA CAMBIAR LO DEL VALOR
 
 
-
     method esNegro() = false
     
     method detenerTick(){
         if (self.tickName() != null) {
             game.removeTickEvent(self.tickName())
-            self.tickName() == null
+            self.tickName(null)
         }
     }
     
