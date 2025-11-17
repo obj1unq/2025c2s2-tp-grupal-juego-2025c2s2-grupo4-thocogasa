@@ -3,6 +3,8 @@ import rey.*
 import aliados.*
 import mecanicas.*
 import images.*
+import oleadas.*
+
 
 class Enemigo {
   var property position = game.at((0 .. 4).anyOne(), 7) //0.randomUpTo(4)
@@ -29,8 +31,11 @@ class Enemigo {
 
   method estáDentroDelTablero(posicion) = (((posicion.x() >= 0) && (posicion.x() < 5)) && (posicion.y() >= 0)) && (posicion.y() < game.height())
 
-  method piezasNegrasEn(pos) = game.getObjectsIn(pos).filter({ obj => return obj.esNegro() })
+  //method piezasNegrasEn(pos) = game.getObjectsIn(pos).filter({ obj => return obj.esNegro() })
+  method piezasNegrasEn(pos) = oleada.enemigosActivos().filter({ obj => obj.position() == pos })
 
+  //method piezasNegrasEn(pos) = game.getObjectsIn(pos).filter({ obj => return obj.esNegro() })
+//devuelve toda una lista de enemigos lo puedo reemlazar por la lista de enemigos activos y 
   method image() {
     return if (muerto) images.piezaMuerta() else imagenPieza
   }

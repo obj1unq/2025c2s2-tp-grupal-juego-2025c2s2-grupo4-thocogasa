@@ -57,6 +57,12 @@ object reyBlanco {
   ) = ((unaPosicion.x() >= 0) && (unaPosicion.x() <= 4)) && mecanicasJuego.juegoActivo()
 
   method puedeColocar(pieza, ubicacion) {
+    const hayRecursos = recursos >= pieza.valor()
+    const noHayPieza = not self.hayPiezasAliadas(ubicacion)
+    const activo = mecanicasJuego.juegoActivo()
+    console.println("Recu "+hayRecursos)
+    console.println("hayPieza:"+noHayPieza)
+    console.println("juego: "+activo)
     return recursos >= pieza.valor() && not self.hayPiezasAliadas(ubicacion) && mecanicasJuego.juegoActivo()
   }
 //
