@@ -24,12 +24,34 @@ class Aliado {
     method intentarCapturar() {
         var capturado = false
         
+        self.posicionesDiagonales().forEach(
+        { posicion =>
+            if (self.posicionValida(posicion) && not capturado) {
+            if (self.hayEnemigoEnPosicion(posicion)) {
+                const enemigo = self.enemigoEnPosicion(posicion)
+                self.capturarDirectamente(enemigo)
+                capturado = true
+            }
+            } }
+        )
+/*
+Como puedo intentar recapturarlo para no hacer foreach
+ahora ¿que paso con las posiciones diagonales?
+Son 2, izquierda o deracha pero 
+        const posicionDiagonal = self.posicionAleatoriaEnDiagonal(self.posicionesDiagonales())//self.posicionesDiagonales()    //devuelve una lista de dos posibles pocisiones 
+        if(self.hayEnemigoEnPosicion(posicionDiagonal)){
+            console.println(posicionDiagonal)
+            
+            const enemigo = self.enemigoEnPosicion(posicionDiagonal)
+            console.println(enemigo.position())
+            self.capturarDirectamente(enemigo)
+            capturado = true
+        }
 
         self.posicionesDiagonales().forEach(
         { posicion =>
             if (self.posicionValida(posicion)) {
-            const enemigosEnPosicion = game.getObjectsIn(posicion).filter({ pieza => return pieza.esNegro() }) //self.enemigoEnPosicion(posicion)
-//preguntar si se puede usar try catch ya que puede haber enemigos pero no en esa posicion y find devuelve error
+            const enemigosEnPosicion = game.getObjectsIn(posicion).filter({ pieza => return pieza.esNegro() }) 
             if (not enemigosEnPosicion.isEmpty()) {
                 const enemigo = enemigosEnPosicion.first()
                 self.capturarDirectamente(enemigo)
@@ -37,7 +59,18 @@ class Aliado {
             }
             } }
         )
-
+*/
+        // Verificar colisión frontal
+        const posicionFrente = self.position().up(1) 
+        if (self.posicionValida(posicionFrente) && self.hayEnemigoEnPosicion(posicionFrente)) { 
+            const enemigoEnFrente = self.enemigoEnPosicion(posicionFrente) 
+                enemigoEnFrente.desaparece() 
+                game.schedule(500, { game.removeVisual(self) }) 
+                reyBlanco.añadirRecursos(enemigoEnFrente.valor() / 2)
+                score.addScore(enemigoEnFrente.valor() / 2)
+                capturado = true
+        }
+/*
         // Verificar colisión frontal
         const posicionFrente = self.position().up(1)
         if (self.posicionValida(posicionFrente)) {
@@ -53,21 +86,20 @@ class Aliado {
                 capturado = true
             }
         }
-
+        }*/
         return capturado
     }
-/*
-Logica: 
-pasar primero 
-enemigoACapturar = oleada.enemigosActivos().find({enemigo => posicion})
+    method posicionAleatoriaEnDiagonal(posicionesDiagonales) {
+        return posicionesDiagonales.anyOne()
+    }
+    method hayEnemigoEnPosicion(posicion){
+        return oleada.enemigosActivos().any({enemigo => enemigo.position() == posicion})
 
-Aca lo encuentro
-si lo en
-*/
-method enemigoEnPosicion(posicion){
-    return oleada.enemigosActivos().find({enemigo => enemigo.position() == posicion})
+    }
+    method enemigoEnPosicion(posicion){
+        return oleada.enemigosActivos().find({enemigo => enemigo.position() == posicion})
 
-}
+    }
     method capturarDirectamente(enemigo) {
 
         const posicionCaptura = enemigo.position()

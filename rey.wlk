@@ -2,6 +2,8 @@ import mecanicas.*
 import aliados.*
 import UI.*
 import wollok.game.*
+import oleadas.*
+
 
 object reyBlanco {
   var property recursos = 100
@@ -55,11 +57,66 @@ object reyBlanco {
   ) = ((unaPosicion.x() >= 0) && (unaPosicion.x() <= 4)) && mecanicasJuego.juegoActivo()
 
   method puedeColocar(pieza, ubicacion) {
-    return recursos >= pieza.valor() && self.hayPiezasAliadas(ubicacion) && mecanicasJuego.juegoActivo()
+    const hayRecursos = recursos >= pieza.valor()
+    const noHayPieza = not self.hayPiezasAliadas(ubicacion)
+    const activo = mecanicasJuego.juegoActivo()
+    console.println("Recu "+hayRecursos)
+    console.println("hayPieza:"+noHayPieza)
+    console.println("juego: "+activo)
+    return recursos >= pieza.valor() && not self.hayPiezasAliadas(ubicacion) && mecanicasJuego.juegoActivo()
+  }
+//
+  //method hayPiezasAliadas(pos) = game.getObjectsIn(pos).filter({ obj => return !obj.esNegro()  }).isEmpty()
+//  method hayPiezasAliadas(pos) = listaPiezasAliadas.filter({ obj => obj.position() == pos  }).isEmpty() funciona con esto
+  method hayPiezasAliadas(pos) {
+    return listaPiezasAliadas.any( { aliado => aliado.position() == pos })
   }
 
-  method hayPiezasAliadas(pos) = game.getObjectsIn(pos).filter({ obj => return !obj.esNegro()  }).isEmpty()
+  method intentarColocarPieza(pieza) {
+      if (self.puedeColocar(pieza, self.position().up(1)) && !self.hayEnemigoEn(self.position().up(1))) {
+        pieza.position(self.position().up(1))
+        game.addVisual(pieza)
+        listaPiezasAliadas.add(pieza)
+        self.restarRecursos(pieza.valor())
+      } else if (self.puedeColocar(pieza, self.position().up(1)) && self.hayEnemigoEn(self.position().up(1))) {
+        self.restarRecursos(pieza.valor())
+        self.desaparecerEnemigoSiHay(self.position().up(1))
+      }
+  }
 
+  method hayEnemigoEn(posicion){
+      return oleada.enemigosActivos().any({enemigo => enemigo.position() == posicion})
+
+  }
+  method enemigoEnPosicionADesaparecer(posicion) {
+    return if(self.hayEnemigoEn(posicion)) self.enemigoEnPosicion(posicion)
+  }
+  method enemigoEnPosicion(posicion){
+    return oleada.enemigosActivos().find({enemigo => enemigo.position() == posicion})
+
+}
+  method desaparecerEnemigoSiHay(pos) {
+    const enemigo = self.enemigoEnPosicionADesaparecer(pos)
+    if(self.hayEnemigoEn(pos)){
+      enemigo.desaparece()
+      self.añadirRecursos(enemigo.valor() / 2)
+      score.addScore(enemigo.valor() / 2)
+    }
+  /*
+  solocion para multiples enemigos
+    const enemigos = oleada.enemigosActivos().filter({ enemigo => 
+        return enemigo.position() == pos 
+    })
+    
+    enemigos.forEach({ enemigo => 
+        enemigo.desaparece()
+        self.añadirRecursos(enemigo.valor() / 2)
+        score.addScore(enemigo.valor() / 2) 
+    })*/
+  }
+//
+// method hayPiezasAliadas(pos) = game.getObjectsIn(pos).filter({ obj => return !obj.esNegro()  }).isEmpty()
+/*
   method intentarColocarPieza(pieza) {
       if (self.puedeColocar(pieza, self.position().up(1)) && !self.hayEnemigoEn(self.position().up(1))) {
         pieza.position(self.position().up(1))
@@ -80,7 +137,7 @@ object reyBlanco {
                                   self.añadirRecursos(enemigo.valor() / 2)
                                   score.addScore(enemigo.valor() / 2) })
   }
-  
+  */
   method limpiarAliadosInactivos() {
     const aliadosAEliminar = listaPiezasAliadas.filter(
       { aliado => (aliado.position().y() == 0) or (not game.hasVisual(aliado)) }
