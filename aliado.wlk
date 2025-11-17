@@ -5,38 +5,20 @@ import UI.*
 import images.*
 import oleadas.*
 import timers.*
+import pieza.*
 
-class Aliado {
-    var property valor
-    var property position = game.at(0, 1)
-    var property image
+class Aliado inherits Pieza(ultimaFila = game.height() - 1, color = blanco){
     var property combo = 1
     var property tickName = null
-    method posicionesDiagonales() 
+    var property coronación = new Coronación(piezaDueña = self)
+    method posicionesDiagonales()
 
-    method mover(posiciónx, posicióny) {
-        position = game.at(posiciónx, posicióny)
+    override method mover(posiciónx, posicióny) {
+        super(posiciónx, posicióny)
         self.intentarCoronar()
     }
 
-    method estaEnLaUltimaFila() {
-        return position.y() == (game.height() - 1)
-    }
-
-    method intentarCapturar() {
-        var capturado = false
-        
-        self.posicionesDiagonales().forEach(
-        { posicion =>
-            if (self.posicionValida(posicion) && not capturado) {
-            if (self.hayEnemigoEnPosicion(posicion)) {
-                const enemigo = self.enemigoEnPosicion(posicion)
-                self.capturarDirectamente(enemigo)
-                capturado = true
-            }
-            } }
-        )
-        // Verificar colisión frontal
+    /*// Verificar colisión frontal
         const posicionFrente = self.position().up(1) 
         if (self.posicionValida(posicionFrente) && self.hayEnemigoEnPosicion(posicionFrente)) { 
             const enemigoEnFrente = self.enemigoEnPosicion(posicionFrente) 
@@ -45,22 +27,23 @@ class Aliado {
                 reyBlanco.añadirRecursos(enemigoEnFrente.valor() / 2)
                 score.addScore(enemigoEnFrente.valor() / 2)
                 capturado = true
-        }
+        }*/
 
-        return capturado
-    }
     method posicionAleatoriaEnDiagonal(posicionesDiagonales) {
         return posicionesDiagonales.anyOne()
     }
+
     method hayEnemigoEnPosicion(posicion){
         return oleada.enemigosActivos().any({enemigo => enemigo.position() == posicion})
 
     }
+
     method enemigoEnPosicion(posicion){
         return oleada.enemigosActivos().find({enemigo => enemigo.position() == posicion})
 
     }
-    method capturarDirectamente(enemigo) {
+
+    override method capturar(enemigo) {
 
         const posicionCaptura = enemigo.position()
         self.mover(posicionCaptura.x(), posicionCaptura.y())
@@ -73,27 +56,14 @@ class Aliado {
             game.say(self, "x" + combo)
         }
         game.schedule(2000, {self.reiniciarCombos()})
-
     }
 
     method reiniciarCombos(){
         combo = 1
     }
 
-    method posicionValida(posicion) = (((posicion.x() >= 0) and (posicion.x() < 5)) and (posicion.y() >= 0)) and (posicion.y() < game.height())
-    
-    method desaparece() {
-        self.detenerTick()
-        game.schedule(500, {
-            const capturó = self.intentarCapturar()
-            if (not capturó) {
-                game.removeVisual(self)
-            }
-        })
-    }
-
     method intentarCoronar() {
-        if (self.estaEnLaUltimaFila()) {
+        if (self.esUltimaFila()) {
             self.coronar()
         }
     }
@@ -101,14 +71,12 @@ class Aliado {
     method coronar() {
         reyBlanco.añadirRecursos(valor * 5)
         score.addScore(valor * 5)
-        self.image(images.peonBlanco(true))
         self.detenerTick()
-        game.schedule(1400, { game.removeVisual(self) })
+        game.addVisual(coronación)
+        game.schedule(1400, { game.removeVisual(self)
+                              game.removeVisual(coronación) })
     }
     //@gabriel HABRIA QUE HACER UN TEMPLATE DE CORONAR CON LAS DISTINTAS PIEZAS PARA CAMBIAR LO DEL VALOR
-
-
-    method esNegro() = false
     
     method detenerTick(){
         if (self.tickName() != null) {

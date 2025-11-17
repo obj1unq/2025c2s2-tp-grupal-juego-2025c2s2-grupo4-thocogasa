@@ -1,18 +1,20 @@
 import oleadas.*
 import rey.*
+import images.*
 
 class Pieza {
-    var property image
-    var property position
-    var property vidas
-    var muerto
+    var property imagePieza
+    var property position = game.at(0, 0)
+    var property vidas = 1
+    var muerto = false
     var property valor
     var property ultimaFila
     const property color
 
+    method image() = if(muerto) images.piezaMuerta() else imagePieza
+
     method mover(posiciónx, posicióny) {
         position = game.at(posiciónx, posicióny)
-        self.esUltimaFila()
     }
 
     method esNegro()
@@ -28,20 +30,37 @@ class Pieza {
     }
 
     method esUltimaFila() {
-        ultimaFila = position.y() == ultimaFila
+        return ultimaFila == position.y()
     }
 
-    method posicionesCapturables() {}
+    method posicionesCapturables()
 
     method perderVida() {
         vidas = vidas - 1
     }
 
     method desaparece() {
+        muerto = true
         game.schedule(500, { game.removeVisual(self) })
     }
 
-    method capturar()
+    method intentarCapturar() {
+        var capturado = false
+
+        self.posicionesCapturables().forEach { pos =>  
+            if (self.puedeCapturar(pos)) {
+                const pieza = color.piezaContrariaEn(pos)
+                self.capturar(pieza)
+                capturado = true
+            }
+        }
+    }
+
+    method puedeCapturar(pos) {
+        return self.posicionValida(pos) && color.hayPieza(pos)
+    }
+
+    method capturar(pieza)
 
     method hayPiezaDeColor(_color, pos) {
         _color.hayPieza(pos)
@@ -52,10 +71,26 @@ object negro {
     method hayPieza(pos) {
         return oleada.enemigosActivos().any({enemigo => enemigo.position() == pos})
     }
+
+    method piezaEn(pos) {
+        return oleada.enemigosActivos().find({enemigo => enemigo.position() == pos})
+    }
+
+    method piezaContrariaEn(pos) {
+        return blanco.piezaEn(pos)
+    }
 }
 
 object blanco {
     method hayPieza(pos) {
         return reyBlanco.listaPiezasAliadas().any({aliado => aliado.position() == pos})
+    }
+
+    method piezaEn(pos) {
+        return reyBlanco.listaPiezasAliadas().find({aliado => aliado.position() == pos})
+    }
+
+    method piezaContrariaEn(pos) {
+        return negro.piezaEn(pos)
     }
 }

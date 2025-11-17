@@ -2,7 +2,6 @@ import oleadas.*
 object images {
     method peonNegro() = "PNegro.png"
     method peonBlanco(corono) = if (corono) "PBlancoCoronar.gif" else "PBlanco.png"
-    method peonMuerto() = "PBlancoMuerto.gif"
     method caballoNegro() = "CNegro.png"
     method caballoBlanco() = "CBlanco.png"
     method alfilNegro() = "ANegro.png"
@@ -16,6 +15,13 @@ object images {
 class JaqueMate {
     const piezaDueña
     var property image = "CheckMate.gif"
+
+    method position() = piezaDueña.position()
+}
+
+class Coronación {
+    const piezaDueña
+    var property image = "Coronacion.gif"
 
     method position() = piezaDueña.position()
 }
