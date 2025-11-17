@@ -50,7 +50,7 @@ class Pieza {
         var capturado = false
 
         self.posicionesCapturables().forEach { pos =>  
-            if (self.puedeCapturar(pos)) {
+            if (self.puedeCapturar(pos) && !capturado) {
                 const pieza = color.piezaContrariaEn(pos)
                 self.capturar(pieza)
                 capturado = true

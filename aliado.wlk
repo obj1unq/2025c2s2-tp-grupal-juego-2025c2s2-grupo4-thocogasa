@@ -16,16 +16,20 @@ class Aliado inherits Pieza(ultimaFila = game.height() - 1, color = blanco, acce
         self.intentarCoronar()
     }
 
-    /*// Verificar colisión frontal
+    override method intentarCapturar() {
+        var capturado = super()
+
         const posicionFrente = self.position().up(1) 
-        if (self.posicionValida(posicionFrente) && self.hayEnemigoEnPosicion(posicionFrente)) { 
-            const enemigoEnFrente = self.enemigoEnPosicion(posicionFrente) 
-                enemigoEnFrente.desaparece() 
-                game.schedule(500, { game.removeVisual(self) }) 
-                reyBlanco.añadirRecursos(enemigoEnFrente.valor() / 2)
-                score.addScore(enemigoEnFrente.valor() / 2)
-                capturado = true
-    }*/
+        if (self.posicionValida(posicionFrente) && color.hayPiezaContraria(posicionFrente)) { 
+            const enemigoEnFrente = color.piezaContrariaEn(posicionFrente) 
+            enemigoEnFrente.desaparece() 
+            game.schedule(500, { game.removeVisual(self) }) 
+            reyBlanco.añadirRecursos(enemigoEnFrente.valor() / 2)
+            score.addScore(enemigoEnFrente.valor() / 2)
+            capturado = true
+        }
+    }
+
 
     override method capturar(enemigo) {
         super(enemigo)
