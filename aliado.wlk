@@ -7,10 +7,9 @@ import oleadas.*
 import timers.*
 import pieza.*
 
-class Aliado inherits Pieza(ultimaFila = game.height() - 1, color = blanco){
+class Aliado inherits Pieza(ultimaFila = game.height() - 1, color = blanco, accesorio = new Coronación(piezaDueña = self)){
     var property combo = 1
     var property tickName = null
-    var property coronación = new Coronación(piezaDueña = self)
     method posicionesDiagonales()
 
     override method mover(posiciónx, posicióny) {
@@ -40,14 +39,10 @@ class Aliado inherits Pieza(ultimaFila = game.height() - 1, color = blanco){
 
     method enemigoEnPosicion(posicion){
         return oleada.enemigosActivos().find({enemigo => enemigo.position() == posicion})
-
     }
 
     override method capturar(enemigo) {
-
-        const posicionCaptura = enemigo.position()
-        self.mover(posicionCaptura.x(), posicionCaptura.y())
-        enemigo.desaparece()
+        super(enemigo)
         
         reyBlanco.añadirRecursos(enemigo.valor() * combo)
         score.addScore(enemigo.valor() * combo)
@@ -72,9 +67,9 @@ class Aliado inherits Pieza(ultimaFila = game.height() - 1, color = blanco){
         reyBlanco.añadirRecursos(valor * 5)
         score.addScore(valor * 5)
         self.detenerTick()
-        game.addVisual(coronación)
+        game.addVisual(accesorio)
         game.schedule(1400, { game.removeVisual(self)
-                              game.removeVisual(coronación) })
+                              game.removeVisual(accesorio) })
     }
     //@gabriel HABRIA QUE HACER UN TEMPLATE DE CORONAR CON LAS DISTINTAS PIEZAS PARA CAMBIAR LO DEL VALOR
     

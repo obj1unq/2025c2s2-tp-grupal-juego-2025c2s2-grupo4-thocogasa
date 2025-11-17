@@ -10,6 +10,7 @@ class Pieza {
     var property valor
     var property ultimaFila
     const property color
+    const accesorio
 
     method image() = if(muerto) images.piezaMuerta() else imagePieza
 
@@ -41,6 +42,9 @@ class Pieza {
 
     method desaparece() {
         muerto = true
+        if (game.hasVisual(accesorio)) {
+            game.removeVisual(accesorio)
+        }
         game.schedule(500, { game.removeVisual(self) })
     }
 
@@ -57,10 +61,14 @@ class Pieza {
     }
 
     method puedeCapturar(pos) {
-        return self.posicionValida(pos) && color.hayPieza(pos)
+        return self.posicionValida(pos) && color.piezaContrariaEn(pos)
     }
 
-    method capturar(pieza)
+    method capturar(pieza) {
+        const posicionCaptura = pieza.position()
+        self.mover(posicionCaptura.x(), posicionCaptura.y())
+        pieza.desaparece()
+    }
 
     method hayPiezaDeColor(_color, pos) {
         _color.hayPieza(pos)
