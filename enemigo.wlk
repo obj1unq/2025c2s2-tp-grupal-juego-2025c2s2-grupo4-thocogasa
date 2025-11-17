@@ -31,10 +31,8 @@ class Enemigo {
 
   method estáDentroDelTablero(posicion) = (((posicion.x() >= 0) && (posicion.x() < 5)) && (posicion.y() >= 0)) && (posicion.y() < game.height())
 
-  //method piezasNegrasEn(pos) = game.getObjectsIn(pos).filter({ obj => return obj.esNegro() })
   method piezasNegrasEn(pos) = oleada.enemigosActivos().filter({ obj => obj.position() == pos })
 
-  //method piezasNegrasEn(pos) = game.getObjectsIn(pos).filter({ obj => return obj.esNegro() })
 //devuelve toda una lista de enemigos lo puedo reemlazar por la lista de enemigos activos y 
   method image() {
     return if (muerto) images.piezaMuerta() else imagenPieza
@@ -69,19 +67,19 @@ class Enemigo {
     var capturó = false
     self.posicionesCapturables().forEach(
       { pos =>
-        if (not capturó) {
-          if (self.posicionValida(pos)) {
-            const piezasEnPos = game.getObjectsIn(pos).filter(
-              { pieza =>  return not pieza.esNegro() }
-            )
-            if (not piezasEnPos.isEmpty() && position.y() != 1) {
-              const piezaAComer = piezasEnPos.first()
-              position = pos
-              piezaAComer.desaparece()
-              capturó = true
-            }
+          if (not capturó) {
+                if (self.posicionValida(pos)) {
+                          const piezasEnPos = game.getObjectsIn(pos).filter(
+                          { pieza =>  return not pieza.esNegro() }
+                          )
+                          if (not piezasEnPos.isEmpty() && position.y() != 1) {
+                                          const piezaAComer = piezasEnPos.first()
+                                          position = pos
+                                          piezaAComer.desaparece()
+                                          capturó = true
+                          }
+                }
           }
-        }
       }
     )
   }

@@ -48,7 +48,6 @@ object reyBlanco {
   }
   
   method perderVida() {
-    //sonidos.playGolpeAlRey() // aca para que coincida con el momento. poner otro sonido
     vidas -= 1
   }
   
@@ -59,9 +58,7 @@ object reyBlanco {
   method puedeColocar(pieza, ubicacion) {
     return recursos >= pieza.valor() && not self.hayPiezasAliadas(ubicacion) && mecanicasJuego.juegoActivo()
   }
-//
-  //method hayPiezasAliadas(pos) = game.getObjectsIn(pos).filter({ obj => return !obj.esNegro()  }).isEmpty()
-//  method hayPiezasAliadas(pos) = listaPiezasAliadas.filter({ obj => obj.position() == pos  }).isEmpty() funciona con esto
+
   method hayPiezasAliadas(pos) {
     return listaPiezasAliadas.any( { aliado => aliado.position() == pos })
   }
