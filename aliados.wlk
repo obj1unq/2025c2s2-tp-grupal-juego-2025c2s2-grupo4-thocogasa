@@ -5,6 +5,7 @@ import UI.*
 import aliado.*
 import images.*
 import proyectiles.*
+import timers.*
 
 class PeonBlanco inherits Aliado(valor = 20, image = images.peonBlanco(false)) {
     override method posicionesDiagonales() = [self.position().up(1).left(1), self.position().up(1).right(1)]
@@ -24,7 +25,8 @@ class TorreBlanca inherits Proyectil (
         reyBlanco.añadirRecursos(valor / 4)
         score.addScore(valor / 4)
         self.image(images.peonBlanco(true))
-        game.schedule(1400, { game.removeVisual(self) })
+            self.detenerTick()
+            game.schedule(1400, { game.removeVisual(self) })
     }
 }
 
@@ -41,16 +43,20 @@ class AlfilBlanco inherits Proyectil (
         reyBlanco.añadirRecursos(valor / 4)
         score.addScore(valor / 4)
         self.image(images.peonBlanco(true))
-        game.schedule(1400, { game.removeVisual(self) })
+                self.detenerTick()
+                game.schedule(1400, { game.removeVisual(self) })
         }
     
     override method avanzarYComer() {
-        game.onTick(250, "movimiento", {
-            const miPos = self.position()
-            const random = #{1, -1}.anyOne()
-            self.mover(miPos.x()+random, miPos.y()+1)
-            self.intentarCapturar()
-        })
+        if (self.tickName() == null) {
+            self.tickName(timers.nextName("mov_alfil"))
+            game.onTick(250, self.tickName(), {
+                const miPos = self.position()
+                const random = #{1, -1}.anyOne()
+                self.mover(miPos.x()+random, miPos.y()+1)
+                self.intentarCapturar()
+            })
+        }
 
     }
 

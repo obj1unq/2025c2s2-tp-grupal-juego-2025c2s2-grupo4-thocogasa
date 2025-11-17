@@ -4,12 +4,14 @@ import wollok.game.*
 import UI.*
 import images.*
 import oleadas.*
+import timers.*
 
 class Aliado {
     var property valor
     var property position = game.at(0, 1)
     var property image
     var property combo = 1
+    var property tickName = null
     method posicionesDiagonales() 
 
     method mover(posiciónx, posicióny) {
@@ -39,11 +41,8 @@ Como puedo intentar recapturarlo para no hacer foreach
 ahora ¿que paso con las posiciones diagonales?
 Son 2, izquierda o deracha pero 
         const posicionDiagonal = self.posicionAleatoriaEnDiagonal(self.posicionesDiagonales())//self.posicionesDiagonales()    //devuelve una lista de dos posibles pocisiones 
-        if(self.hayEnemigoEnPosicion(posicionDiagonal)){
-            console.println(posicionDiagonal)
-            
+        if(self.hayEnemigoEnPosicion(posicionDiagonal)){            
             const enemigo = self.enemigoEnPosicion(posicionDiagonal)
-            console.println(enemigo.position())
             self.capturarDirectamente(enemigo)
             capturado = true
         }
@@ -123,6 +122,7 @@ Son 2, izquierda o deracha pero
     method posicionValida(posicion) = (((posicion.x() >= 0) and (posicion.x() < game.width())) and (posicion.y() >= 0)) and (posicion.y() < game.height())
     
     method desaparece() {
+        self.detenerTick()
         game.schedule(500, {
             const capturó = self.intentarCapturar()
             if (not capturó) {
@@ -141,6 +141,7 @@ Son 2, izquierda o deracha pero
         reyBlanco.añadirRecursos(valor * 5)
         score.addScore(valor * 5)
         self.image(images.peonBlanco(true))
+        self.detenerTick()
         game.schedule(1400, { game.removeVisual(self) })
     }
     //@gabriel HABRIA QUE HACER UN TEMPLATE DE CORONAR CON LAS DISTINTAS PIEZAS PARA CAMBIAR LO DEL VALOR
@@ -148,5 +149,12 @@ Son 2, izquierda o deracha pero
 
 
     method esNegro() = false
+    
+    method detenerTick(){
+        if (self.tickName() != null) {
+            game.removeTickEvent(self.tickName())
+            self.tickName() == null
+        }
+    }
     
 }

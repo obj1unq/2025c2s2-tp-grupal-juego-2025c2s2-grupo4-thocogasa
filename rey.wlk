@@ -60,9 +60,6 @@ object reyBlanco {
     const hayRecursos = recursos >= pieza.valor()
     const noHayPieza = not self.hayPiezasAliadas(ubicacion)
     const activo = mecanicasJuego.juegoActivo()
-    console.println("Recu "+hayRecursos)
-    console.println("hayPieza:"+noHayPieza)
-    console.println("juego: "+activo)
     return recursos >= pieza.valor() && not self.hayPiezasAliadas(ubicacion) && mecanicasJuego.juegoActivo()
   }
 //
