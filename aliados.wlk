@@ -7,24 +7,24 @@ import images.*
 import proyectiles.*
 import timers.*
 
-class PeonBlanco inherits Aliado(valor = 20, image = images.peonBlanco(false)) {
+class PeonBlanco inherits Aliado(valor = 20, imagePieza = images.peonBlanco(false)) {
     override method posicionesDiagonales() = [self.position().up(1).left(1), self.position().up(1).right(1)]
 }
 
-class CaballoBlanco inherits Aliado(valor = 50, image = images.caballoBlanco()) {
+class CaballoBlanco inherits Aliado(valor = 50, imagePieza = images.caballoBlanco()) {
     override method posicionesDiagonales() = [self.position().up(2).left(1), self.position().up(2).right(1), self.position().up(1).left(2), self.position().up(1).right(2), self.position().down(2).left(1), self.position().down(1).left(2), self.position().down(2).right(1), self.position().down(1).right(2)]
 }
 
 class TorreBlanca inherits Proyectil (
     valor = 100,
-    image = images.torreBlanco()) {
+    imagePieza = images.torreBlanco()) {
         override method posicionesDiagonales() = 
             [self.position().up(2), self.position().up(1)]
 
         override method coronar(){
         reyBlanco.añadirRecursos(valor / 4)
         score.addScore(valor / 4)
-        self.image(images.peonBlanco(true))
+        self.imagePieza(images.peonBlanco(true))
             self.detenerTick()
             game.schedule(1400, { game.removeVisual(self) })
     }
@@ -32,7 +32,7 @@ class TorreBlanca inherits Proyectil (
 
 class AlfilBlanco inherits Proyectil (
     valor = 70,
-    image = images.alfilBlanco()
+    imagePieza = images.alfilBlanco()
 ){
     override method posicionesDiagonales() = [
         self.position().up(1).right(1), 
@@ -42,7 +42,7 @@ class AlfilBlanco inherits Proyectil (
         override method coronar(){
         reyBlanco.añadirRecursos(valor / 4)
         score.addScore(valor / 4)
-        self.image(images.peonBlanco(true))
+        self.imagePieza(images.peonBlanco(true))
                 self.detenerTick()
                 game.schedule(1400, { game.removeVisual(self) })
         }
