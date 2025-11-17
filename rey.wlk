@@ -3,24 +3,22 @@ import aliados.*
 import UI.*
 import wollok.game.*
 import oleadas.*
+import images.*
+import pieza.*
 
 
-object reyBlanco {
+object reyBlanco inherits Pieza(ultimaFila = game.height() - 1, color = blanco, imagenPieza = images.rey(), vidas = 3, position = game.at(2, 0)){
   var property recursos = 100
-  var property vidas = 3
-  var property position = game.at(2, 0)
   const listaPiezasAliadas = []
   
   method listaPiezasAliadas() = listaPiezasAliadas
   
-  method image() =
-    if (vidas <= 0) "RBlanco3Hit.png"
-    else if (vidas == 1) "RBlanco2Hit.png"
-    else if (vidas == 2) "RBlanco1Hit.png"
-    else "RBlanco.png"
-  
-  method esNegro() = false
-  
+  override method image() =
+    if (vidas <= 0) images.rey1()
+    else if (vidas == 1) images.rey2()
+    else if (vidas == 2) images.rey3()
+    else images.rey()
+    
   method moverDerecha() {
     self.validarMover(self.position().right(1))
     position = self.position().right(1)
@@ -41,14 +39,6 @@ object reyBlanco {
   
   method restarRecursos(valor) {
     recursos -= valor
-  }
-
-  method desaparece() { // El rey no desaparece de una pero lo necesitamos por el polimorfismo
-    self.perderVida()
-  }
-  
-  method perderVida() {
-    vidas -= 1
   }
   
   method puedeMover(

@@ -7,10 +7,10 @@ class Pieza {
     var property position = game.at(0, 0)
     var property vidas = 1
     var muerto = false
-    var property valor
+    var property valor = 0
     var property ultimaFila
     const property color
-    const accesorio
+    const accesorio = null
 
     method image() = if(muerto) images.piezaMuerta() else imagePieza
 
@@ -32,10 +32,14 @@ class Pieza {
         return ultimaFila == position.y()
     }
 
-    method posicionesCapturables()
+    method posicionesCapturables() = []
 
     method perderVida() {
-        vidas = vidas - 1
+        if (vidas > 0) {
+            vidas = vidas - 1
+        } else {
+            self.desaparece()
+        }
     }
 
     method desaparece() {
