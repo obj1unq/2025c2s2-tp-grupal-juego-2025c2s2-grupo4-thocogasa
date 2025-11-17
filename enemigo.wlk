@@ -17,7 +17,7 @@ class Enemigo inherits Pieza(position = game.at((0 .. 4).anyOne(), 7), ultimaFil
     
   method avanzar() {
     if (not muerto) {
-      if (position.y() == 1 && contador <= 1){
+      if (position.y() == 1 && contador >= 1){
         contador = contador - 1
         game.say(self, "contador " + contador)
         self.intentarAñadirJaque()

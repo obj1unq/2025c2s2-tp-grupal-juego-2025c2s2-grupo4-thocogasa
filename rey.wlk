@@ -7,7 +7,7 @@ import images.*
 import pieza.*
 
 
-object reyBlanco inherits Pieza(ultimaFila = game.height() - 1, color = blanco, imagenPieza = images.rey(), vidas = 3, position = game.at(2, 0)){
+class reyBlanco inherits Pieza(ultimaFila = game.height() - 1, color = blanco, vidas = 3, position = game.at(2, 0)){
   var property recursos = 100
   const listaPiezasAliadas = []
   
@@ -33,12 +33,12 @@ object reyBlanco inherits Pieza(ultimaFila = game.height() - 1, color = blanco, 
     if (!self.puedeMover(unaPosicion)) self.error("")
   }
   
-  method añadirRecursos(valor) {
-    recursos += valor
+  method añadirRecursos(_valor) {
+    recursos += _valor
   }
   
-  method restarRecursos(valor) {
-    recursos -= valor
+  method restarRecursos(_valor) {
+    recursos -= _valor
   }
   
   method puedeMover(
