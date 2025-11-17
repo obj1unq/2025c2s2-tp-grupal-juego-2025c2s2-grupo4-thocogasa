@@ -80,7 +80,7 @@ class Aliado {
         combo = 1
     }
 
-    method posicionValida(posicion) = (((posicion.x() >= 0) and (posicion.x() < game.width())) and (posicion.y() >= 0)) and (posicion.y() < game.height())
+    method posicionValida(posicion) = (((posicion.x() >= 0) and (posicion.x() < 5)) and (posicion.y() >= 0)) and (posicion.y() < game.height())
     
     method desaparece() {
         self.detenerTick()
