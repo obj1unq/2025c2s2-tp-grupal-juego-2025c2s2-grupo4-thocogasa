@@ -17,9 +17,7 @@ class Pieza {
     method mover(posiciónx, posicióny) {
         position = game.at(posiciónx, posicióny)
     }
-
-    method esNegro()
-
+    
     method estaDentroDelTablero(posicion) = (((posicion.x() >= 0) and (posicion.x() < 5)) and (posicion.y() >= 0)) and (posicion.y() < game.height())
     
     method posicionValida(posicion) {

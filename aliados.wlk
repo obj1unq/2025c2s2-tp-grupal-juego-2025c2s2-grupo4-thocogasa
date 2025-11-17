@@ -8,17 +8,17 @@ import proyectiles.*
 import timers.*
 
 class PeonBlanco inherits Aliado(valor = 20, imagePieza = images.peonBlanco(false)) {
-    override method posicionesDiagonales() = [self.position().up(1).left(1), self.position().up(1).right(1)]
+    override method posicionesCapturables() = [self.position().up(1).left(1), self.position().up(1).right(1)]
 }
 
 class CaballoBlanco inherits Aliado(valor = 50, imagePieza = images.caballoBlanco()) {
-    override method posicionesDiagonales() = [self.position().up(2).left(1), self.position().up(2).right(1), self.position().up(1).left(2), self.position().up(1).right(2), self.position().down(2).left(1), self.position().down(1).left(2), self.position().down(2).right(1), self.position().down(1).right(2)]
+    override method posicionesCapturables() = [self.position().up(2).left(1), self.position().up(2).right(1), self.position().up(1).left(2), self.position().up(1).right(2), self.position().down(2).left(1), self.position().down(1).left(2), self.position().down(2).right(1), self.position().down(1).right(2)]
 }
 
 class TorreBlanca inherits Proyectil (
     valor = 100,
     imagePieza = images.torreBlanco()) {
-        override method posicionesDiagonales() = 
+        override method posicionesCapturables() = 
             [self.position().up(2), self.position().up(1)]
 
         override method coronar(){
@@ -34,7 +34,7 @@ class AlfilBlanco inherits Proyectil (
     valor = 70,
     imagePieza = images.alfilBlanco()
 ){
-    override method posicionesDiagonales() = [
+    override method posicionesCapturables() = [
         self.position().up(1).right(1), 
         self.position().up(1).left(1)
         ]

@@ -10,7 +10,6 @@ import pieza.*
 class Aliado inherits Pieza(ultimaFila = game.height() - 1, color = blanco, accesorio = new Coronación(piezaDueña = self)){
     var property combo = 1
     var property tickName = null
-    method posicionesDiagonales()
 
     override method mover(posiciónx, posicióny) {
         super(posiciónx, posicióny)
