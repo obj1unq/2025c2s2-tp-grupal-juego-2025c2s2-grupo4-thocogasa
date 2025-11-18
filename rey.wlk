@@ -18,10 +18,10 @@ object reyBlanco inherits Pieza (
   var property recursos = 100
   const property listaPiezasAliadas = []
   
-  override method imagePieza() =
-    if (vidas <= 0) images.rey1()
+  override method image() =
+    if (vidas <= 0) images.rey3()
     else if (vidas == 1) images.rey2()
-    else if (vidas == 2) images.rey3()
+    else if (vidas == 2) images.rey1()
     else images.rey()
     
   method moverDerecha() {
@@ -56,7 +56,7 @@ object reyBlanco inherits Pieza (
 
   method intentarColocarPieza(pieza) {
       if (self.puedeColocar(pieza, self.position().up(1)) && 
-        !color.piezaContrariaEn(self.position().up(1))) {
+        !color.hayPiezaContraria(self.position().up(1))) {
             self.colocarPiezaEn(pieza, self.position().up(1) )// 
       } else if (
         self.puedeColocar(pieza, self.position().up(1)) && 
