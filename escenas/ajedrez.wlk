@@ -30,23 +30,9 @@ object ajedrez inherits Escena {
 		
 		
 		// Controles
-		keyboard.right().onPressDo({ reyBlanco.moverDerecha() })
-		keyboard.left().onPressDo({ reyBlanco.moverIzquierda() })
-		keyboard.num(1).onPressDo(
-			{ reyBlanco.intentarColocarPieza(new PeonBlanco()) }
-		)
-		keyboard.num(2).onPressDo(
-			{ reyBlanco.intentarColocarPieza(new CaballoBlanco()) }
-		)
-
-		keyboard.num(3).onPressDo(
-			{reyBlanco.disparar(new TorreBlanca())}
-		)
-
-		keyboard.num(4).onPressDo(
-			{reyBlanco.disparar(new AlfilBlanco())}
-		)
-
+		game.addVisual(controles)
+		visuales.add(controles)
+		controles.init()
 
 		keyboard.l().onPressDo({ leaderboard.toggle() })
 		
@@ -69,5 +55,27 @@ object ajedrez inherits Escena {
 		oleada.reiniciar()
 		
 		super()
+	}
+}
+
+object controles {
+	var property position = game.center()
+	method init() {
+		keyboard.right().onPressDo({ reyBlanco.mover(reyBlanco.position().x() + 1, reyBlanco.position().y()) })
+		keyboard.left().onPressDo({ reyBlanco.mover(reyBlanco.position().x() - 1, reyBlanco.position().y()) })
+		keyboard.num(1).onPressDo(
+			{ reyBlanco.intentarColocarPieza(new PeonBlanco()) }
+		)
+		keyboard.num(2).onPressDo(
+			{ reyBlanco.intentarColocarPieza(new CaballoBlanco()) }
+		)
+
+		keyboard.num(3).onPressDo(
+			{reyBlanco.disparar(new TorreBlanca())}
+		)
+
+		keyboard.num(4).onPressDo(
+			{reyBlanco.disparar(new AlfilBlanco())}
+		)
 	}
 }

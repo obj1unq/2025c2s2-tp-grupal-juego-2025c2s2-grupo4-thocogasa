@@ -6,6 +6,7 @@ import UI.*
 import oleadas.*
 import leaderboard.*
 import namePrompt.*
+import escenas.ajedrez.*
 
 object mecanicasJuego {
   var property verificacionActiva = false
@@ -59,6 +60,8 @@ object mecanicasJuego {
     
     game.say(reyBlanco, "¡Juego reiniciado!")
     
+    game.addVisual(controles)
+    ajedrez.visuales().add(controles)
     // Reiniciar el juego después de 1 segundo
     game.schedule(
       1000,
@@ -76,9 +79,10 @@ object mecanicasJuego {
     game.schedule(0, { self.requestPlayerName() })
   }
   
-    method requestPlayerName() {
-      namePrompt.ask()
-    }
+  method requestPlayerName() {
+    namePrompt.ask()
+  }
+
   method juegoActivo() = verificacionActiva
   
   method verificarTodasLasColisiones() {
@@ -87,7 +91,7 @@ object mecanicasJuego {
     )
     
     if (oleada.oleadaCompleta()) self.siguienteNivel()
-  }
+  }// TODO: SANTIAGO QUÉ CARAJO ES ESTO
   
   method siguienteNivel() {
     if (not oleada.estaEnTransicion()) {

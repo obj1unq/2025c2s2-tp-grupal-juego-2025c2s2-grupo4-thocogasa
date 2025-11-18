@@ -25,18 +25,6 @@ object reyBlanco inherits Pieza (
     else if (vidas == 1) images.rey2()
     else if (vidas == 2) images.rey1()
     else images.rey()
-    
-  method moverDerecha() {
-    const posicionX = self.position().x()
-    const posicionY = self.position().y()
-    self.mover(posicionX+1 , posicionY)
-  }
-  
-  method moverIzquierda() {
-    const posicionX = self.position().x()
-    const posicionY = self.position().y()
-    self.mover(posicionX-1 , posicionY)
-  }
   
   method añadirRecursos(_valor) {
     recursos += _valor
