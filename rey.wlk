@@ -7,30 +7,33 @@ import images.*
 import pieza.*
 
 
-class reyBlanco inherits Pieza(ultimaFila = game.height() - 1, color = blanco, vidas = 3, position = game.at(2, 0)){
+object reyBlanco inherits Pieza ( 
+  ultimaFila = game.height() - 1, 
+  color = blanco, 
+  vidas = 3, 
+  position = game.at(2, 0),
+  imagePieza = images.rey()
+
+  ) {
   var property recursos = 100
-  const listaPiezasAliadas = []
+  const property listaPiezasAliadas = []
   
-  method listaPiezasAliadas() = listaPiezasAliadas
-  
-  override method image() =
+  override method imagePieza() =
     if (vidas <= 0) images.rey1()
     else if (vidas == 1) images.rey2()
     else if (vidas == 2) images.rey3()
     else images.rey()
     
   method moverDerecha() {
-    self.validarMover(self.position().right(1))
-    position = self.position().right(1)
+    const posicionX = self.position().x()
+    const posicionY = self.position().y()
+    self.mover(posicionX+1 , posicionY)
   }
   
   method moverIzquierda() {
-    self.validarMover(self.position().left(1))
-    position = self.position().left(1)
-  }
-  
-  method validarMover(unaPosicion) {
-    if (!self.puedeMover(unaPosicion)) self.error("")
+    const posicionX = self.position().x()
+    const posicionY = self.position().y()
+    self.mover(posicionX-1 , posicionY)
   }
   
   method añadirRecursos(_valor) {
@@ -41,46 +44,43 @@ class reyBlanco inherits Pieza(ultimaFila = game.height() - 1, color = blanco, v
     recursos -= _valor
   }
   
-  method puedeMover(
-    unaPosicion
-  ) = ((unaPosicion.x() >= 0) && (unaPosicion.x() <= 4)) && mecanicasJuego.juegoActivo()
-
   method puedeColocar(pieza, ubicacion) {
-    return recursos >= pieza.valor() && not self.hayPiezasAliadas(ubicacion) && mecanicasJuego.juegoActivo()
+    return self.recursosSuficientesPara(pieza) && 
+        not self.hayPiezaDeColor(blanco, ubicacion) && 
+          mecanicasJuego.juegoActivo()
   }
 
-  method hayPiezasAliadas(pos) {
-    return listaPiezasAliadas.any( { aliado => aliado.position() == pos })
+  method recursosSuficientesPara(pieza){
+    return recursos >= pieza.valor()
   }
 
   method intentarColocarPieza(pieza) {
-      if (self.puedeColocar(pieza, self.position().up(1)) && !self.hayEnemigoEn(self.position().up(1))) {
-        pieza.position(self.position().up(1))
-        game.addVisual(pieza)
-        listaPiezasAliadas.add(pieza)
-        self.restarRecursos(pieza.valor())
-      } else if (self.puedeColocar(pieza, self.position().up(1)) && self.hayEnemigoEn(self.position().up(1))) {
-        self.restarRecursos(pieza.valor())
-        self.desaparecerEnemigoSiHay(self.position().up(1))
+      if (self.puedeColocar(pieza, self.position().up(1)) && 
+        !color.piezaContrariaEn(self.position().up(1))) {
+            self.colocarPiezaEn(pieza, self.position().up(1) )// 
+      } else if (
+        self.puedeColocar(pieza, self.position().up(1)) && 
+        self.hayPiezaDeColor(negro, self.position().up(1))
+        ) {
+            self.restarRecursos(pieza.valor())
+            self.desaparecerEnemigoSiHay(self.position().up(1))
       }
   }
 
-  method hayEnemigoEn(posicion){
-      return oleada.enemigosActivos().any({enemigo => enemigo.position() == posicion})
-
-  }
+  method colocarPiezaEn(pieza, pos) {
+      pieza.position(pos)
+      game.addVisual(pieza)
+      listaPiezasAliadas.add(pieza)
+      self.restarRecursos(pieza.valor())
+  } //metí este método para poder disparar directamente desde la posicion del Rey
 
   method enemigoEnPosicionADesaparecer(posicion) {
-    return if(self.hayEnemigoEn(posicion)) self.enemigoEnPosicion(posicion)
-  }
-
-  method enemigoEnPosicion(posicion){
-    return oleada.enemigosActivos().find({enemigo => enemigo.position() == posicion})
+    return if(color.hayPiezaContraria(posicion)) color.piezaContrariaEn(posicion)
   }
 
   method desaparecerEnemigoSiHay(pos) {
     const enemigo = self.enemigoEnPosicionADesaparecer(pos)
-    if(self.hayEnemigoEn(pos)){
+    if(color.hayPiezaContraria(pos)){
       enemigo.desaparece()
       self.añadirRecursos(enemigo.valor() / 2)
       score.addScore(enemigo.valor() / 2)
@@ -102,7 +102,9 @@ class reyBlanco inherits Pieza(ultimaFila = game.height() - 1, color = blanco, v
   }
 
   method disparar(proyectil) {
-    self.intentarColocarPieza(proyectil)
-    proyectil.avanzarYComer()
-  }
+    if (self.recursosSuficientesPara(proyectil)) {
+      self.colocarPiezaEn(proyectil, position)
+      proyectil.avanzarYComer()
+    }
+  } //ahora el rey dispara desde su posición, y sólo chequea por validez de recursos
 }

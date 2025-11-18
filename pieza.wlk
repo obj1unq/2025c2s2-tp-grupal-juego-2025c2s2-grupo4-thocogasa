@@ -15,7 +15,8 @@ class Pieza {
     method image() = if(muerto) images.piezaMuerta() else imagePieza
 
     method mover(posiciónx, posicióny) {
-        position = game.at(posiciónx, posicióny)
+        if (self.estaDentroDelTablero(game.at(posiciónx, posicióny))){
+            position = game.at(posiciónx, posicióny)}
     }
     
     method estaDentroDelTablero(posicion) = (((posicion.x() >= 0) and (posicion.x() < 5)) and (posicion.y() >= 0)) and (posicion.y() < game.height())
@@ -73,7 +74,7 @@ class Pieza {
     }
 
     method hayPiezaDeColor(_color, pos) {
-        _color.hayPieza(pos)
+       return _color.hayPieza(pos)
     }
 }
 
