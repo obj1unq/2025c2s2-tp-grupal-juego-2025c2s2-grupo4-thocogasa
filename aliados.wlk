@@ -7,7 +7,7 @@ import images.*
 import proyectiles.*
 import timers.*
 
-class PeonBlanco inherits Aliado(valor = 20, imagePieza = images.peonBlanco(false)) {
+class PeonBlanco inherits Aliado(valor = 20, imagePieza = images.peonBlanco()) {
     override method posicionesCapturables() = [self.position().up(1).left(1), self.position().up(1).right(1)]
 }
 

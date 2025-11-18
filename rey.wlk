@@ -71,7 +71,7 @@ object reyBlanco inherits Pieza (
   method desaparecerEnemigoSiHay(pos) {
     const enemigo = self.enemigoEnPosicionADesaparecer(pos)
     if(color.hayPiezaContraria(pos)){
-      enemigo.desaparece()
+      enemigo.desaparece(500)
       self.añadirRecursos(enemigo.valor() / 2)
       score.addScore(enemigo.valor() / 2)
     }

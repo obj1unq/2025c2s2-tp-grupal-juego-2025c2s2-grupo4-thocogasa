@@ -24,9 +24,10 @@ class Proyectil inherits Aliado {
     override method coronar(){
         reyBlanco.añadirRecursos(valor.div(4))
         score.addScore(valor.div(4))
-        self.imagePieza(images.peonBlanco(true))
+        game.addVisual(accesorio)
         self.detenerTick()
-        game.schedule(1400, { game.removeVisual(self) })
+        game.schedule(1400, { game.removeVisual(self)
+                              game.removeVisual(accesorio) })
     }
 
     override method mover(posiciónx, posicióny) {
@@ -37,8 +38,8 @@ class Proyectil inherits Aliado {
         }
     }
 
-    override method desaparece(){
+    override method desaparece(tiempo){
         self.detenerTick()
-        super()
+        super(tiempo)
     }
 }

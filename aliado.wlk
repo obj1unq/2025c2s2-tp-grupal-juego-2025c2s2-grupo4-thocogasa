@@ -22,8 +22,8 @@ class Aliado inherits Pieza(ultimaFila = game.height() - 1, color = blanco, acce
         const posicionFrente = self.position().up(1) 
         if (self.posicionValida(posicionFrente) && color.hayPiezaContraria(posicionFrente)) { 
             const enemigoEnFrente = color.piezaContrariaEn(posicionFrente) 
-            enemigoEnFrente.desaparece() 
-            game.schedule(500, { game.removeVisual(self) }) 
+            enemigoEnFrente.desaparece(250)
+            self.desaparece(500)
             reyBlanco.añadirRecursos(enemigoEnFrente.valor() / 2)
             score.addScore(enemigoEnFrente.valor() / 2)
             capturado = true
@@ -61,7 +61,6 @@ class Aliado inherits Pieza(ultimaFila = game.height() - 1, color = blanco, acce
         game.schedule(1400, { game.removeVisual(self)
                               game.removeVisual(accesorio) })
     }
-    //@gabriel HABRIA QUE HACER UN TEMPLATE DE CORONAR CON LAS DISTINTAS PIEZAS PARA CAMBIAR LO DEL VALOR
     
     method detenerTick(){
         if (self.tickName() != null) {

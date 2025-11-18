@@ -44,7 +44,7 @@ class Enemigo inherits Pieza(position = game.at((0 .. 4).anyOne(), 7), ultimaFil
         mecanicasJuego.gameOver()
       } else {
         reyBlanco.perderVida()
-        self.desaparece()
+        self.desaparece(500)
       }
     }
   }

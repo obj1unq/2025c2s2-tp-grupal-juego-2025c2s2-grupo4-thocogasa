@@ -1,7 +1,7 @@
 import oleadas.*
 object images {
     method peonNegro() = "PNegro.png"
-    method peonBlanco(corono) = if (corono) "PBlancoCoronar.gif" else "PBlanco.png"
+    method peonBlanco() = "PBlanco.png"
     method caballoNegro() = "CNegro.png"
     method caballoBlanco() = "CBlanco.png"
     method alfilNegro() = "ANegro.png"
@@ -25,7 +25,7 @@ class JaqueMate {
 
 class Coronación {
     const piezaDueña
-    var property image = "Coronacion.gif"
+    var property image = "Coronar.gif"
 
     method position() = piezaDueña.position()
 }

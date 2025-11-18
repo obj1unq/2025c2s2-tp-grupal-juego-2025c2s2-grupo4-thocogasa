@@ -39,16 +39,16 @@ class Pieza {
         if (vidas > 0) {
             vidas = vidas - 1
         } else {
-            self.desaparece()
+            self.desaparece(500)
         }
     }
 
-    method desaparece() {
+    method desaparece(tiempo) {
         muerto = true
         if (game.hasVisual(accesorio)) {
             game.removeVisual(accesorio)
         }
-        game.schedule(500, { game.removeVisual(self) })
+        game.schedule(tiempo, { game.removeVisual(self) })
     }
 
     method intentarCapturar() {
@@ -70,7 +70,7 @@ class Pieza {
     method capturar(pieza) {
         const posicionCaptura = pieza.position()
         self.mover(posicionCaptura.x(), posicionCaptura.y())
-        pieza.desaparece()
+        pieza.desaparece(500)
     }
 
     method hayPiezaDeColor(_color, pos) {
