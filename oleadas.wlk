@@ -16,6 +16,8 @@ object oleada {
   var movimientoActivo = false
   var property enTransicion = false
   var property nivel = 1
+
+  method piezasActivas() = enemigosActivos
   
   method enemigoAleatorio() {
     const disponibles = []
