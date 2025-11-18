@@ -78,38 +78,31 @@ class Pieza {
     }
 }
 
-object negro {
+
+class Color {
+    const property deposito
+    const property rival
+
+    method piezasActivas() {return deposito.piezasActivas()}
+
     method hayPieza(pos) {
-        return oleada.enemigosActivos().any({enemigo => enemigo.position() == pos})
+        return self.piezasActivas().any({pieza => pieza.position() == pos})
     }
 
     method piezaEn(pos) {
-        return oleada.enemigosActivos().findOrElse({enemigo => enemigo.position() == pos}, { false })
+        return self.piezasActivas().findOrElse({pieza => pieza.position() == pos}, { false })
     }
 
     method hayPiezaContraria(pos) {
-        return blanco.hayPieza(pos)
+        return rival.hayPieza(pos)
     }
 
-    method piezaContrariaEn(pos) {
-        return blanco.piezaEn(pos)
+    method piezaContrariaEn(pos){
+        return rival.piezaEn(pos)
     }
 }
+object negro inherits Color (deposito = oleada, rival = blanco) {
+}
 
-object blanco {
-    method hayPieza(pos) {
-        return reyBlanco.listaPiezasAliadas().any({aliado => aliado.position() == pos})
-    }
-
-    method piezaEn(pos) {
-        return reyBlanco.listaPiezasAliadas().findOrElse({aliado => aliado.position() == pos}, { false })
-    }
-
-    method hayPiezaContraria(pos) {
-        return negro.hayPieza(pos)
-    }
-
-    method piezaContrariaEn(pos) {
-        return negro.piezaEn(pos)
-    }
+object blanco inherits Color (deposito = reyBlanco, rival = negro) {
 }

@@ -17,6 +17,8 @@ object reyBlanco inherits Pieza (
   ) {
   var property recursos = 100
   const property listaPiezasAliadas = []
+
+  method piezasActivas() = listaPiezasAliadas
   
   override method image() =
     if (vidas <= 0) images.rey3()
