@@ -25,14 +25,14 @@ object reyBlanco inherits Pieza (
     else if (vidas == 1) images.rey2()
     else if (vidas == 2) images.rey1()
     else images.rey()
-  
+ /* 
   method añadirRecursos(_valor) {
     recursos += _valor
   }
   
   method restarRecursos(_valor) {
     recursos -= _valor
-  }
+  }*/
   
   method puedeColocar(pieza, ubicacion) {
     return self.recursosSuficientesPara(pieza) && 
@@ -52,7 +52,7 @@ object reyBlanco inherits Pieza (
         self.puedeColocar(pieza, self.position().up(1)) && 
         self.hayPiezaDeColor(negro, self.position().up(1))
         ) {
-            self.restarRecursos(pieza.valor())
+            recurso.restarRecursos(pieza.valor()) //self.restarRecursos(pieza.valor())
             self.desaparecerEnemigoSiHay(self.position().up(1))
       }
   }
@@ -61,7 +61,7 @@ object reyBlanco inherits Pieza (
       pieza.position(pos)
       game.addVisual(pieza)
       listaPiezasAliadas.add(pieza)
-      self.restarRecursos(pieza.valor())
+      recurso.restarRecursos(pieza.valor())//self.restarRecursos(pieza.valor())
   } //metí este método para poder disparar directamente desde la posicion del Rey
 
   method enemigoEnPosicionADesaparecer(posicion) {
@@ -72,7 +72,7 @@ object reyBlanco inherits Pieza (
     const enemigo = self.enemigoEnPosicionADesaparecer(pos)
     if(color.hayPiezaContraria(pos)){
       enemigo.desaparece(500)
-      self.añadirRecursos(enemigo.valor() / 2)
+      recurso.añadirRecursos(enemigo.valor() / 2)//self.añadirRecursos(enemigo.valor() / 2)
       score.addScore(enemigo.valor() / 2)
     }
   }
@@ -85,8 +85,8 @@ object reyBlanco inherits Pieza (
   }
   
   method reiniciar() {
-    recursos = 100
-    vidas = 3
+    //recursos = 100
+    //vidas = 3
     position = game.at(2, 0)
     listaPiezasAliadas.clear()
   }

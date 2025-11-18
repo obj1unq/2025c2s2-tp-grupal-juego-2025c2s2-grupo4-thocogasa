@@ -39,8 +39,8 @@ object mecanicasJuego {
     const visualesAMantener = [
       reyBlanco,
       score,
-      recursos,
-      vidas,
+      recurso,
+      vida,
       piezasRestantes
     ]
     game.allVisuals().forEach(
@@ -55,6 +55,10 @@ object mecanicasJuego {
     // Resetear score
     score.reiniciar()
     
+    // Resetear Vida
+    vida.reiniciar()
+    // Resetear Recursos
+    recurso.reiniciar()
     // Resetear oleada
     oleada.reiniciar()
     

@@ -22,7 +22,7 @@ class Proyectil inherits Aliado {
     }
 
     override method coronar(){
-        reyBlanco.añadirRecursos(valor.div(4))
+        recurso.añadirRecursos(valor.div(4))
         score.addScore(valor.div(4))
         game.addVisual(accesorio)
         self.detenerTick()

@@ -21,10 +21,10 @@ object ajedrez inherits Escena {
 		//UI
 		game.addVisual(score)
 		visuales.add(score)
-		game.addVisual(recursos)
-		visuales.add(recursos)
-		game.addVisual(vidas)
-		visuales.add(vidas)
+		game.addVisual(recurso)
+		visuales.add(recurso)
+		game.addVisual(vida)
+		visuales.add(vida)
 		game.addVisual(piezasRestantes)
 		visuales.add(piezasRestantes)
 		

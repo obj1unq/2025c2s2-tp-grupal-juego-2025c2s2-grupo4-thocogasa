@@ -1,3 +1,4 @@
+import UI.*
 import wollok.game.*
 import rey.*
 import aliados.*
@@ -43,7 +44,7 @@ class Enemigo inherits Pieza(position = game.at((0 .. 4).anyOne(), 7), ultimaFil
         game.say(reyBlanco, "¡Game Over! Presiona R para reiniciar")
         mecanicasJuego.gameOver()
       } else {
-        reyBlanco.perderVida()
+        vida.perderVida()//reyBlanco.perderVida()
         self.desaparece(500)
       }
     }

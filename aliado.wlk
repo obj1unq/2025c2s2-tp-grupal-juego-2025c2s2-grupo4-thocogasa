@@ -24,7 +24,7 @@ class Aliado inherits Pieza(ultimaFila = game.height() - 1, color = blanco, acce
             const enemigoEnFrente = color.piezaContrariaEn(posicionFrente) 
             enemigoEnFrente.desaparece(250)
             self.desaparece(500)
-            reyBlanco.añadirRecursos(enemigoEnFrente.valor() / 2)
+            recurso.añadirRecursos(enemigoEnFrente.valor() / 2)
             score.addScore(enemigoEnFrente.valor() / 2)
             capturado = true
         }
@@ -34,7 +34,7 @@ class Aliado inherits Pieza(ultimaFila = game.height() - 1, color = blanco, acce
     override method capturar(enemigo) {
         super(enemigo)
         
-        reyBlanco.añadirRecursos(enemigo.valor() * combo)
+        recurso.añadirRecursos(enemigo.valor() * combo)
         score.addScore(enemigo.valor() * combo)
         combo = combo + 1
         if(combo > 1){
@@ -54,7 +54,7 @@ class Aliado inherits Pieza(ultimaFila = game.height() - 1, color = blanco, acce
     }
 
     method coronar() {
-        reyBlanco.añadirRecursos(valor * 5)
+        recurso.añadirRecursos(valor * 5)
         score.addScore(valor * 5)
         self.detenerTick()
         game.addVisual(accesorio)
