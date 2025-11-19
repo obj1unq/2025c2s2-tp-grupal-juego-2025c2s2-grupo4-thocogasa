@@ -1,0 +1,106 @@
+import enemigo.*
+import enemigos.*
+import aliados.*
+import aliado.*
+import oleadas.*
+import rey.*
+import mecanicas.*
+import wollok.game.*
+
+describe "test de Enemigos" {
+    method initialize(){
+        game.height(8)
+        game.width(7)
+        reyBlanco.reiniciar()
+
+    }
+  test "Crear oleadas, y confirmar si el spawner funciona " {
+    assert.equals(0, oleada.enemigosRestantes())
+    assert.that(oleada.enemigosRestantes() == 0)
+
+    oleada.crearOleada(5)
+    assert.equals(5, oleada.enemigosRestantes())
+
+    oleada.crearOleada(1)
+    assert.equals(6, oleada.enemigosRestantes()) 
+/ comentarios
+  }
+  test "Spawnear Enemigos, disminuye enemigosPorSpawnear y aumenta enemigos activos " {
+    //const cantDeEnemigosPorSpawnear = oleada.getEnemigosPorSpawnear().size()
+    //const cantDeEnemigosActivos = oleada.getEnemigosActivos().size()
+
+    assert.equals(0, oleada.enemigosPorSpawnear().size())
+    assert.equals(0,  oleada.getEnemigosActivos().size())
+
+    oleada.crearOleada(4)
+
+    assert.equals(4, oleada.getEnemigosPorSpawnear().size())
+    assert.equals(0, oleada.getEnemigosActivos().size())
+
+    oleada.spawnearSiguienteEnemigo()
+
+    assert.equals(3, oleada.getEnemigosPorSpawnear().size())
+    assert.equals(1, oleada.getEnemigosActivos().size())
+
+    oleada.spawnearSiguienteEnemigo()
+    oleada.spawnearSiguienteEnemigo()
+    oleada.spawnearSiguienteEnemigo()
+
+    assert.equals(0, oleada.getEnemigosPorSpawnear().size())
+    assert.equals(4, oleada.getEnemigosActivos().size())
+  }
+  test "No spawnear enemigo si no quedan por spawnear" {
+    assert.equals(0, oleada.getEnemigosPorSpawnear().size())
+    assert.equals(0, oleada.getEnemigosActivos().size())
+
+    oleada.spawnearSiguienteEnemigo()
+
+    assert.equals(0, oleada.getEnemigosPorSpawnear().size())
+    assert.equals(0, oleada.getEnemigosActivos().size())
+  }
+
+  test "Revisar si el enemigo se mueve una posicion al iniciar spawner"{
+    //const enemigo = new Enemigo(position = game.at(0, 7))
+
+    oleada.crearOleada(1)
+    
+    // Esto solo confirma que si se agrego el enemigo
+
+    assert.equals(1, oleada.getEnemigosPorSpawnear().size())
+    assert.equals(0, oleada.getEnemigosActivos().size())
+
+    oleada.spawnearSiguienteEnemigo()
+
+    // Esto solo 
+
+    assert.equals(0, oleada.getEnemigosPorSpawnear().size())
+    assert.equals(1, oleada.getEnemigosActivos().size())
+
+//hay que hablar con leo si es correcto modelar esto
+
+
+
+    
+  }
+
+}
+  /*
+  iniciarOleada
+
+  - iniciar spawner
+      if el spawner s e encuentra nactivo 
+        comienza -spawnearSiguienteEnemigo
+           -si enemigosPorSpawnear no es vacia
+             => se crea un nuevo enemigo  con el primero de la lista 
+                se saca de enmigosASpawner
+                Se agrega a enimigosActivos 
+                Se muestra
+  - iniciar iniciarMovimientoEnemigos
+             - si movimientoActivo esta apagado -osea si es cierto que esta apagado -
+             se cambia el movimiento a activo
+             y cada x cantidad de tiempos se hace el moverTodosLosEnemigos
+                 => que se le pasa toda la lista de enemigos que estan activos
+                 y con un foreach  a cada enemigo de la lista se le aplica enemigo.avanzar()
+                       = que hace que la posicion del peon se mueva hacia adelante 
+                       
+  */
