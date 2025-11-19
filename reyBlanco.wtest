@@ -15,7 +15,7 @@ describe "Probando al rey" {
     // Reinicio el juego y pruebo controles
 
     reyBlanco.reiniciar()
-    
+
     assert.equals(2, reyBlanco.position().x())
     assert.equals(0, reyBlanco.position().y())
   }
