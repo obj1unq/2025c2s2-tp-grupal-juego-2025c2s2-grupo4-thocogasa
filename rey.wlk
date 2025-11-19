@@ -95,10 +95,12 @@ object reyBlanco inherits Pieza (
 
 //Dandole sentido de abstraccion a los movimientos
 object derecha{
-
+  rmethod movimiento(posicionAMover) {
+    return posicionAMover + 1
+  }
 }
 object izquierda{
-  method movimiento() {
-    return 1
+  method movimiento(posicionAMover) {
+    return posicionAMover - 1
   }
 }
