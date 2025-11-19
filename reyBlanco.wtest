@@ -1,0 +1,22 @@
+import rey.*
+
+describe "Probando al rey" {
+  test "Mover el rey " {
+    //Puebo la posicion inicial
+    assert.equals(2, reyBlanco.position().x())
+    assert.equals(0, reyBlanco.position().y())
+
+    //Muevo en uno
+    reyBlanco.mover(reyBlanco.position().x() + 1, reyBlanco.position().y())
+
+    assert.equals(3, reyBlanco.position().x())
+    assert.equals(0, reyBlanco.position().y())
+
+    // Reinicio el juego y pruebo controles
+
+    reyBlanco.reiniciar()
+
+    assert.equals(2, reyBlanco.position().x())
+    assert.equals(0, reyBlanco.position().y())
+  }
+}

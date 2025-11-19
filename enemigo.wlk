@@ -1,104 +1,52 @@
+import UI.*
 import wollok.game.*
 import rey.*
 import aliados.*
 import mecanicas.*
 import images.*
 import oleadas.*
+import pieza.*
 
-
-class Enemigo {
-  var property position = game.at((0 .. 4).anyOne(), 7) //0.randomUpTo(4)
-  var property valor
-  var property muerto = false
-  var property imagenPieza
-  const jaque = new JaqueMate(piezaDueña = self)
-  var contador = 0
+class Enemigo inherits Pieza(position = game.at((0 .. 4).anyOne(), 7), ultimaFila = 0, color = negro, accesorio = new JaqueMate(piezaDueña = self)){
+  var contador = 3
   method posicionesAvanzables()
-  method posicionesCapturables()
 
-  method siguientePosicion() {
+  method siguientePosicion() { // TODO: Objetos de posiciones cardinales "Absolutos" donde se guarde la siguiente posición a mover, en una lista randomizada, para que no haya que calcular las posiciones cada vez que se quiere mover
     const candidatos = self.posicionesAvanzables().filter({ posicion => self.posicionValida(posicion) })
     return if (candidatos.isEmpty()) position else candidatos.anyOne()
   }
-
-  method posicionValida(posicion) {
-    if (posicion.y() == 0) {
-      return self.position().y() == 1 && self.estáDentroDelTablero(posicion) && self.piezasNegrasEn(posicion).isEmpty()
-    } else {
-      return self.estáDentroDelTablero(posicion) && self.piezasNegrasEn(posicion).isEmpty()
-    }
-  }
-
-  method estáDentroDelTablero(posicion) = (((posicion.x() >= 0) && (posicion.x() < 5)) && (posicion.y() >= 0)) && (posicion.y() < game.height())
-
-  method piezasNegrasEn(pos) = oleada.enemigosActivos().filter({ obj => obj.position() == pos })
-
-//devuelve toda una lista de enemigos lo puedo reemlazar por la lista de enemigos activos y 
-  method image() {
-    return if (muerto) images.piezaMuerta() else imagenPieza
-  }
-  
-  method desaparece() {
-    muerto = true
-    if (game.hasVisual(jaque)) {
-      game.removeVisual(jaque)
-    }
-    game.schedule(500, { game.removeVisual(self) })
-  }
-  
-  method esNegro() = true
-  
+    
   method avanzar() {
     if (not muerto) {
-      if (position.y() == 1 && contador <= 3){
-        contador = contador + 1
+      if (position.y() == 1 && contador >= 1){
+        contador = contador - 1
         game.say(self, "contador " + contador)
         self.intentarAñadirJaque()
       } else {
-        position = self.siguientePosicion()
+        const pos = self.siguientePosicion()
+        self.mover(pos.x(), pos.y())
       }
 
-      self.capturarPieza()
+      self.intentarCapturar()
       self.capturarRey()
     }
   }
 
-  method capturarPieza() {
-    var capturó = false
-    self.posicionesCapturables().forEach(
-      { pos =>
-          if (not capturó) {
-                if (self.posicionValida(pos)) {
-                          const piezasEnPos = game.getObjectsIn(pos).filter(
-                          { pieza =>  return not pieza.esNegro() }
-                          )
-                          if (not piezasEnPos.isEmpty() && position.y() != 1) {
-                                          const piezaAComer = piezasEnPos.first()
-                                          position = pos
-                                          piezaAComer.desaparece()
-                                          capturó = true
-                          }
-                }
-          }
-      }
-    )
-  }
-
   method intentarAñadirJaque() {
     // No añadir jaque si el enemigo ya está muerto.
-    if (not muerto && !game.hasVisual(jaque)) {
-      game.addVisual(jaque)
+    if (not muerto && !game.hasVisual(accesorio)) {
+      game.addVisual(accesorio)
     }
   }
   
   method capturarRey() {
     if (position.y() == 0) {
       if (reyBlanco.vidas() <= 0) {
-        game.say(self, "¡Game Over! Presiona R para reiniciar")
+        game.say(reyBlanco, "¡Game Over! Presiona R para reiniciar")
         mecanicasJuego.gameOver()
       } else {
-        reyBlanco.perderVida()
-        self.desaparece()
+        vida.perderVida()//reyBlanco.perderVida()
+        self.desaparece(500)
       }
     }
   }

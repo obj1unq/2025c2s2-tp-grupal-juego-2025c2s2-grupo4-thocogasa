@@ -6,6 +6,9 @@ import UI.*
 import oleadas.*
 import leaderboard.*
 import namePrompt.*
+import escenas.ajedrez.*
+import sound.*
+
 
 object mecanicasJuego {
   var property verificacionActiva = false
@@ -29,6 +32,7 @@ object mecanicasJuego {
   }
   
   method reiniciarJuego() {
+    sonidos.stopSonidoDeFondo()
     // Detener todas las verificaciones y oleadas
     self.detenerVerificaciones()
     oleada.detenerOleada()
@@ -38,14 +42,15 @@ object mecanicasJuego {
     const visualesAMantener = [
       reyBlanco,
       score,
-      recursos,
-      vidas,
+      recurso,
+      vida,
       piezasRestantes
     ]
     game.allVisuals().forEach(
-      { visual => if (not visualesAMantener.contains(visual)) game.removeVisual(
-                      visual
-                    ) }
+      { visual => if (not visualesAMantener.contains(visual)) {
+                      game.removeVisual(visual) 
+                  }
+      }
     )
     
     // Resetear estado del rey blanco
@@ -54,15 +59,22 @@ object mecanicasJuego {
     // Resetear score
     score.reiniciar()
     
+    // Resetear Vida
+    vida.reiniciar()
+    // Resetear Recursos
+    recurso.reiniciar()
     // Resetear oleada
     oleada.reiniciar()
     
     game.say(reyBlanco, "¡Juego reiniciado!")
     
+    game.addVisual(controles)
+    ajedrez.visuales().add(controles)
     // Reiniciar el juego después de 1 segundo
     game.schedule(
       1000,
       { 
+        sonidos.playFondo()
         oleada.crearOleada(8)
         oleada.iniciarOleada()
         return self.iniciarVerificaciones()
@@ -73,19 +85,22 @@ object mecanicasJuego {
   method gameOver() {
     self.detenerVerificaciones()
     oleada.detenerOleada()
+    sonidos.stopSonidoDeFondo()
+    sonidos.playGameOver()
     game.schedule(0, { self.requestPlayerName() })
   }
   
-    method requestPlayerName() {
-      namePrompt.ask()
-    }
+  method requestPlayerName() {
+    namePrompt.ask()
+  }
+
   method juegoActivo() = verificacionActiva
   
   method verificarTodasLasColisiones() {
     reyBlanco.listaPiezasAliadas().forEach(
       { aliado => aliado.intentarCapturar() }
     )
-    
+
     if (oleada.oleadaCompleta()) self.siguienteNivel()
   }
   

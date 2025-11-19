@@ -16,18 +16,30 @@ class Proyectil inherits Aliado {
                     const miPos = self.position()
                     self.mover(miPos.x(), miPos.y()+1)
                     self.intentarCapturar()
+                    self.intentarCoronar()
                 })
             }
     }
 
-    override method desaparece(){
+    override method coronar(){
+        recurso.añadirRecursos(valor.div(4))
+        score.addScore(valor.div(4))
+        game.addVisual(accesorio)
         self.detenerTick()
-        super()
+        game.schedule(1400, { game.removeVisual(self)
+                              game.removeVisual(accesorio) })
     }
 
+    override method mover(posiciónx, posicióny) {
+        const posicionATestear = game.at(posiciónx, posicióny)
+        if (self.estaDentroDelTablero(posicionATestear )) 
+        {
+            position = posicionATestear 
+        }
+    }
+
+    override method desaparece(tiempo){
+        self.detenerTick()
+        super(tiempo)
+    }
 }
-
-
-
-
-

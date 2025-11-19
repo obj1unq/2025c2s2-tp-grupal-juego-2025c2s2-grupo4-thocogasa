@@ -3,11 +3,13 @@ import rey.*
 import enemigos.*
 import aliados.*
 import UI.*
+import sound.*
 import mecanicas.*
 import oleadas.*
 import leaderboard.*
 import escenas.cambioDeEscena.*
 import proyectiles.*
+import namePrompt.*
 
 object ajedrez inherits Escena {
 	
@@ -21,32 +23,18 @@ object ajedrez inherits Escena {
 		//UI
 		game.addVisual(score)
 		visuales.add(score)
-		game.addVisual(recursos)
-		visuales.add(recursos)
-		game.addVisual(vidas)
-		visuales.add(vidas)
+		game.addVisual(recurso)
+		visuales.add(recurso)
+		game.addVisual(vida)
+		visuales.add(vida)
 		game.addVisual(piezasRestantes)
 		visuales.add(piezasRestantes)
 		
 		
 		// Controles
-		keyboard.right().onPressDo({ reyBlanco.moverDerecha() })
-		keyboard.left().onPressDo({ reyBlanco.moverIzquierda() })
-		keyboard.num(1).onPressDo(
-			{ reyBlanco.intentarColocarPieza(new PeonBlanco()) }
-		)
-		keyboard.num(2).onPressDo(
-			{ reyBlanco.intentarColocarPieza(new CaballoBlanco()) }
-		)
-
-		keyboard.num(3).onPressDo(
-			{reyBlanco.disparar(new TorreBlanca())}
-		)
-
-		keyboard.num(4).onPressDo(
-			{reyBlanco.disparar(new AlfilBlanco())}
-		)
-
+		game.addVisual(controles)
+		visuales.add(controles)
+		controles.init()
 
 		keyboard.l().onPressDo({ leaderboard.toggle() })
 		
@@ -56,6 +44,7 @@ object ajedrez inherits Escena {
 		game.schedule(
 			2000,
 			{ 
+				sonidos.playFondo()
 				oleada.iniciarOleada()
 				mecanicasJuego.iniciarVerificaciones()
 			}
@@ -69,5 +58,27 @@ object ajedrez inherits Escena {
 		oleada.reiniciar()
 		
 		super()
+	}
+}
+
+object controles {
+	var property position = game.center()
+	method init() {
+		keyboard.right().onPressDo({if (!namePrompt.awaiting()) reyBlanco.mover(reyBlanco.position().x() + 1, reyBlanco.position().y()) })
+		keyboard.left().onPressDo({if (!namePrompt.awaiting()) reyBlanco.mover(reyBlanco.position().x() - 1, reyBlanco.position().y()) })
+		keyboard.num(1).onPressDo(
+			{ reyBlanco.intentarColocarPieza(new PeonBlanco()) }
+		)
+		keyboard.num(2).onPressDo(
+			{ reyBlanco.intentarColocarPieza(new CaballoBlanco()) }
+		)
+
+		keyboard.num(3).onPressDo(
+			{reyBlanco.disparar(new AlfilBlanco())}
+		)
+
+		keyboard.num(4).onPressDo(
+			{reyBlanco.disparar(new TorreBlanca())}
+		)
 	}
 }

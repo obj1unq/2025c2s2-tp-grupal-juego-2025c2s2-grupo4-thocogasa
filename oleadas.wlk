@@ -16,6 +16,8 @@ object oleada {
   var movimientoActivo = false
   var property enTransicion = false
   var property nivel = 1
+
+  method piezasActivas() = enemigosActivos
   
   method enemigoAleatorio() {
     const disponibles = []
@@ -113,6 +115,7 @@ object oleada {
   method reiniciar() {
     self.detenerOleada()
     timers.nextId(0)
+    
     enemigosPorSpawnear.clear()
     enemigosActivos.clear()
     spawnerActivo = false
@@ -133,7 +136,7 @@ object oleada {
   method estaEnTransicion() = enTransicion
 }
 
-object transiciónOleada { //TODO Este no debería de poder ser capturado, habría que añadirle es negro o fallar o algo
+object transiciónOleada {
   var property position = game.at(2, 4)
   var property image = images.transicionOleada()
 }
