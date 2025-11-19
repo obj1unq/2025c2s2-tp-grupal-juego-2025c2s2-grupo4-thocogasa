@@ -10,9 +10,11 @@ import leaderboard.*
 import escenas.cambioDeEscena.*
 import proyectiles.*
 import namePrompt.*
+import images.*
 
 object ajedrez inherits Escena {
-	
+	var tutorialActivo = false
+
 	override method mostrar() {
 		game.addVisual(reyBlanco)
 		visuales.add(reyBlanco)
@@ -31,7 +33,8 @@ object ajedrez inherits Escena {
 		visuales.add(piezasRestantes)
 		game.addVisual(oleadaActual)
 		visuales.add(oleadaActual)
-		
+
+		self.abrirTutorial()
 		
 		// Controles
 		game.addVisual(controles)
@@ -43,14 +46,7 @@ object ajedrez inherits Escena {
 		//Reiniciar juego
 		keyboard.alt().onPressDo({ mecanicasJuego.reiniciarJuego() })
 		// Empieza solo a los 2 segundos
-		game.schedule(
-			2000,
-			{ 
-				sonidos.playFondo()
-				oleada.iniciarOleada()
-				mecanicasJuego.iniciarVerificaciones()
-			}
-		)
+		keyboard.space().onPressDo({ if (tutorialActivo) self.cerrarTutorial() })
 	}
 	
 	override method ocultar() {
@@ -61,26 +57,47 @@ object ajedrez inherits Escena {
 		
 		super()
 	}
+
+	method abrirTutorial() {
+		game.addVisual(tutorial)
+		tutorialActivo = true
+	}
+
+	method cerrarTutorial() {
+		game.removeVisual(tutorial)
+		tutorialActivo = false
+		game.schedule(
+			1000,
+			{ 
+				sonidos.playFondo()
+				oleada.crearOleada(5)
+				oleada.iniciarOleada()
+				mecanicasJuego.iniciarVerificaciones()
+			}
+		)
+	}
+
+	method juegoActivo() = !tutorialActivo && !namePrompt.awaiting()
 }
 
 object controles {
 	var property position = game.center()
 	method init() {
-		keyboard.right().onPressDo({if (!namePrompt.awaiting()) reyBlanco.mover(reyBlanco.position().x() + 1, reyBlanco.position().y()) })
-		keyboard.left().onPressDo({if (!namePrompt.awaiting()) reyBlanco.mover(reyBlanco.position().x() - 1, reyBlanco.position().y()) })
+		keyboard.right().onPressDo({if (ajedrez.juegoActivo()) reyBlanco.mover(reyBlanco.position().x() + 1, reyBlanco.position().y()) })
+		keyboard.left().onPressDo({if (ajedrez.juegoActivo()) reyBlanco.mover(reyBlanco.position().x() - 1, reyBlanco.position().y()) })
 		keyboard.num(1).onPressDo(
-			{ reyBlanco.intentarColocarPieza(new PeonBlanco()) }
+			{ if (ajedrez.juegoActivo()) reyBlanco.intentarColocarPieza(new PeonBlanco()) }
 		)
 		keyboard.num(2).onPressDo(
-			{ reyBlanco.intentarColocarPieza(new CaballoBlanco()) }
+			{ if (ajedrez.juegoActivo()) reyBlanco.intentarColocarPieza(new CaballoBlanco()) }
 		)
 
 		keyboard.num(3).onPressDo(
-			{reyBlanco.disparar(new AlfilBlanco())}
+			{ if (ajedrez.juegoActivo()) reyBlanco.disparar(new AlfilBlanco()) }
 		)
 
 		keyboard.num(4).onPressDo(
-			{reyBlanco.disparar(new TorreBlanca())}
+			{ if (ajedrez.juegoActivo())reyBlanco.disparar(new TorreBlanca()) }
 		)
 	}
 }

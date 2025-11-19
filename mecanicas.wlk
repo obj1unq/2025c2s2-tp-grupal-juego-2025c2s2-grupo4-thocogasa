@@ -71,15 +71,9 @@ object mecanicasJuego {
     game.addVisual(controles)
     ajedrez.visuales().add(controles)
     // Reiniciar el juego después de 1 segundo
-    game.schedule(
-      1000,
-      { 
-        sonidos.playFondo()
-        oleada.crearOleada(8)
-        oleada.iniciarOleada()
-        return self.iniciarVerificaciones()
-      }
-    )
+    
+    
+    ajedrez.abrirTutorial()
   }
   
   method gameOver() {

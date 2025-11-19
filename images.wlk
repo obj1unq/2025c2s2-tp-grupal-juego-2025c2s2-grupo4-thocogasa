@@ -29,3 +29,9 @@ class Coronación {
 
     method position() = piezaDueña.position()
 }
+
+object tutorial {
+    var property image = "Tutorial.gif"
+
+    method position() = game.at(1, 2)
+}
