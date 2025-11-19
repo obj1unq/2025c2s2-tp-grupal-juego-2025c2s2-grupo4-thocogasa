@@ -29,6 +29,8 @@ object ajedrez inherits Escena {
 		visuales.add(vida)
 		game.addVisual(piezasRestantes)
 		visuales.add(piezasRestantes)
+		game.addVisual(oleadaActual)
+		visuales.add(oleadaActual)
 		
 		
 		// Controles

@@ -37,7 +37,7 @@ object leaderboard { // VER DE IMPLEMENTAR PERSISTENCIA CON MÉTODOS NATIVOS USA
     displayed.forEach({ d => if (game.hasVisual(d)) game.removeVisual(d) })
     displayed.clear()
     const topEntries = self.top(maxEntries).reverse()
-    var row = 2 + (topEntries.size() - 1)
+    var row = 1 + (topEntries.size() - 1)
     topEntries.forEach({ e =>
       const line = new LeaderboardEntry(
         name = e.name(),

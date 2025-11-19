@@ -15,7 +15,7 @@ object score {
   
   method text() = " " + self.score()
   
-  method textColor() = "#FFFFFF"
+  method textColor() = "000000"
   
   method reiniciar() {
     score = 0
@@ -28,7 +28,7 @@ object recurso {
   
   method text() = " " + recursos
   
-  method textColor() = "#FFFFFF"
+  method textColor() = "000000"
 
   method añadirRecursos(valor) {
     recursos += valor
@@ -50,7 +50,7 @@ object piezasRestantes {
   
   method text() = " " + oleada.enemigosRestantes()
   
-  method textColor() = "#FFFFFF"
+  method textColor() = "000000"
 }
 
 object vida {
@@ -59,7 +59,7 @@ object vida {
   
   method text() = " " + vidas
   
-  method textColor() = "#FFFFFF"
+  method textColor() = "000000"
 
   method perderVida() {
     vidas = vidas - 1
@@ -70,5 +70,13 @@ object vida {
     reyBlanco.vidas(3)
     vidas = 3
   }
+}
+
+object oleadaActual {
+  var property position = game.at(6, 4)
+  
+  method text() = " " + oleada.nivel()
+  
+  method textColor() = "000000"
 }
 
