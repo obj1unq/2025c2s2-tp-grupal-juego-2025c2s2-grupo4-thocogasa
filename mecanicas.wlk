@@ -49,7 +49,6 @@ object mecanicasJuego {
     game.allVisuals().forEach(
       { visual => if (not visualesAMantener.contains(visual)) {
                       game.removeVisual(visual) 
-                      console.println("eliminando " + visual) 
                   }
       }
     )

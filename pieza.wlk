@@ -16,7 +16,6 @@ class Pieza {
 
     method mover(posiciónx, posicióny) {
         if (self.estaDentroDelTablero(game.at(posiciónx, posicióny))){
-            console.println(self.toString() + "mover" + posiciónx + "x" + posicióny + "y")
             position = game.at(posiciónx, posicióny)}
     }
     

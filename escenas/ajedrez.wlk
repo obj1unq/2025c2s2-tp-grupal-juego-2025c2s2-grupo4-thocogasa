@@ -63,7 +63,6 @@ object ajedrez inherits Escena {
 object controles {
 	var property position = game.center()
 	method init() {
-		console.println("Controles Init")
 		keyboard.right().onPressDo({ reyBlanco.mover(reyBlanco.position().x() + 1, reyBlanco.position().y()) })
 		keyboard.left().onPressDo({ reyBlanco.mover(reyBlanco.position().x() - 1, reyBlanco.position().y()) })
 		keyboard.num(1).onPressDo(

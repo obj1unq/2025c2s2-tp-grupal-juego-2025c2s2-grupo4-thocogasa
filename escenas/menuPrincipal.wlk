@@ -19,7 +19,7 @@ object menuPrincipal inherits Escena{
         game.addVisual(start)
         visuales.add(start)
 
-        keyboard.enter().onPressDo({managerEscena.cargar(ajedrez)})
+        keyboard.enter().onPressDo({ if (managerEscena.escenaActual() == self) managerEscena.cargar(ajedrez) })
     }
 }
 
