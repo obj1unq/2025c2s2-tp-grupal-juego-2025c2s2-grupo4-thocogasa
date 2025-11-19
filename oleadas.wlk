@@ -8,7 +8,7 @@ import images.*
 import timers.*
 
 object oleada {
-  const enemigosPorSpawnear = []
+  const property enemigosPorSpawnear = []
   const property enemigosActivos = []
   var property intervaloSpawn = 2000
   var property intervaloMovimiento = 1500

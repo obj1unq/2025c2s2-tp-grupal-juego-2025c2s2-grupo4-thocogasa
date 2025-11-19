@@ -23,40 +23,39 @@ describe "test de Enemigos" {
 
     oleada.crearOleada(1)
     assert.equals(6, oleada.enemigosRestantes()) 
-/ comentarios
   }
   test "Spawnear Enemigos, disminuye enemigosPorSpawnear y aumenta enemigos activos " {
     //const cantDeEnemigosPorSpawnear = oleada.getEnemigosPorSpawnear().size()
     //const cantDeEnemigosActivos = oleada.getEnemigosActivos().size()
 
     assert.equals(0, oleada.enemigosPorSpawnear().size())
-    assert.equals(0,  oleada.getEnemigosActivos().size())
+    assert.equals(0,  oleada.enemigosActivos().size())
 
     oleada.crearOleada(4)
 
-    assert.equals(4, oleada.getEnemigosPorSpawnear().size())
-    assert.equals(0, oleada.getEnemigosActivos().size())
+    assert.equals(4, oleada.enemigosPorSpawnear().size())
+    assert.equals(0, oleada.enemigosActivos().size())
 
     oleada.spawnearSiguienteEnemigo()
 
-    assert.equals(3, oleada.getEnemigosPorSpawnear().size())
-    assert.equals(1, oleada.getEnemigosActivos().size())
+    assert.equals(3, oleada.enemigosPorSpawnear().size())
+    assert.equals(1, oleada.enemigosActivos().size())
 
     oleada.spawnearSiguienteEnemigo()
     oleada.spawnearSiguienteEnemigo()
     oleada.spawnearSiguienteEnemigo()
 
-    assert.equals(0, oleada.getEnemigosPorSpawnear().size())
-    assert.equals(4, oleada.getEnemigosActivos().size())
+    assert.equals(0, oleada.enemigosPorSpawnear().size())
+    assert.equals(4, oleada.enemigosActivos().size())
   }
   test "No spawnear enemigo si no quedan por spawnear" {
-    assert.equals(0, oleada.getEnemigosPorSpawnear().size())
-    assert.equals(0, oleada.getEnemigosActivos().size())
+    assert.equals(0, oleada.enemigosPorSpawnear().size())
+    assert.equals(0, oleada.enemigosActivos().size())
 
     oleada.spawnearSiguienteEnemigo()
 
-    assert.equals(0, oleada.getEnemigosPorSpawnear().size())
-    assert.equals(0, oleada.getEnemigosActivos().size())
+    assert.equals(0, oleada.enemigosPorSpawnear().size())
+    assert.equals(0, oleada.enemigosActivos().size())
   }
 
   test "Revisar si el enemigo se mueve una posicion al iniciar spawner"{
@@ -66,15 +65,15 @@ describe "test de Enemigos" {
     
     // Esto solo confirma que si se agrego el enemigo
 
-    assert.equals(1, oleada.getEnemigosPorSpawnear().size())
-    assert.equals(0, oleada.getEnemigosActivos().size())
+    assert.equals(1, oleada.enemigosPorSpawnear().size())
+    assert.equals(0, oleada.enemigosActivos().size())
 
     oleada.spawnearSiguienteEnemigo()
 
     // Esto solo 
 
-    assert.equals(0, oleada.getEnemigosPorSpawnear().size())
-    assert.equals(1, oleada.getEnemigosActivos().size())
+    assert.equals(0, oleada.enemigosPorSpawnear().size())
+    assert.equals(1, oleada.enemigosActivos().size())
 
 //hay que hablar con leo si es correcto modelar esto
 
