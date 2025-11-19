@@ -9,6 +9,7 @@ import oleadas.*
 import leaderboard.*
 import escenas.cambioDeEscena.*
 import proyectiles.*
+import namePrompt.*
 
 object ajedrez inherits Escena {
 	
@@ -63,8 +64,8 @@ object ajedrez inherits Escena {
 object controles {
 	var property position = game.center()
 	method init() {
-		keyboard.right().onPressDo({ reyBlanco.mover(reyBlanco.position().x() + 1, reyBlanco.position().y()) })
-		keyboard.left().onPressDo({ reyBlanco.mover(reyBlanco.position().x() - 1, reyBlanco.position().y()) })
+		keyboard.right().onPressDo({if (!namePrompt.awaiting()) reyBlanco.mover(reyBlanco.position().x() + 1, reyBlanco.position().y()) })
+		keyboard.left().onPressDo({if (!namePrompt.awaiting()) reyBlanco.mover(reyBlanco.position().x() - 1, reyBlanco.position().y()) })
 		keyboard.num(1).onPressDo(
 			{ reyBlanco.intentarColocarPieza(new PeonBlanco()) }
 		)
