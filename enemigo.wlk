@@ -11,7 +11,7 @@ class Enemigo inherits Pieza(position = game.at((0 .. 4).anyOne(), 7), ultimaFil
   var contador = 3
   method posicionesAvanzables()
 
-  method siguientePosicion() {
+  method siguientePosicion() { // TODO: Objetos de posiciones cardinales "Absolutos" donde se guarde la siguiente posición a mover, en una lista randomizada, para que no haya que calcular las posiciones cada vez que se quiere mover
     const candidatos = self.posicionesAvanzables().filter({ posicion => self.posicionValida(posicion) })
     return if (candidatos.isEmpty()) position else candidatos.anyOne()
   }
@@ -23,7 +23,8 @@ class Enemigo inherits Pieza(position = game.at((0 .. 4).anyOne(), 7), ultimaFil
         game.say(self, "contador " + contador)
         self.intentarAñadirJaque()
       } else {
-        self.mover(self.siguientePosicion().x(), self.siguientePosicion().y())
+        const pos = self.siguientePosicion()
+        self.mover(pos.x(), pos.y())
       }
 
       self.intentarCapturar()

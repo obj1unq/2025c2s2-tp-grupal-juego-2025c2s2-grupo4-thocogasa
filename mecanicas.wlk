@@ -47,9 +47,11 @@ object mecanicasJuego {
       piezasRestantes
     ]
     game.allVisuals().forEach(
-      { visual => if (not visualesAMantener.contains(visual)) game.removeVisual(
-                      visual
-                    ) }
+      { visual => if (not visualesAMantener.contains(visual)) {
+                      game.removeVisual(visual) 
+                      console.println("eliminando " + visual) 
+                  }
+      }
     )
     
     // Resetear estado del rey blanco
@@ -99,9 +101,9 @@ object mecanicasJuego {
     reyBlanco.listaPiezasAliadas().forEach(
       { aliado => aliado.intentarCapturar() }
     )
-    
+
     if (oleada.oleadaCompleta()) self.siguienteNivel()
-  }// TODO: SANTIAGO QUÉ CARAJO ES ESTO
+  }
   
   method siguienteNivel() {
     if (not oleada.estaEnTransicion()) {
