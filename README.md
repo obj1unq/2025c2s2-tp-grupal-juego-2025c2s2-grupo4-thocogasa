@@ -18,12 +18,17 @@ Puede servir como un tutorial divertido para aprender los movimientos de algunas
 + El Rey Blanco puede moverse únicamente a izquierda y derecha, comienza con 3 vidas y $100 créditos.
 
 ### Recursos
-+ Con la tecla p, si hay recursos suficientes, el Rey compra por $20 y ubica un Peon blanco en la fila 2.
-+ Los peones aliados defienden sus posiciones arriba en ambas diagonales, si una pieza contraria llega a dicha casilla de influencia, nuestro peon lo captura automáticamente y ocupa su posicion. 
-+ Si un peón blanco asciende hasta la última fila del tablero es "coronado". Se retira del tablero y el jugador recibe $100.
-+ Con la tecla k, incorpora caballos por $50.
-+ El caballo come siguiendo el movimiento en "L". 
++ Con la tecla 1, si hay recursos suficientes, el Rey compra por $20 y ubica un Peon blanco en la fila 2.
++   Los peones aliados defienden sus posiciones arriba en ambas diagonales, si una pieza contraria llega a dicha casilla de influencia, nuestro peon lo captura automáticamente y ocupa su posicion. 
++   Si un peón blanco asciende hasta la última fila del tablero es "coronado". Se retira del tablero y el jugador recibe $100.
++ Con la tecla 2, incorpora caballos por $50.
++   El caballo come siguiendo el movimiento en "L" solo hacia arriba. 
 + Si nuestro rey pierde todo su HP, también muere.
++ Con la tecla 3 se disparan alfiles por $70. El cual es un proyectil, que aparece y come todo lo que hay en su trayectoria.
++   El alfil se mueve aleatoriamente a una casilla diagonal superior hasta llegar a la ultima fila donde corona 
++ Con la tecla 4 se disparan torres por $100. El cual tambien es un proyectil pero solo tiene una trayectoria vertical y come todo lo que encuentra
++ Coronación: Al llegar a la Ultima Fila las piezas coronan y desaparecn del tablero recuperando creditos dependiendo de la pieza
++   Aclaracion: Los peones y caballos multiplican x 5 su valor de costo al coronar, por otro lado los proyectiles dividen x 4 su valor 
 
 ### Enemigos
 + todas las piezas enemigas descienden hasta la primera fila.
