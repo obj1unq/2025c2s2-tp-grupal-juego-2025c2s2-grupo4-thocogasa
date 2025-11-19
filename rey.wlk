@@ -95,7 +95,7 @@ object reyBlanco inherits Pieza (
 
 //Dandole sentido de abstraccion a los movimientos
 object derecha{
-  rmethod movimiento(posicionAMover) {
+  method movimiento(posicionAMover) {
     return posicionAMover + 1
   }
 }
