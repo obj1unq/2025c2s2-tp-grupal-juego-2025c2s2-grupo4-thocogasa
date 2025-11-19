@@ -25,14 +25,7 @@ object reyBlanco inherits Pieza (
     else if (vidas == 1) images.rey2()
     else if (vidas == 2) images.rey1()
     else images.rey()
- /* 
-  method añadirRecursos(_valor) {
-    recursos += _valor
-  }
-  
-  method restarRecursos(_valor) {
-    recursos -= _valor
-  }*/
+
   
   method puedeColocar(pieza, ubicacion) {
     return self.recursosSuficientesPara(pieza) && 
@@ -98,4 +91,14 @@ object reyBlanco inherits Pieza (
       proyectil.avanzarYComer()
     }
   } //ahora el rey dispara desde su posición, y sólo chequea por validez de recursos
+}
+
+//Dandole sentido de abstraccion a los movimientos
+object derecha{
+
+}
+object izquierda{
+  method movimiento() {
+    return 1
+  }
 }

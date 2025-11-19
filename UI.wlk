@@ -38,7 +38,6 @@ object recurso {
   method restarRecursos(valor) {
     recursos -= valor
     reyBlanco.recursos(recursos)
-    console.println("Recu"+recursos)
   }
   method reiniciar() {
     reyBlanco.recursos(100)
@@ -65,14 +64,11 @@ object vida {
   method perderVida() {
     vidas = vidas - 1
     reyBlanco.vidas(vidas)
-    console.println(vidas)
   }
 
   method reiniciar() {
     reyBlanco.vidas(3)
     vidas = 3
-    console.println("Reinicio "+ vidas)
-    console.println("Reinicio "+ reyBlanco.vidas())
   }
 }
 
