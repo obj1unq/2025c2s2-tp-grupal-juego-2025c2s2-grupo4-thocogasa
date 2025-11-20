@@ -9,10 +9,22 @@ import pieza.*
 
 class Enemigo inherits Pieza(position = game.at((0 .. 4).anyOne(), 7), ultimaFila = 0, color = negro, accesorio = new JaqueMate(piezaDueña = self)){
   var contador = 3
+  var property direccionesRandomizadas = []
+  
   method posicionesAvanzables()
 
-  method siguientePosicion() { // TODO: Objetos de posiciones cardinales "Absolutos" donde se guarde la siguiente posición a mover, en una lista randomizada, para que no haya que calcular las posiciones cada vez que se quiere mover
-    const candidatos = self.posicionesAvanzables().filter({ posicion => self.posicionValida(posicion) })
+  override method posicionesCapturables() = self.posicionesAvanzables()
+
+  method actualizarDirecciones() {
+    direccionesRandomizadas = self.posicionesAvanzables().randomized()
+  }
+
+  method siguientePosicion() {
+    if (direccionesRandomizadas.isEmpty()) {
+      self.actualizarDirecciones()
+    }
+    
+    const candidatos = direccionesRandomizadas.filter({ posicion => self.posicionValida(posicion) })
     return if (candidatos.isEmpty()) position else candidatos.anyOne()
   }
     
@@ -25,6 +37,7 @@ class Enemigo inherits Pieza(position = game.at((0 .. 4).anyOne(), 7), ultimaFil
       } else {
         const pos = self.siguientePosicion()
         self.mover(pos.x(), pos.y())
+        self.actualizarDirecciones()
       }
 
       self.intentarCapturar()

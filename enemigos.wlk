@@ -12,12 +12,10 @@ class PeonEnemigo inherits Enemigo (valor = 10, imagePieza = images.peonNegro())
 
 class AlfilNegro inherits Enemigo (valor = 30, imagePieza = images.alfilNegro()) {
   override method posicionesAvanzables() = [self.position().right(1).down(1), self.position().left(1).down(1)]
-  override method posicionesCapturables() = [self.position().right(1).down(1), self.position().left(1).down(1)]
 }
 
 class CaballoNegro inherits Enemigo (valor = 50, imagePieza = images.caballoNegro()) {
   override method posicionesAvanzables() = [self.position().right(2).down(1), self.position().left(2).down(1), self.position().right(1).down(2), self.position().left(1).down(2)]
-  override method posicionesCapturables() = [self.position().right(2).down(1), self.position().left(2).down(1), self.position().right(1).down(2), self.position().left(1).down(2)]
 }
 
 class TorreNegro inherits Enemigo (valor = 50, imagePieza = images.torreNegro()) {
