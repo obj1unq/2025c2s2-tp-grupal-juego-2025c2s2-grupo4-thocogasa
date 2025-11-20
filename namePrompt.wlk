@@ -68,7 +68,7 @@ object namePrompt {
     awaiting = false
     if (game.hasVisual(promptVisual)) game.removeVisual(promptVisual)
     leaderboard.addCurrentScoreWithName(name)
-    mecanicasJuego.reiniciarJuego()
+    if (self.currentName() == truco.modoGod()) {truco.reiniciarJuego()} else mecanicasJuego.reiniciarJuego()
     leaderboard.show()
   }
 

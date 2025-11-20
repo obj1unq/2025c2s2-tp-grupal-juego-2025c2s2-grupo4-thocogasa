@@ -70,6 +70,11 @@ object vida {
     reyBlanco.vidas(3)
     vidas = 3
   }
+
+  method reiniciarGod() {
+    reyBlanco.vidas(99999999999)
+    vidas = 99999999999
+  }
 }
 
 object oleadaActual {
@@ -79,4 +84,5 @@ object oleadaActual {
   
   method textColor() = "000000"
 }
+
 

@@ -114,3 +114,55 @@ object mecanicasJuego {
     }
   }
 }
+
+
+object truco {
+  method modoGod() {
+    return "iddqd"
+  }
+
+  method reiniciarJuego() {
+    sonidos.stopSonidoDeFondo()
+    // Detener todas las verificaciones y oleadas
+    mecanicasJuego.detenerVerificaciones()
+    oleada.detenerOleada()
+    oleada.nivel(1)
+    
+    // Limpiar todos los visuales excepto el rey blanco y UI
+    const visualesAMantener = [
+      reyBlanco,
+      score,
+      recurso,
+      vida,
+      piezasRestantes
+    ]
+    game.allVisuals().forEach(
+      { visual => if (not visualesAMantener.contains(visual)) {
+                      game.removeVisual(visual) 
+                  }
+      }
+    )
+    
+    // Resetear estado del rey blanco
+    reyBlanco.reiniciar()
+    
+    // Resetear score
+    score.reiniciar()
+    
+    // Resetear Vida
+    vida.reiniciarGod()
+    // Resetear Recursos
+    recurso.reiniciar()
+    // Resetear oleada
+    oleada.reiniciar()
+    
+    game.say(reyBlanco, "¡Juego reiniciado!")
+    
+    game.addVisual(controles)
+    ajedrez.visuales().add(controles)
+    // Reiniciar el juego después de 1 segundo
+    
+    
+    ajedrez.abrirTutorial()
+  }
+}
