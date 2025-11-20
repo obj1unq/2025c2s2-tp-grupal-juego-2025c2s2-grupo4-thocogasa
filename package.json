@@ -4,5 +4,10 @@
   "resourceFolder": "assets",
   "wollokVersion": "4.0.0",
   "author": "GabrielNicolasKakazu",
-  "license": "ISC"
+  "license": "ISC",
+  "game": {
+    "title": "Last Pawn Standing",
+    "html": "game.html",
+    "css": "game.css"
+  }
 }
