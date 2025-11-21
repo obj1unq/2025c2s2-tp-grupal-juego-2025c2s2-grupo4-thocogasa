@@ -22,5 +22,5 @@ object trucos {
     else if (key == "iddqd") { self.iddqd() }
     else if (key == "fatality") { self.blood() }
   }
-
 }
+ 
