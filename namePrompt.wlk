@@ -2,7 +2,7 @@ import mecanicas.*
 import wollok.game.*
 import UI.*
 import leaderboard.*
-import rey.*
+import trucos.*
 
 object namePrompt {
   var property awaiting = false

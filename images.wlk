@@ -1,5 +1,6 @@
 import oleadas.*
-import rey.*
+import trucos.*
+
 object images {
     method peonNegro() = "PNegro.png"
     method peonBlanco() = "PBlanco.png"
