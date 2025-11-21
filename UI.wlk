@@ -36,8 +36,8 @@ object recurso {
   }
   
   method restarRecursos(valor) {
-    recursos -= valor
-    reyBlanco.recursos(recursos)
+    if (not trucos.infinityAmmo()) {recursos -= valor
+    reyBlanco.recursos(recursos)}
   }
   method reiniciar() {
     reyBlanco.recursos(100)
@@ -62,7 +62,7 @@ object vida {
   method textColor() = "000000"
 
   method perderVida() {
-    vidas = vidas - 1
+    if (not trucos.modoDios()) {vidas = vidas - 1}
     reyBlanco.vidas(vidas)
   }
 

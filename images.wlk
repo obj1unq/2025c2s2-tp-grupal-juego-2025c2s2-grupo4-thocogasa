@@ -1,4 +1,5 @@
 import oleadas.*
+import rey.*
 object images {
     method peonNegro() = "PNegro.png"
     method peonBlanco() = "PBlanco.png"
@@ -8,12 +9,13 @@ object images {
     method alfilBlanco() = "ABlanco.png"
     method torreNegro() = "TNegro.png"
     method torreBlanco() = "TBlanco.png"
-    method piezaMuerta() = "PBlancoMuerto.gif"
+    method piezaMuerta() = if (trucos.sangre()) "Blood.gif" else "PBlancoMuerto.gif"
     method transicionOleada() = "OleadaGanada.gif"
     method rey() = "RBlanco.png"
     method rey1() = "RBlanco1Hit.png"
     method rey2() = "RBlanco2Hit.png"
     method rey3() = "RBlanco3Hit.png"
+    method reyDios() = "RBlancoGOD.png"
 }
 
 class JaqueMate {

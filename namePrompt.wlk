@@ -2,6 +2,7 @@ import mecanicas.*
 import wollok.game.*
 import UI.*
 import leaderboard.*
+import rey.*
 
 object namePrompt {
   var property awaiting = false
@@ -65,6 +66,10 @@ object namePrompt {
 
   method submit() {
     const name = if (self.currentName().trim().length() > 0) self.currentName() else "Anon"
+
+    if (name == "iddqd") {trucos.iddqd()}
+    if (name == "idfa") {trucos.idfa()}
+    if (name == "fatality") {trucos.blood()}
     awaiting = false
     if (game.hasVisual(promptVisual)) game.removeVisual(promptVisual)
     leaderboard.addCurrentScoreWithName(name)

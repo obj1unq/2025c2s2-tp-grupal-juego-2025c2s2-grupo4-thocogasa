@@ -24,8 +24,8 @@ object reyBlanco inherits Pieza (
     if (vidas <= 0) images.rey3()
     else if (vidas == 1) images.rey2()
     else if (vidas == 2) images.rey1()
+    else if (trucos.modoDios()) images.reyDios()
     else images.rey()
-
   
   method puedeColocar(pieza, ubicacion) {
     return self.recursosSuficientesPara(pieza) && 
@@ -103,4 +103,23 @@ object izquierda{
   method movimiento(posicionAMover) {
     return posicionAMover - 1
   }
+}
+
+object trucos {
+
+  var property modoDios = false
+  var property infinityAmmo = false
+  var property sangre = false
+
+  method idfa() {infinityAmmo = true}
+
+  method iddqd() {modoDios = true}
+
+  method blood() {sangre = true}
+
+  method reset()  {
+    modoDios = false
+    infinityAmmo = false
+  }
+
 }
