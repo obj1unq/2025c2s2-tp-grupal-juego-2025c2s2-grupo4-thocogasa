@@ -66,10 +66,7 @@ object namePrompt {
 
   method submit() {
     const name = if (self.currentName().trim().length() > 0) self.currentName() else "Anon"
-
-    if (name == "iddqd") {trucos.iddqd()}
-    if (name == "idfa") {trucos.idfa()}
-    if (name == "fatality") {trucos.blood()}
+    trucos.trigger(name)
     awaiting = false
     if (game.hasVisual(promptVisual)) game.removeVisual(promptVisual)
     leaderboard.addCurrentScoreWithName(name)

@@ -120,6 +120,14 @@ object trucos {
   method reset()  {
     modoDios = false
     infinityAmmo = false
+    sangre = false
+  }
+
+  method trigger(code) {
+    const key = if (code != null) code.toLowerCase() else ""
+    if (key == "idfa") { self.idfa() }
+    else if (key == "iddqd") { self.iddqd() }
+    else if (key == "fatality") { self.blood() }
   }
 
 }
