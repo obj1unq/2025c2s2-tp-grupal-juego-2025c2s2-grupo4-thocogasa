@@ -3,6 +3,7 @@ import rey.*
 import aliados.*
 import enemigos.*
 import oleadas.*
+import trucos.*
 
 
 object score {
@@ -78,5 +79,9 @@ object oleadaActual {
   method text() = " " + oleada.nivel()
   
   method textColor() = "000000"
+
+  method reiniciar() {
+    oleada.nivel(1)
+  }
 }
 

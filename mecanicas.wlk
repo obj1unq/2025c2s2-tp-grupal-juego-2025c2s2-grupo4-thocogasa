@@ -17,7 +17,7 @@ object mecanicasJuego {
     if (not verificacionActiva) {
       verificacionActiva = true
       game.onTick(
-        250,
+        500,
         "verificar_colisiones",
         { self.verificarTodasLasColisiones() }
       )
@@ -36,7 +36,6 @@ object mecanicasJuego {
     // Detener todas las verificaciones y oleadas
     self.detenerVerificaciones()
     oleada.detenerOleada()
-    oleada.nivel(1)
     
     // Limpiar todos los visuales excepto el rey blanco y UI
     const visualesAMantener = [
@@ -44,7 +43,8 @@ object mecanicasJuego {
       score,
       recurso,
       vida,
-      piezasRestantes
+      piezasRestantes,
+      oleadaActual
     ]
     game.allVisuals().forEach(
       { visual => if (not visualesAMantener.contains(visual)) {
@@ -64,7 +64,7 @@ object mecanicasJuego {
     // Resetear Recursos
     recurso.reiniciar()
     // Resetear oleada
-    oleada.reiniciar()
+    oleadaActual.reiniciar()
     
     game.say(reyBlanco, "¡Juego reiniciado!")
     
