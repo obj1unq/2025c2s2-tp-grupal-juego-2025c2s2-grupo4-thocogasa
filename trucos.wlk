@@ -29,5 +29,5 @@ object trucos {
     else if (key == "slowpoke") {self.slow()}
     else if (key == "reset") {self.reset()}
   }
-
 }
+ 

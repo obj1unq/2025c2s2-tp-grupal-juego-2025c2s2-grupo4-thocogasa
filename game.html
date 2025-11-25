@@ -81,13 +81,6 @@
           <span class="control-price">$100</span>
         </div>
       </div>
-
-      <div class="control-item restart">
-        <div class="control-keys">
-          <span class="key">R</span>
-        </div>
-        <span class="control-label">Reiniciar</span>
-      </div>
     </div>
   </div>
 
@@ -150,8 +143,7 @@
           (keyText === '1' && pressedKey === '1') ||
           (keyText === '2' && pressedKey === '2') ||
           (keyText === '3' && pressedKey === '3') ||
-          (keyText === '4' && pressedKey === '4') ||
-          (keyText === 'R' && pressedKey.toLowerCase() === 'r')
+          (keyText === '4' && pressedKey === '4')
         ) {
           key.style.transform = 'translateY(2px)';
           key.style.boxShadow = 'inset 0 -1px 2px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.4)';
