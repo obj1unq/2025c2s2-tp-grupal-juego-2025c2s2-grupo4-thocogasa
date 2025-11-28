@@ -12,8 +12,8 @@ object oleada {
   const property enemigosActivos = []
   var property intervaloSpawn = 2000
   var property intervaloMovimiento = 1500
-  var spawnerActivo = false
-  var movimientoActivo = false
+  var property spawnerActivo = false
+  var property movimientoActivo = false
   var property enTransicion = false
   var property nivel = 1
 
