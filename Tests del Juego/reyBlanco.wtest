@@ -19,4 +19,7 @@ describe "Probando al rey" {
     assert.equals(2, reyBlanco.position().x())
     assert.equals(0, reyBlanco.position().y())
   }
+  test "description" {
+    
+  }
 }
