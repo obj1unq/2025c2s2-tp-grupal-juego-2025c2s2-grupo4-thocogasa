@@ -1,4 +1,12 @@
+import images.*
+import enemigo.*
+import enemigos.*
+import aliados.*
+import aliado.*
+import oleadas.*
 import rey.*
+import mecanicas.*
+import wollok.game.*
 
 describe "Probando al rey" {
   test "Mover el rey " {
@@ -19,7 +27,12 @@ describe "Probando al rey" {
     assert.equals(2, reyBlanco.position().x())
     assert.equals(0, reyBlanco.position().y())
   }
-  test "description" {
-    
+  test "Intentar Poner Pieza" {
+    const pieza = new PeonBlanco()
+
+    reyBlanco.intentarColocarPieza(pieza)
+
+    assert.equals(2, pieza.position().x())
+    assert.equals(0, pieza.position().y())
   }
 }
