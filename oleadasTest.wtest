@@ -25,9 +25,6 @@ describe "test de Enemigos" {
     assert.equals(6, oleada.enemigosRestantes()) 
   }
   test "Spawnear Enemigos, disminuye enemigosPorSpawnear y aumenta enemigos activos " {
-    //const cantDeEnemigosPorSpawnear = oleada.getEnemigosPorSpawnear().size()
-    //const cantDeEnemigosActivos = oleada.getEnemigosActivos().size()
-
     assert.equals(0, oleada.enemigosPorSpawnear().size())
     assert.equals(0,  oleada.enemigosActivos().size())
 
@@ -56,30 +53,50 @@ describe "test de Enemigos" {
 
     assert.equals(0, oleada.enemigosPorSpawnear().size())
     assert.equals(0, oleada.enemigosActivos().size())
+    //preguntar a los chicos si agregamos validaciones para que en ves de testear el estado haga 
   }
 
   test "Revisar si el enemigo se mueve una posicion al iniciar spawner"{
-    //const enemigo = new Enemigo(position = game.at(0, 7))
-
     oleada.crearOleada(1)
-    
-    // Esto solo confirma que si se agrego el enemigo
 
-    assert.equals(1, oleada.enemigosPorSpawnear().size())
-    assert.equals(0, oleada.enemigosActivos().size())
+    const enemigoAntesDeSpawnear = oleada.enemigosPorSpawnear().first()
+    const posicionDelEnemigoAntesDeMover = enemigoAntesDeSpawnear.position()
+    // Asumimos que la posición inicial del Enemigo es (x, 7)
 
     oleada.spawnearSiguienteEnemigo()
 
-    // Esto solo 
+    const posicionEnXinicial = enemigoAntesDeSpawnear.position().x()
+    const posicionEnYinicial = enemigoAntesDeSpawnear.position().y()
 
-    assert.equals(0, oleada.enemigosPorSpawnear().size())
-    assert.equals(1, oleada.enemigosActivos().size())
+    assert.equals(posicionEnYinicial, enemigoAntesDeSpawnear.position().y())
+    console.println("ene Antes Spaw: "+enemigoAntesDeSpawnear.position())
 
-//hay que hablar con leo si es correcto modelar esto
-
-
-
+    oleada.moverTodosLosEnemigos()
     
+    const enemigoDespuesDeMover = oleada.enemigosActivos().first()
+    console.println("ene : "+enemigoDespuesDeMover.position())
+    //assert.equals(posicionDelEnemigoAntesDeMover.x() + 1, posicionDelEnemigo.x())
+    assert.equals(posicionEnYinicial - 1, enemigoDespuesDeMover.position().y())
+    
+    // También verificamos que la coordenada X no cambió
+    assert.equals(posicionEnXinicial, enemigoDespuesDeMover.position().x())
+    
+  // Vemos que la lista no se haya limpiado
+    assert.equals([enemigoDespuesDeMover], oleada.enemigosActivos())
+    //preguntar si esta bien
+  }
+  test "Probar Reiniciar" {
+    oleada.crearOleada(4)
+    oleada.spawnearSiguienteEnemigo()
+    oleada.moverTodosLosEnemigos()
+
+    oleada.reiniciar()
+
+    assert.equals([], oleada.enemigosPorSpawnear())
+    assert.equals([], oleada.enemigosActivos())
+    assert.notThat(oleada.spawnerActivo())
+    assert.notThat(oleada.movimientoActivo())
+    assert.notThat(oleada.enTransicion())
   }
 
 }
