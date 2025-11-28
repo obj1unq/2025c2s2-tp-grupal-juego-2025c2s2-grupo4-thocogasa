@@ -104,5 +104,3 @@ object izquierda{
     return posicionAMover - 1
   }
 }
-
-// `trucos` moved to `trucos.wlk`

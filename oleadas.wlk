@@ -59,7 +59,7 @@ object oleada {
           enemigo
         )) }
     )
-    enemigosAEliminar.forEach({ enemigo => enemigosActivos.remove(enemigo) })
+    enemigosAEliminar.forEach({ enemigo => enemigo.desaparece(0) enemigosActivos.remove(enemigo) })
   }
   
   method iniciarSpawner() {
