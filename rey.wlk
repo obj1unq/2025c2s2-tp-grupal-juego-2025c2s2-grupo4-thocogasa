@@ -5,7 +5,7 @@ import wollok.game.*
 import oleadas.*
 import images.*
 import pieza.*
-
+import trucos.*
 
 object reyBlanco inherits Pieza ( 
   ultimaFila = game.height() - 1, 
@@ -24,8 +24,8 @@ object reyBlanco inherits Pieza (
     if (vidas <= 0) images.rey3()
     else if (vidas == 1) images.rey2()
     else if (vidas == 2) images.rey1()
+    else if (trucos.modoDios()) images.reyDios()
     else images.rey()
-
   
   method puedeColocar(pieza, ubicacion) {
     return self.recursosSuficientesPara(pieza) && 

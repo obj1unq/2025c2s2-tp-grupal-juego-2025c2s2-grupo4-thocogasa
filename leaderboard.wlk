@@ -13,7 +13,7 @@ object leaderboard { // VER DE IMPLEMENTAR PERSISTENCIA CON MÉTODOS NATIVOS USA
   }
 
   method addCurrentScoreWithName(name) {
-    self.addEntry(name, score.score())
+    self.addEntry(name, score.valor())
   }
 
   method top(n) {
