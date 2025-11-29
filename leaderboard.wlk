@@ -1,7 +1,7 @@
 import wollok.game.*
 import UI.*
 
-object leaderboard { // VER DE IMPLEMENTAR PERSISTENCIA CON MÉTODOS NATIVOS USANDO TYPESCRIPT
+object leaderboard {
   const entries = []         // { name, score }
   const displayed = []
   var property maxEntries = 3

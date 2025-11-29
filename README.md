@@ -42,7 +42,11 @@ Puede servir como un tutorial divertido para aprender los movimientos de algunas
 ### COMBOS.
 + Las piezas aliadas tienen un multiplicador por cada pieza que come. Por ejemplo, a la tercer pieza capturada el valor de los créditos obtenidos se multiplica por 3.
 
+## Trucos
++ 3 trucos inspirados en Doom.
++ 1 truco inspirado en Mortal Kombat.
++ 1 truco inspirado en los sims.
++ 1 Pokémon.
+
 
 [Proyecto To-Do](https://github.com/orgs/obj1unq/projects/3/views/1)
-
-

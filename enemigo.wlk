@@ -56,7 +56,7 @@ class Enemigo inherits Pieza(position = game.at((0 .. 4).anyOne(), 7), ultimaFil
   method capturarRey() {
     if (position.y() == 0) {
       if (reyBlanco.vidas() <= 0) {
-        game.say(reyBlanco, "¡Game Over! Presiona R para reiniciar")
+        game.say(reyBlanco, "¡Game Over!")
         mecanicasJuego.gameOver()
       } else {
         vida.perderVida()//reyBlanco.perderVida()
