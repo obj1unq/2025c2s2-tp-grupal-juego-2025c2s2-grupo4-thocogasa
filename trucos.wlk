@@ -15,7 +15,7 @@ object trucos {
 
   method slow() { lento = true }
 
-  method motherlode() { recurso.añadirRecursos(50000) }
+  method motherlode() { game.schedule(1000, { => recurso.añadirRecursos(50000) }) }
 
   method noclip() { idclip = true }
 

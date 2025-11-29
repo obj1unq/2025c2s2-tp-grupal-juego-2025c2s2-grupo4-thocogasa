@@ -86,9 +86,9 @@ object controles {
 	method init() {
 		keyboard.right().onPressDo({if (ajedrez.juegoActivo()) reyBlanco.mover(reyBlanco.position().x() + 1, reyBlanco.position().y()) })
 		keyboard.left().onPressDo({if (ajedrez.juegoActivo()) reyBlanco.mover(reyBlanco.position().x() - 1, reyBlanco.position().y()) })
-		keyboard.up().onPressDo({if (ajedrez.juegoActivo() && trucos.idclip()) reyBlanco.mover(reyBlanco.position().x(), reyBlanco.position().y() - 1) })
-		keyboard.down().onPressDo({if (ajedrez.juegoActivo() && trucos.idclip()) reyBlanco.mover(reyBlanco.position().x(), reyBlanco.position().y() + 1) })
-		
+		keyboard.up().onPressDo({if (ajedrez.juegoActivo() && trucos.idclip()) reyBlanco.mover(reyBlanco.position().x(), reyBlanco.position().y() + 1) })
+		keyboard.down().onPressDo({if (ajedrez.juegoActivo() && trucos.idclip()) reyBlanco.mover(reyBlanco.position().x(), reyBlanco.position().y() - 1) })
+
 		keyboard.num(1).onPressDo(
 			{ if (ajedrez.juegoActivo()) reyBlanco.intentarColocarPieza(new PeonBlanco()) }
 		)
