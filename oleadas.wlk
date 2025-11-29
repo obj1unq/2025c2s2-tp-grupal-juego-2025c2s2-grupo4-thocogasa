@@ -26,6 +26,7 @@ object oleada {
     if (nivel >= 3) disponibles.add(new TorreNegro())
     if (nivel >= 5) disponibles.add(new AlfilNegro())
     if (nivel >= 7) disponibles.add(new CaballoNegro())
+    if (nivel >= 20) disponibles.add(new DamaNegro())
 
     return if (disponibles.isEmpty()) new PeonEnemigo() else disponibles.anyOne()
   }

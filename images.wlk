@@ -17,6 +17,7 @@ object images {
     method rey2() = "RBlanco2Hit.png"
     method rey3() = "RBlanco3Hit.png"
     method reyDios() = "RBlancoGOD.png"
+    method damaNegro() = "DNegro.png"
 }
 
 class JaqueMate {
