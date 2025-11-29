@@ -1,0 +1,98 @@
+import UI.*
+import images.*
+import enemigo.*
+import enemigos.*
+import aliados.*
+import aliado.*
+import oleadas.*
+import rey.*
+import mecanicas.*
+import wollok.game.*
+
+describe "Probando al rey" {
+  const pieza = new PeonBlanco()
+
+  test "Mover el rey " {
+    //Puebo la posicion inicial
+    assert.equals(2, reyBlanco.position().x())
+    assert.equals(0, reyBlanco.position().y())
+
+    //Muevo en uno
+    reyBlanco.mover(reyBlanco.position().x() + 1, reyBlanco.position().y())
+
+    assert.equals(3, reyBlanco.position().x())
+    assert.equals(0, reyBlanco.position().y())
+
+    // Reinicio el juego y pruebo controles
+
+    reyBlanco.reiniciar()
+
+    assert.equals(2, reyBlanco.position().x())
+    assert.equals(0, reyBlanco.position().y())
+  }
+  test "Intentar Poner Pieza" {
+
+    //reyBlanco.intentarColocarPieza(pieza)
+    //por alguna razon no se ejecuta
+    reyBlanco.colocarPiezaEn(pieza, reyBlanco.position())
+    console.println(pieza.position().x())
+    console.println(pieza.position().y())
+
+    assert.equals(2, pieza.position().x())
+    assert.equals(0, pieza.position().y())
+
+    assert.equals([pieza], reyBlanco.listaPiezasAliadas())
+    
+    assert.equals(80, reyBlanco.recursos())
+  }
+  test "Desaparecer enemigos si hay" {
+    const enemigo = new PeonEnemigo(position = game.at(2,1))
+
+    reyBlanco.colocarPiezaEn(pieza, reyBlanco.position())
+    //reyBlanco.listaPiezasAliadas().add(pieza)
+    oleada.piezasActivas().add(enemigo)
+
+    reyBlanco.desaparecerEnemigoSiHay(reyBlanco.position())
+    
+    console.println(reyBlanco.recursos())
+    assert.equals(105, reyBlanco.recursos())
+    assert.equals(5, score.score())
+//intentar Despues pq no se pudo
+  }
+  test "Probando Disparar Proyectil" {
+    assert.equals(100, reyBlanco.recursos())
+    reyBlanco.disparar(new TorreBlanca())
+    assert.equals(0, reyBlanco.recursos())
+  }
+  test "Reiniciar Juego" {
+    reyBlanco.piezasActivas().add(pieza)
+    reyBlanco.position(game.at(4,0))
+
+    assert.equals(4, reyBlanco.position().x())
+    assert.equals(0, reyBlanco.position().y())
+
+    reyBlanco.reiniciar()
+
+    assert.equals(2, reyBlanco.position().x())
+    assert.equals(0, reyBlanco.position().y())
+  }
+  test "Lista de piezas activas" {
+    const piezaDos  = new PeonBlanco()
+    const piezaTres = new PeonBlanco()
+
+    //reyBlanco.listaPiezasAliadas().add(pieza)
+    //reyBlanco.listaPiezasAliadas().add(piezaDos)
+    //reyBlanco.listaPiezasAliadas().add(piezaTres)
+
+    reyBlanco.colocarPiezaEn(pieza, reyBlanco.position())
+    reyBlanco.colocarPiezaEn(piezaDos, reyBlanco.position())
+    reyBlanco.position(game.at(2,2))
+    reyBlanco.colocarPiezaEn(piezaTres, reyBlanco.position())
+
+    assert.equals([pieza, piezaDos, piezaTres], reyBlanco.listaPiezasAliadas())
+
+    reyBlanco.limpiarAliadosInactivos()
+
+    assert.equals([piezaTres], reyBlanco.listaPiezasAliadas())
+  }
+}
