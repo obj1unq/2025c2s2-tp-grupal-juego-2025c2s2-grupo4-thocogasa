@@ -1,8 +1,12 @@
 import rey.*
-import wollok.game.*
-import aliados.*
 import aliado.*
+import aliados.*
+import enemigo.*
+import enemigos.*
+import wollok.game.*
+import images.*
 import mecanicas.*
+import oleadas.*
 import proyectiles.*
 
 describe "tests de proyectiles" {
@@ -25,9 +29,10 @@ describe "tests de proyectiles" {
     }
 
 test "disparo con recursos suficientes" {
-        reyBlanco.disparar(t1) //no falla porque torre sale 100
+        reyBlanco.recursos(170)
+        reyBlanco.disparar(t1) //falla porque torre sale 100
+        assert.equals(70, reyBlanco.recursos())
+        reyBlanco.disparar(b1) //falla porque alfil sale 70
         assert.equals(0, reyBlanco.recursos())
     }
-
-
 }
