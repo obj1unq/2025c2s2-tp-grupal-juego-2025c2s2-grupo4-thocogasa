@@ -4,6 +4,7 @@ import aliados.*
 import mecanicas.*
 import enemigo.*
 import images.*
+import board.*
 
 class PeonEnemigo inherits Enemigo (valor = 10, imagePieza = images.peonNegro()) {
   override method posicionesAvanzables() = [self.position().down(1)]

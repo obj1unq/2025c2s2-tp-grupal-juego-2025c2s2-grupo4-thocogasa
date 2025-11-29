@@ -38,15 +38,12 @@ object reyBlanco inherits Pieza (
   }
 
   method intentarColocarPieza(pieza) {
-      if (self.puedeColocar(pieza, self.position().up(1)) && 
-        !color.hayPiezaContraria(self.position().up(1))) {
-            self.colocarPiezaEn(pieza, self.position().up(1) )
-      } else if (
-        self.puedeColocar(pieza, self.position().up(1)) && 
-        self.hayPiezaDeColor(negro, self.position().up(1))
-        ) {
+      const destino = self.position().up(1)
+      if (self.puedeColocar(pieza, destino) && !color.hayPiezaContraria(destino)) {
+            self.colocarPiezaEn(pieza, destino)
+      } else if (self.puedeColocar(pieza, destino) && self.hayPiezaDeColor(negro, destino)) {
             recurso.restarRecursos(pieza.valor())
-            self.desaparecerEnemigoSiHay(self.position().up(1))
+            self.desaparecerEnemigoSiHay(destino)
       }
   }
 
