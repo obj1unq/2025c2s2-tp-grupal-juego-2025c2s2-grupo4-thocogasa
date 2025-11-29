@@ -29,10 +29,19 @@ describe "Testeando UI" {
     assert.equals(100, recurso.valor())
   }
   test "Probando piezas restantes" {
+    //oleada.crearOleada()
     assert.equals(5, piezasRestantes.valorAMostrar())
 
+    oleada.spawnearSiguienteEnemigo()
+    const enemigo = oleada.enemigosActivos()
+    enemigo.remove(enemigo.first())
+
+    assert.equals(4, piezasRestantes.valorAMostrar())
+    
+    //Reinicia solo el valor
     piezasRestantes.reiniciar()
-    assert.equals(0, piezasRestantes.valorAMostrar())
+
+    assert.equals(4, piezasRestantes.valorAMostrar())
   }
   test "Probando Vida" {
     assert.equals(3, vida.valor())
