@@ -1,9 +1,11 @@
+import UI.*
 object trucos {
 
   var property modoDios = false
   var property infinityAmmo = false
   var property sangre = false
   var property lento = false
+  var property idclip = false
 
   method idfa() { infinityAmmo = true }
 
@@ -11,7 +13,11 @@ object trucos {
 
   method blood() { sangre = true }
 
-  method slow() {lento = true}
+  method slow() { lento = true }
+
+  method motherlode() { recurso.añadirRecursos(50000) }
+
+  method noclip() { idclip = true }
 
   method reset() {
     modoDios = false
@@ -28,6 +34,9 @@ object trucos {
     else if (key == "vainilla") {self.reset()}
     else if (key == "slowpoke") {self.slow()}
     else if (key == "reset") {self.reset()}
+    else if (key == "motherlode") {self.motherlode()}
+    else if (key == "idclip") { self.noclip()}
+    else if (key == "noclip") { self.noclip()}
   }
 }
  

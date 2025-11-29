@@ -40,12 +40,12 @@ object reyBlanco inherits Pieza (
   method intentarColocarPieza(pieza) {
       if (self.puedeColocar(pieza, self.position().up(1)) && 
         !color.hayPiezaContraria(self.position().up(1))) {
-            self.colocarPiezaEn(pieza, self.position().up(1) )// 
+            self.colocarPiezaEn(pieza, self.position().up(1) )
       } else if (
         self.puedeColocar(pieza, self.position().up(1)) && 
         self.hayPiezaDeColor(negro, self.position().up(1))
         ) {
-            recurso.restarRecursos(pieza.valor()) //self.restarRecursos(pieza.valor())
+            recurso.restarRecursos(pieza.valor())
             self.desaparecerEnemigoSiHay(self.position().up(1))
       }
   }
@@ -54,8 +54,8 @@ object reyBlanco inherits Pieza (
       pieza.position(pos)
       game.addVisual(pieza)
       listaPiezasAliadas.add(pieza)
-      recurso.restarRecursos(pieza.valor())//self.restarRecursos(pieza.valor())
-  } //metí este método para poder disparar directamente desde la posicion del Rey
+      recurso.restarRecursos(pieza.valor())
+  }
 
   method enemigoEnPosicionADesaparecer(posicion) {
     return if(color.hayPiezaContraria(posicion)) color.piezaContrariaEn(posicion)
@@ -65,7 +65,7 @@ object reyBlanco inherits Pieza (
     const enemigo = self.enemigoEnPosicionADesaparecer(pos)
     if(color.hayPiezaContraria(pos)){
       enemigo.desaparece(500)
-      recurso.añadirRecursos(enemigo.valor() / 2)//self.añadirRecursos(enemigo.valor() / 2)
+      recurso.añadirRecursos(enemigo.valor() / 2)
       score.addScore(enemigo.valor() / 2)
     }
   }
@@ -78,8 +78,6 @@ object reyBlanco inherits Pieza (
   }
   
   method reiniciar() {
-    //recursos = 100
-    //vidas = 3
     position = game.at(2, 0)
     
     listaPiezasAliadas.clear()
@@ -90,17 +88,5 @@ object reyBlanco inherits Pieza (
       self.colocarPiezaEn(proyectil, position)
       proyectil.avanzarYComer()
     }
-  } //ahora el rey dispara desde su posición, y sólo chequea por validez de recursos
-}
-
-//Dandole sentido de abstraccion a los movimientos
-object derecha{
-  method movimiento(posicionAMover) {
-    return posicionAMover + 1
-  }
-}
-object izquierda{
-  method movimiento(posicionAMover) {
-    return posicionAMover - 1
   }
 }
