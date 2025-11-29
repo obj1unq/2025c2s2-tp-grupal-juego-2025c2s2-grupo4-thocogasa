@@ -6,14 +6,15 @@ import enemigo.*
 import enemigos.*
 import images.*
 import timers.*
+import trucos.*
 
 object oleada {
   const property enemigosPorSpawnear = []
   const property enemigosActivos = []
-  var property intervaloSpawn = 2000
-  var property intervaloMovimiento = 1500
-  var property spawnerActivo = false
-  var property movimientoActivo = false
+  var property intervaloSpawn = if (trucos.lento()) 5000 else 2000
+  var property intervaloMovimiento = if (trucos.lento()) 2500 else 1500
+  var spawnerActivo = false
+  var movimientoActivo = false
   var property enTransicion = false
   var property nivel = 1
 
@@ -58,7 +59,7 @@ object oleada {
           enemigo
         )) }
     )
-    enemigosAEliminar.forEach({ enemigo => enemigosActivos.remove(enemigo) })
+    enemigosAEliminar.forEach({ enemigo => enemigo.desaparece(0) enemigosActivos.remove(enemigo) })
   }
   
   method iniciarSpawner() {

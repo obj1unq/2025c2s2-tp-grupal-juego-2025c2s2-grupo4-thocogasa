@@ -56,7 +56,7 @@ describe "Probando al rey" {
     
     console.println(reyBlanco.recursos())
     assert.equals(105, reyBlanco.recursos())
-    assert.equals(5, score.score())
+    assert.equals(5, score.valor())
 //intentar Despues pq no se pudo
   }
   test "Probando Disparar Proyectil" {

@@ -35,6 +35,4 @@ test "disparo con recursos suficientes" {
         reyBlanco.disparar(b1) //falla porque alfil sale 70
         assert.equals(0, reyBlanco.recursos())
     }
-
-
 }
