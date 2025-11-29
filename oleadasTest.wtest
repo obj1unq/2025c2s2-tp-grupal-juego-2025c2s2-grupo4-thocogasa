@@ -53,7 +53,6 @@ describe "test de Enemigos" {
 
     assert.equals(0, oleada.enemigosPorSpawnear().size())
     assert.equals(0, oleada.enemigosActivos().size())
-    //preguntar a los chicos si agregamos validaciones para que en ves de testear el estado haga 
   }
 
   test "Revisar si el enemigo se mueve una posicion al iniciar spawner"{
@@ -75,7 +74,6 @@ describe "test de Enemigos" {
     
     const enemigoDespuesDeMover = oleada.enemigosActivos().first()
     console.println("ene : "+enemigoDespuesDeMover.position())
-    //assert.equals(posicionDelEnemigoAntesDeMover.x() + 1, posicionDelEnemigo.x())
     assert.equals(posicionEnYinicial - 1, enemigoDespuesDeMover.position().y())
     
     // También verificamos que la coordenada X no cambió
@@ -83,7 +81,6 @@ describe "test de Enemigos" {
     
   // Vemos que la lista no se haya limpiado
     assert.equals([enemigoDespuesDeMover], oleada.enemigosActivos())
-    //preguntar si esta bien
   }
   test "Probar Reiniciar" {
     oleada.crearOleada(4)
