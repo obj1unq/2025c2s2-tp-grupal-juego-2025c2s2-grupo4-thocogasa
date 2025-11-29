@@ -10,7 +10,7 @@ import trucos.*
 object reyBlanco inherits Pieza ( 
   ultimaFila = game.height() - 1, 
   color = blanco, 
-  vidas = 3, 
+  vidas = if (trucos.hardmode()) 0 else 3,
   position = game.at(2, 0),
   imagePieza = images.rey()
 
