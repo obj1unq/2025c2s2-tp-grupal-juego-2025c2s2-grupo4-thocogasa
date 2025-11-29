@@ -26,3 +26,5 @@ class TorreNegro inherits Enemigo (valor = 50, imagePieza = images.torreNegro())
   override method posicionesAvanzables() = [self.position().down(1)]
   override method posicionesCapturables() = [game.at(0, self.position().y()), game.at(1, self.position().y()), game.at(2, self.position().y()), game.at(3, self.position().y()), game.at(4, self.position().y())]
 }
+
+class DamaNegro inherits AlfilNegro (valor = 200, imagePieza = images.damaNegro()) {}

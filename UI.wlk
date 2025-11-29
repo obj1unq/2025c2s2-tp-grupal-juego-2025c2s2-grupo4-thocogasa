@@ -19,7 +19,9 @@ class Interfaz {
 
   method textColor() = "000000"
 
-  method reiniciar() //abstracto
+  method reiniciar() {
+    valor = 0
+  }
 
   method actualizar(_valorNuevo) {
     valor = _valorNuevo
@@ -67,10 +69,6 @@ object piezasRestantes inherits Interfaz(position = game.at(6,5), valor = 0) {
 
   override method valorAMostrar() {
     return oleada.enemigosRestantes()
-  }
-
-  override method reiniciar() {
-    valor = 0
   }
 }
 
