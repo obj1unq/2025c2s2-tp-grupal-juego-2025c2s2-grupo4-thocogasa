@@ -34,17 +34,13 @@ object score inherits Interfaz(position = game.at(6,7), valor = 0) {
     valor += v
   }
 
-  override method reiniciar() {
-    valor = 0
-  }
+
 }
 
 
 object recurso inherits Interfaz(position = game.at(6,6), valor = reyBlanco.recursos()) {
 
-  override method valorAMostrar() {
-    return valor
-  }
+
 
   method añadirRecursos(v) {
     valor += v
