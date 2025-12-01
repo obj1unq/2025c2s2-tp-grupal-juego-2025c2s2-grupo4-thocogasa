@@ -19,6 +19,7 @@ object ajedrez inherits Escena {
 	override method mostrar() {
 		game.addVisual(reyBlanco)
 		visuales.add(reyBlanco)
+		game.boardGround("Tablero.png")
 		
 		oleada.crearOleada(5)
 		game.showAttributes(reyBlanco)
@@ -43,6 +44,10 @@ object ajedrez inherits Escena {
 		controles.init()
 
 		keyboard.l().onPressDo({ leaderboard.toggle() })
+
+		keyboard.plusKey().onPressDo({sonidos.subirVolumen()})
+		keyboard.minusKey().onPressDo({sonidos.bajarVolumen()})
+		keyboard.m().onPressDo({ sonidos.toggle() })
 		
 		//Reiniciar juego
 		keyboard.alt().onPressDo({ mecanicasJuego.reiniciarJuego() })

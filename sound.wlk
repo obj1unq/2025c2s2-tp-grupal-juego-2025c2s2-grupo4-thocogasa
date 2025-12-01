@@ -4,6 +4,7 @@ object sonidos {
     //esto solo reproduce el sonido que haya, empieza y termina
     const property sonidoDeFondo = game.sound("sonidoDeFondo.mp3")
     var property isPlaying = false
+    var volume = 0.5
 
   method playFondo(){
     // con shoul se loopee (repita)
@@ -15,9 +16,15 @@ object sonidos {
     self.isPlaying(true)
 
   }
-  method pausaDeFondo() {
+  method toggle() {
     //si o si iba en variable por que sino era uno nuevo
-    sonidoDeFondo.pause()
+    if(!isPlaying){
+      sonidoDeFondo.resume()
+      isPlaying = true
+    }else{
+      sonidoDeFondo.pause()
+      isPlaying = false
+    }
   }
   method stopSonidoDeFondo() {
     if(self.isPlaying()){
@@ -28,5 +35,16 @@ object sonidos {
   method playGameOver(){
     const sonidoGameOver = game.sound("game_over.mp3")
     sonidoGameOver.play()
+  }
+
+  method subirVolumen(){
+      volume = 1.min(volume + 0.1)
+      sonidoDeFondo.volume(volume)
+  }
+
+  method bajarVolumen() {
+      volume = 0.max(volume - 0.1)
+      sonidoDeFondo.volume(volume)
+    
   }
 }
