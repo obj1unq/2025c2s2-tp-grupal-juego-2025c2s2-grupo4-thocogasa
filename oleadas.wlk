@@ -7,6 +7,7 @@ import enemigos.*
 import images.*
 import timers.*
 import trucos.*
+import board.*
 
 object oleada {
   const property enemigosPorSpawnear = []
@@ -41,6 +42,8 @@ object oleada {
       enemigosPorSpawnear.remove(nuevoEnemigo)
       enemigosActivos.add(nuevoEnemigo)
       game.addVisual(nuevoEnemigo)
+      board.ensureInit()
+      game.schedule(0, { board.registerPiece(nuevoEnemigo) })
     } else {
       self.detenerSpawner()
     }
@@ -123,6 +126,7 @@ object oleada {
     spawnerActivo = false
     movimientoActivo = false
     enTransicion = false
+    board.init()
   }
 
   method iniciarTransicion() {

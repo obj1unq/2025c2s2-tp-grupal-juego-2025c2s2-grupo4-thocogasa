@@ -6,6 +6,7 @@ import oleadas.*
 import images.*
 import pieza.*
 import trucos.*
+import board.*
 
 object reyBlanco inherits Pieza ( 
   ultimaFila = game.height() - 1, 
@@ -51,6 +52,8 @@ object reyBlanco inherits Pieza (
       pieza.position(pos)
       game.addVisual(pieza)
       listaPiezasAliadas.add(pieza)
+      board.ensureInit()
+      game.schedule(0, { board.registerPiece(pieza) })
       recurso.restarRecursos(pieza.valor())
   }
 

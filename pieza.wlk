@@ -1,6 +1,7 @@
 import oleadas.*
 import rey.*
 import images.*
+import board.*
 
 class Pieza {
     var property imagePieza
@@ -15,8 +16,14 @@ class Pieza {
     method image() = if(muerto) images.piezaMuerta() else imagePieza
 
     method mover(posiciónx, posicióny) {
-        if (self.estaDentroDelTablero(game.at(posiciónx, posicióny))){
-            position = game.at(posiciónx, posicióny)}
+        const destino = game.at(posiciónx, posicióny)
+        if (self.estaDentroDelTablero(destino)) {
+            board.ensureInit()
+            board.removePiece(self)
+            position = destino
+            board.ensureInit()
+            game.schedule(0, { board.registerPiece(self) })
+        }
     }
     
     method estaDentroDelTablero(posicion) = (((posicion.x() >= 0) and (posicion.x() < 5)) and (posicion.y() >= 0)) and (posicion.y() < game.height())
@@ -48,6 +55,8 @@ class Pieza {
         if (game.hasVisual(accesorio)) {
             game.removeVisual(accesorio)
         }
+        board.ensureInit()
+        board.removePiece(self)
         game.schedule(tiempo, { game.removeVisual(self) })
     }
 
