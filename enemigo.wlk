@@ -7,8 +7,7 @@ import images.*
 import oleadas.*
 import pieza.*
 
-class Enemigo inherits Pieza(position = game.at((0 .. 4).anyOne(), 7), ultimaFila = 0, color = negro, 
-    accesorio = new JaqueMate(piezaDueña = self)){
+class Enemigo inherits Pieza(position = game.at((0 .. 4).anyOne(), 7), ultimaFila = 0, color = negro, accesorio = new JaqueMate(piezaDueña = self)) {
   var contador = 3
   var property direccionesRandomizadas = []
   

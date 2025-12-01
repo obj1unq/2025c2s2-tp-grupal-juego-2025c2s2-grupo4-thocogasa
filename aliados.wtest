@@ -9,7 +9,6 @@ import images.*
 import mecanicas.*
 import oleadas.*
 
-
 describe "tests de peones" {
   method initialize() {
     game.height(8)
@@ -19,12 +18,8 @@ describe "tests de peones" {
   }
   
   test "falla capturar enemigos" {
-    const blanco4 = new PeonBlanco(
-      position = game.at(1, 6)
-    )
-    const blanco5 = new PeonBlanco(
-      position = game.at(2, 5)
-    )
+    const blanco4 = new PeonBlanco(position = game.at(1, 6))
+    const blanco5 = new PeonBlanco(position = game.at(2, 5))
     game.addVisual(blanco4)
     game.addVisual(blanco5)    
 
@@ -63,25 +58,21 @@ describe "tests de caballos" {
   const otroCaballo = new CaballoBlanco()
 
   test "colocar caballo" {
-    assert.that(reyBlanco.puedeColocar(
-      nuevoCaballo, reyBlanco.position().up(1)))
+    assert.that(reyBlanco.puedeColocar(nuevoCaballo, reyBlanco.position().up(1)))
     reyBlanco.intentarColocarPieza(nuevoCaballo)
     assert.equals(50, recurso.valor())
     // chequea el valor descontado de Recursos
 
      //pero ya no puedo colocar OTRO CABALLO
-    assert.notThat(reyBlanco.puedeColocar(
-      otroCaballo, reyBlanco.position().up(1)))
+    assert.notThat(reyBlanco.puedeColocar(otroCaballo, reyBlanco.position().up(1)))
     
     reyBlanco.intentarColocarPieza(otroCaballo) //esto no hace nada
     assert.equals(50, recurso.valor()) //los recursos se mantineen en 50 
   }
 
-    test "capturar con caballo varias piezas"{
-    const negroA = new PeonEnemigo(
-        position = game.at(3, 4))
-    const negroB = new AlfilNegro(
-      position = game.at(4, 2))
+  test "capturar con caballo varias piezas"{
+    const negroA = new PeonEnemigo(position = game.at(3, 4))
+    const negroB = new AlfilNegro(position = game.at(4, 2))
     reyBlanco.intentarColocarPieza(nuevoCaballo)
     assert.equals(50, recurso.valor())
 
@@ -92,12 +83,11 @@ describe "tests de caballos" {
     assert.equals(80, recurso.valor()) //50+30
 
     assert.notThat(game.getObjectsIn(game.at(4, 2)).isEmpty())
-    // assert.notThat(game.getObjectsIn(game.at(3, 4)).isEmpty())
     assert.equals(2, nuevoCaballo.combo()) // combo = 1 + 1
     
-     nuevoCaballo.capturar(negroA)
-     assert.equals(100, recurso.valor())  //(80) + (10*2)
-     assert.equals(3, nuevoCaballo.combo()) // combo = 2+1
+    nuevoCaballo.capturar(negroA)
+    assert.equals(100, recurso.valor())  //(80) + (10*2)
+    assert.equals(3, nuevoCaballo.combo()) // combo = 2+1
   }
 
 
