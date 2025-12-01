@@ -33,15 +33,10 @@ object score inherits Interfaz(position = game.at(6,7), valor = 0) {
   method addScore(v) {
     valor += v
   }
-
-
 }
 
 
 object recurso inherits Interfaz(position = game.at(6,6), valor = 100) {
-
-
-
   method añadirRecursos(v) {
     valor += v
   }
@@ -59,7 +54,6 @@ object recurso inherits Interfaz(position = game.at(6,6), valor = 100) {
 
 
 object piezasRestantes inherits Interfaz(position = game.at(6,5), valor = 0) {
-
   override method valorAMostrar() {
     return oleada.enemigosRestantes()
   }
@@ -67,7 +61,6 @@ object piezasRestantes inherits Interfaz(position = game.at(6,5), valor = 0) {
 
 
 object vida inherits Interfaz(position = game.at(6,0), valor = reyBlanco.vidas()) {
-
   method perderVida() {
     if (not trucos.modoDios()) {
       valor -= 1
@@ -83,7 +76,6 @@ object vida inherits Interfaz(position = game.at(6,0), valor = reyBlanco.vidas()
 
 
 object oleadaActual inherits Interfaz(position = game.at(6,4), valor = 1) {
-
   override method valorAMostrar() {
     return oleada.nivel()
   }
