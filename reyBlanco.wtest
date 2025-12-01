@@ -43,26 +43,25 @@ describe "Probando al rey" {
 
     assert.equals([pieza], reyBlanco.listaPiezasAliadas())
     
-    assert.equals(80, reyBlanco.recursos())
+    assert.equals(80, recurso.valor())
   }
   test "Desaparecer enemigos si hay" {
+    reyBlanco.reiniciar()
     const enemigo = new PeonEnemigo(position = game.at(2,1))
 
     reyBlanco.colocarPiezaEn(pieza, reyBlanco.position())
-    //reyBlanco.listaPiezasAliadas().add(pieza)
     oleada.piezasActivas().add(enemigo)
 
-    reyBlanco.desaparecerEnemigoSiHay(reyBlanco.position())
+    reyBlanco.desaparecerEnemigoSiHay(reyBlanco.position().up(1))
     
-    console.println(reyBlanco.recursos())
-    assert.equals(105, reyBlanco.recursos())
+    console.println(recurso.valor())
+    assert.equals(85, recurso.valor())
     assert.equals(5, score.valor())
-//intentar Despues pq no se pudo
   }
   test "Probando Disparar Proyectil" {
-    assert.equals(100, reyBlanco.recursos())
+    assert.equals(100, recurso.valor())
     reyBlanco.disparar(new TorreBlanca())
-    assert.equals(0, reyBlanco.recursos())
+    assert.equals(0, recurso.valor())
   }
   test "Reiniciar Juego" {
     reyBlanco.piezasActivas().add(pieza)
@@ -79,10 +78,6 @@ describe "Probando al rey" {
   test "Lista de piezas activas" {
     const piezaDos  = new PeonBlanco()
     const piezaTres = new PeonBlanco()
-
-    //reyBlanco.listaPiezasAliadas().add(pieza)
-    //reyBlanco.listaPiezasAliadas().add(piezaDos)
-    //reyBlanco.listaPiezasAliadas().add(piezaTres)
 
     reyBlanco.colocarPiezaEn(pieza, reyBlanco.position())
     reyBlanco.colocarPiezaEn(piezaDos, reyBlanco.position())

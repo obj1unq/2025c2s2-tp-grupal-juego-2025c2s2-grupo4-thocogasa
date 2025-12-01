@@ -1,3 +1,4 @@
+import UI.*
 import rey.*
 import aliado.*
 import aliados.*
@@ -21,18 +22,18 @@ describe "tests de proyectiles" {
     const b1 = new AlfilBlanco()
 
     test "fallo disparo por falta de recursos" {
-        reyBlanco.recursos(60)
+        recurso.actualizar(60)
         reyBlanco.disparar(t1) //falla porque torre sale 100
-        assert.equals(60, reyBlanco.recursos())
+        assert.equals(60, recurso.valor())
         reyBlanco.disparar(b1) //falla porque alfil sale 70
-        assert.equals(60, reyBlanco.recursos())
+        assert.equals(60, recurso.valor())
     }
 
 test "disparo con recursos suficientes" {
-        reyBlanco.recursos(170)
+        recurso.actualizar(170)
         reyBlanco.disparar(t1) //falla porque torre sale 100
-        assert.equals(70, reyBlanco.recursos())
+        assert.equals(70, recurso.valor())
         reyBlanco.disparar(b1) //falla porque alfil sale 70
-        assert.equals(0, reyBlanco.recursos())
+        assert.equals(0, recurso.valor())
     }
 }

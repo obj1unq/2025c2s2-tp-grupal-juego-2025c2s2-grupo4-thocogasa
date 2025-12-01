@@ -15,7 +15,6 @@ object reyBlanco inherits Pieza (
   imagePieza = images.rey()
 
   ) {
-  var property recursos = 100
   const property listaPiezasAliadas = []
 
   method piezasActivas() = listaPiezasAliadas
@@ -34,7 +33,7 @@ object reyBlanco inherits Pieza (
   }
 
   method recursosSuficientesPara(pieza){
-    return recursos >= pieza.valor()
+    return recurso.valor() >= pieza.valor()
   }
 
   method intentarColocarPieza(pieza) {
@@ -58,7 +57,7 @@ object reyBlanco inherits Pieza (
   }
 
   method enemigoEnPosicionADesaparecer(posicion) {
-    return if(color.hayPiezaContraria(posicion)) color.piezaContrariaEn(posicion)
+    return if(color.hayPiezaContraria(posicion)) color.piezaContrariaEn(posicion) else null
   }
 
   method desaparecerEnemigoSiHay(pos) {
