@@ -1,4 +1,5 @@
 import rey.*
+import UI.*
 import aliado.*
 import aliados.*
 import enemigo.*
@@ -28,7 +29,6 @@ describe "tests de peones" {
     game.addVisual(blanco5)    
 
     blanco4.intentarCapturar()
-    // no debería capturar pieza y las dos piezas deberían estar en el mismo lugar.
     assert.equals(game.at(1, 6), blanco4.position())
     assert.equals(game.at(2, 5), blanco5.position())
   }
@@ -66,7 +66,7 @@ describe "tests de caballos" {
     assert.that(reyBlanco.puedeColocar(
       nuevoCaballo, reyBlanco.position().up(1)))
     reyBlanco.intentarColocarPieza(nuevoCaballo)
-    assert.equals(50, reyBlanco.recursos())
+    assert.equals(50, recurso.valor())
     // chequea el valor descontado de Recursos
 
      //pero ya no puedo colocar OTRO CABALLO
@@ -74,7 +74,7 @@ describe "tests de caballos" {
       otroCaballo, reyBlanco.position().up(1)))
     
     reyBlanco.intentarColocarPieza(otroCaballo) //esto no hace nada
-    assert.equals(50, reyBlanco.recursos()) //los recursos se mantineen en 50 
+    assert.equals(50, recurso.valor()) //los recursos se mantineen en 50 
   }
 
     test "capturar con caballo varias piezas"{
@@ -83,20 +83,20 @@ describe "tests de caballos" {
     const negroB = new AlfilNegro(
       position = game.at(4, 2))
     reyBlanco.intentarColocarPieza(nuevoCaballo)
-    assert.equals(50, reyBlanco.recursos())
+    assert.equals(50, recurso.valor())
 
     game.addVisual(negroA)
     game.addVisual(negroB)
 
     nuevoCaballo.capturar(negroB)
-    assert.equals(80, reyBlanco.recursos()) //50+30
+    assert.equals(80, recurso.valor()) //50+30
 
     assert.notThat(game.getObjectsIn(game.at(4, 2)).isEmpty())
     // assert.notThat(game.getObjectsIn(game.at(3, 4)).isEmpty())
     assert.equals(2, nuevoCaballo.combo()) // combo = 1 + 1
     
      nuevoCaballo.capturar(negroA)
-     assert.equals(100, reyBlanco.recursos())  //(80) + (10*2)
+     assert.equals(100, recurso.valor())  //(80) + (10*2)
      assert.equals(3, nuevoCaballo.combo()) // combo = 2+1
   }
 
