@@ -1,5 +1,7 @@
 # Last Pawn Standing A.K.A. minichess
 
+En el caso de probar el juego ejecutándolo desde visual studio, se recomienda hacerlo en localhost:4200/game.html, ya que hicimos un fronted personalizado para el juego :D
+
 ## trabajo grupal POO1 2c2025 c2
 
 ### Integrantes THOCOGASA:
